@@ -11,19 +11,56 @@ permissions:
   contents: read
 
 jobs:
-  verify:
+  repository-integrity:
+    name: Repository Integrity
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify security baseline
+        run: |
+          test -f README.md
+          test -f .gitignore
+          test -f .env.example
+          test -f SECURITY_STATUS.md
+          grep -qx '.env' .gitignore
+          grep -qx '.env.local' .gitignore
+      - name: Detect application source
+        id: app
+        run: |
+          if [ -f package.json ]; then
+            echo "present=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "present=false" >> "$GITHUB_OUTPUT"
+            echo "Application source has not yet been synchronized; bootstrap integrity verified."
+          fi
+
+  application:
+    name: Application Build
+    needs: repository-integrity
+    if: ${{ hashFiles('package.json') != '' }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 22
       - name: Install dependencies
         run: npm ci
-      - name: Typecheck
-        run: npm run lint
+      - name: Typecheck or lint
+        run: npm run lint --if-present
       - name: Build
-        run: npm run build
+        run: npm run build --if-present
+      - name: Test
+        run: npm test --if-present
+
+  status:
+    name: Evidence Summary
+    needs: [repository-integrity, application]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "Repository integrity: ${{ needs.repository-integrity.result }}"
+          echo "Application build: ${{ needs.application.result }}"
+          echo "A skipped application job means source is not yet present; it is not a production PASS."
