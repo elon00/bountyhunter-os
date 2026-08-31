@@ -1,0 +1,1 @@
+import test from "node:test";import assert from "node:assert/strict";import {evaluateProject} from "../src/reality.js";test("all evidence passes",()=>assert.equal(evaluateProject([true,true]),"VERIFIED PASS"));test("missing evidence blocks pass",()=>assert.equal(evaluateProject([true,false]),"NOT VERIFIED"));
