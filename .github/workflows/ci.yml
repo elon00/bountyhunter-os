@@ -1,4 +1,4 @@
-name: BountyHunter OS CI
+name: QMoosa Repository Integrity
 
 on:
   push:
@@ -22,45 +22,30 @@ jobs:
           test -f .gitignore
           test -f .env.example
           test -f SECURITY_STATUS.md
+          test -f QMOOSA_TRUTH_PROTOCOL.md
+          test -f ANTIGRAVITY.md
           grep -qx '.env' .gitignore
           grep -qx '.env.local' .gitignore
-      - name: Detect application source
-        id: app
+      - name: Reality status
         run: |
-          if [ -f package.json ]; then
-            echo "present=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "present=false" >> "$GITHUB_OUTPUT"
-            echo "Application source has not yet been synchronized; bootstrap integrity verified."
-          fi
+          echo "Repository integrity verified."
+          echo "Production readiness requires application-specific evidence."
 
-  application:
-    name: Application Build
+  application-evidence:
+    name: Application Evidence
     needs: repository-integrity
-    if: ${{ hashFiles('package.json') != '' }}
+    if: ${{ hashFiles('app/package.json') != '' }}
     runs-on: ubuntu-latest
-    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Install dependencies
+      - working-directory: app
         run: npm ci
-      - name: Typecheck or lint
+      - working-directory: app
         run: npm run lint --if-present
-      - name: Build
+      - working-directory: app
         run: npm run build --if-present
-      - name: Test
+      - working-directory: app
         run: npm test --if-present
-
-  status:
-    name: Evidence Summary
-    needs: [repository-integrity, application]
-    if: always()
-    runs-on: ubuntu-latest
-    steps:
-      - run: |
-          echo "Repository integrity: ${{ needs.repository-integrity.result }}"
-          echo "Application build: ${{ needs.application.result }}"
-          echo "A skipped application job means source is not yet present; it is not a production PASS."
