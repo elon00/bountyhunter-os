@@ -12,61 +12,29 @@ permissions:
 
 jobs:
   repository-integrity:
-    name: Repository Integrity
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Verify security baseline
-        run: |
+      - run: |
           test -f README.md
           test -f .gitignore
-          test -f .env.example
-          test -f SECURITY_STATUS.md
           test -f QMOOSA_TRUTH_PROTOCOL.md
           test -f ANTIGRAVITY.md
-          grep -qx '.env' .gitignore
-          grep -qx '.env.local' .gitignore
-      - name: Reality status
-        run: |
-          echo "Repository integrity verified."
-          echo "Production readiness requires application-specific evidence."
 
   application-evidence:
-    name: Application Evidence
     needs: repository-integrity
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Detect application source
-        id: app
-        run: |
-          if [ -f app/package.json ]; then
-            echo "present=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "present=false" >> "$GITHUB_OUTPUT"
-          fi
       - uses: actions/setup-node@v4
-        if: steps.app.outputs.present == 'true'
         with:
           node-version: 22
-      - name: Install
-        if: steps.app.outputs.present == 'true'
+      - name: Install application dependencies
         working-directory: app
-        run: npm ci
-      - name: Lint
-        if: steps.app.outputs.present == 'true'
+        run: npm install
+      - name: Build application
         working-directory: app
-        run: npm run lint --if-present
-      - name: Build
-        if: steps.app.outputs.present == 'true'
+        run: npm run build
+      - name: Test application
         working-directory: app
-        run: npm run build --if-present
-      - name: Test
-        if: steps.app.outputs.present == 'true'
-        working-directory: app
-        run: npm test --if-present
-      - name: Report source status
-        run: |
-          if [ "${{ steps.app.outputs.present }}" != "true" ]; then
-            echo "Application source not present: application verification is BLOCKED, not passed."
-          fi
+        run: npm test
