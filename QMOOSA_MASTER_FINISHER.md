@@ -1,0 +1,1 @@
+# QMoosa Master Project Finisher\n\nReusable pipeline: DISCOVER → CLASSIFY → AUDIT → FIX → TEST → VERIFY → DEPLOY → REPORT.\n\nProject-specific adapters must provide evidence before PASS is issued.\n
