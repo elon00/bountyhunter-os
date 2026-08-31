@@ -1,53 +1,27 @@
-# 🏹 BountyHunter OS & Conway AI Automaton
+# QMoosa Master Operating System
 
-QMoosa's local-first research, opportunity intelligence, Conway AI, and project-finishing command center.
+## One command: Start and Finish Everything
 
-## Reality-first status
+This repository is the unified home for:
 
-**RESEARCH / PROTOTYPE — NOT PRODUCTION-CERTIFIED**
+- QMoosa Master Project Finisher
+- BountyHunter OS
+- Conway AI Automaton integrations
 
-This repository is the QMoosa BountyHunter OS foundation. It is intended to support daily research, bounty/hackathon discovery, AI-assisted planning, Conway-style experimentation, and project workflow automation. External integrations and live data must be explicitly configured and verified before they are described as live.
+### Pipeline
 
-## QMoosa Master Finisher rules
+`DISCOVER → CLASSIFY → AUDIT → FIX → TEST → VERIFY → DEPLOY → REPORT`
 
-```text
-DISCOVER → CLASSIFY → AUDIT → FIX → TEST → SECURE → VERIFY → FINISH
-```
+### Safety and evidence rules
 
-No simulation, placeholder, sample metric, AI fallback, or local state is to be represented as live blockchain activity, certification, security proof, endorsement, or production deployment.
+- No production PASS without evidence.
+- No secrets committed.
+- Automatic fixes are limited to deterministic, low-risk repository changes.
+- Deployment requires successful applicable build/test gates.
 
-## Security
-
-- Never commit `.env`, `.env.local`, API keys, bot tokens, wallet keys, or personal access tokens.
-- Use `.env.example` for public configuration templates.
-- External credentials belong in local secret storage or CI/CD secret stores.
-- Do not claim third-party audit, certification, live provider data, or blockchain settlement without evidence.
-
-## Planned modules
-
-- 🏹 Bounty / hackathon research radar
-- 🤖 Multi-model agent council and model router
-- 🌌 Conway automaton and entropy research
-- 🧙 QMoosa Master Project Finisher integration
-- 🐙 GitHub project analysis and CI status
-- 📊 Daily priority dashboard
-- 🔐 Security and evidence gates
-- 📚 Reproducible project reports
-
-## Local development
-
-Requirements: Node.js 20+ and npm.
+Run locally:
 
 ```bash
-npm ci
-npm run lint
-npm run build
+npm install
+npm run qmoosa:finish
 ```
-
-## Environment
-
-Copy `.env.example` to a local environment file. Keep secrets out of Git.
-
-## License
-
-MIT
