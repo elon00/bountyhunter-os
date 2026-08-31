@@ -1,0 +1,10 @@
+{
+  "name": "qmoosa-master-operating-system",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "qmoosa:finish": "node scripts/start-and-finish-everything.mjs",
+    "test": "node --test"
+  }
+}
