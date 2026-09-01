@@ -4,7 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "qmoosa:finish": "node scripts/start-and-finish-everything.mjs",
-    "test": "node --test"
+    "dev": "npm --prefix app run dev",
+    "build": "npm --prefix app run build",
+    "test": "npm --prefix app run test",
+    "qmoosa:finish": "node scripts/start-and-finish-everything.mjs"
   }
 }
