@@ -46,3 +46,16 @@ export function getBountyStats(bounties) {
   return { total, totalRewardUsdc, verifiedCount };
 }
 
+/**
+ * Universal Reality Law Engine for BountyHunter OS
+ * URS_10 = min(E, I, O, V, R, C, P, F, A, H) * 10
+ */
+export function computeUrsScore(dimensions) {
+  const scores = Object.values(dimensions).map(v => Number(v) || 0);
+  const weakestLink = Math.min(...scores);
+  return {
+    weakestLink,
+    composite10: Number((weakestLink * 10).toFixed(1)),
+    status: weakestLink >= 0.6 ? "VERIFIED PASS" : "PROVISIONAL"
+  };
+}

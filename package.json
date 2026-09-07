@@ -9,7 +9,11 @@
   "scripts": {
     "dev": "npm --prefix app run dev",
     "build": "npm --prefix app run build",
-    "test": "npm --prefix app run test",
+    "test": "node --test tests/*.test.mjs && npm --prefix app run test",
+    "test:nist": "node tests/nist-pqc.test.mjs",
+    "audit:crypto": "node scripts/audit-crypto.mjs",
+    "reality:universal": "tsx scripts/reality-universal.ts",
+    "reality:certify": "tsx scripts/generate-urs-certificate.ts",
     "qmoosa:finish": "node scripts/start-and-finish-everything.mjs"
   }
 }

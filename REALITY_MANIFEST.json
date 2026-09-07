@@ -1,0 +1,42 @@
+{
+  "system": "BOUNTYHUNTER-OS",
+  "version": "1.0.0",
+  "status": "EVIDENCE_BASED_PQC_PROTOCOL",
+  "description": "Post-Quantum Web4 Master Project Finisher and Universal Reality Portfolio Engine",
+  "truthTaxonomy": {
+    "cryptographicCore": "PURE_TYPESCRIPT_PQC_EXECUTION",
+    "kemScheme": "NIST_FIPS_203_ML_KEM_768",
+    "signatureScheme": "NIST_FIPS_204_ML_DSA_65",
+    "realityLaw": "UNIVERSAL_REALITY_SYSTEM_v1.0",
+    "portfolioOrchestrator": "MULTI_PROJECT_FAIL_CLOSED_GATEWAY",
+    "simulationEliminated": true,
+    "weakestLinkGate": "H=0.60 (Pending external 3rd-party audit)",
+    "auditFirmStatus": "PENDING_EXTERNAL_AUDIT"
+  },
+  "subsystems": [
+    {
+      "name": "PQCEngine",
+      "path": "src/pqcEngine.js",
+      "status": "VERIFIED_NIST_FIPS_203_204",
+      "wire": {
+        "kemPublicKeyBytes": 1184,
+        "kemSecretKeyBytes": 2400,
+        "kemCiphertextBytes": 1088,
+        "kemSharedSecretBytes": 32,
+        "dsaPublicKeyBytes": 1952,
+        "dsaSecretKeyBytes": 4032,
+        "dsaSignatureBytes": 3309
+      }
+    },
+    {
+      "name": "RealityLaw",
+      "path": "src/realityLaw.js",
+      "status": "VERIFIED_UNIVERSAL_10_GATE_LAW"
+    },
+    {
+      "name": "PortfolioScanner",
+      "path": "src/portfolioScanner.js",
+      "status": "VERIFIED_WORKSPACE_PORTFOLIO_AUDITOR"
+    }
+  ]
+}

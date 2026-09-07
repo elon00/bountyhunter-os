@@ -459,4 +459,3 @@ function updateTerminal() {
 
 // Initial Render
 render();
-
