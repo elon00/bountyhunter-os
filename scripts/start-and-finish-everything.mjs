@@ -17,14 +17,15 @@ function record(name, status, evidence = "") {
 
 function command(name, file, args, options = {}) {
   try {
-    execFileSync(file, args, {
+    const executable = process.platform === "win32" && file === "npm" ? "npm.cmd" : file;
+    execFileSync(executable, args, {
       cwd: root,
       stdio: "pipe",
       encoding: "utf8",
       timeout: options.timeout ?? 180000,
       env: { ...process.env, CI: process.env.CI ?? "1" }
     });
-    record(name, "PASS", `${file} ${args.join(" ")}`);
+    record(name, "PASS", `${executable} ${args.join(" ")}`);
     return true;
   } catch (error) {
     const output = `${error.stdout ?? ""}${error.stderr ?? ""}`.trim().split("\n").slice(-3).join(" | ");
