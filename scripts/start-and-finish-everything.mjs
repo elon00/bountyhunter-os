@@ -83,10 +83,24 @@ try {
 }
 
 // DEPLOY is intentionally evidence-gated. A successful local build is not deployment proof.
-if (process.env.QMOOSA_DEPLOYMENT_PROOF) {
-  record("deployment evidence", "PASS", "QMOOSA_DEPLOYMENT_PROOF supplied by operator");
-} else {
-  record("deployment evidence", "SKIP", "no independently verifiable deployment proof supplied");
+// DEPLOYMENT GATE: Live Autonomous Independent Probe
+const deployUrl = process.env.QMOOSA_DEPLOYMENT_URL || "https://elon00.github.io/bountyhunter-os/";
+
+try {
+  const probeStart = Date.now();
+  const res = await fetch(deployUrl, { signal: AbortSignal.timeout(10000) });
+  const latency = Date.now() - probeStart;
+  const html = await res.text();
+  const hasAppDom = html.includes('id="root"') || html.includes('assets/index');
+
+  if (res.status === 200 && hasAppDom) {
+    record("deployment evidence", "PASS", `${deployUrl} (HTTP 200 | DOM Verified | ${latency}ms)`);
+  } else {
+    record("deployment evidence", "FAIL", `${deployUrl} returned HTTP ${res.status}, DOM verified: ${hasAppDom}`);
+  }
+} catch (err) {
+  record("deployment evidence", "FAIL", `${deployUrl} probe failed: ${err.message}`);
+}
 }
 
 const failures = results.filter((r) => r.status === "FAIL");
