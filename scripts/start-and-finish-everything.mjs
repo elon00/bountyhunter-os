@@ -16,20 +16,33 @@ function record(name, status, evidence = "") {
 }
 
 function command(name, file, args, options = {}) {
+  const started = Date.now();
+  const windowsNpm = process.platform === "win32" && file === "npm";
+  const executable = windowsNpm ? "cmd.exe" : file;
+  const executableArgs = windowsNpm ? ["/d", "/s", "/c", "npm.cmd", ...args] : args;
+
   try {
-    const executable = process.platform === "win32" && file === "npm" ? "npm.cmd" : file;
-    execFileSync(executable, args, {
+    execFileSync(executable, executableArgs, {
       cwd: root,
       stdio: "pipe",
       encoding: "utf8",
       timeout: options.timeout ?? 180000,
       env: { ...process.env, CI: process.env.CI ?? "1" }
     });
-    record(name, "PASS", `${executable} ${args.join(" ")}`);
+    record(name, "PASS", `${executable} ${executableArgs.join(" ")} (${Date.now() - started}ms)`);
     return true;
   } catch (error) {
-    const output = `${error.stdout ?? ""}${error.stderr ?? ""}`.trim().split("\n").slice(-3).join(" | ");
-    record(name, "FAIL", output || `${file} ${args.join(" ")}`);
+    const stdout = typeof error.stdout === "string" ? error.stdout : "";
+    const stderr = typeof error.stderr === "string" ? error.stderr : "";
+    const output = `${stdout}${stderr}`.trim().split("\n").slice(-3).join(" | ");
+    const details = [
+      error.code ? `code=${error.code}` : "",
+      error.errno ? `errno=${error.errno}` : "",
+      error.syscall ? `syscall=${error.syscall}` : "",
+      Number.isInteger(error.status) ? `exit=${error.status}` : "",
+      output
+    ].filter(Boolean).join(" | ");
+    record(name, "FAIL", details || `${executable} ${executableArgs.join(" ")} (${Date.now() - started}ms)`);
     return false;
   }
 }
@@ -44,7 +57,8 @@ record("reality manifest", existsSync("REALITY_MANIFEST.json") ? "PASS" : "FAIL"
 record("CI workflow", existsSync(".github/workflows/ci.yml") ? "PASS" : "FAIL", existsSync(".github/workflows/ci.yml") ? "present" : "missing");
 
 // AUDIT / SECURITY
-command("dependency lock integrity", "npm", ["install", "--package-lock-only", "--ignore-scripts"], { timeout: 180000 });
+// npm ci is already performed by the CI workflow; dry-run keeps this gate non-mutating.
+command("dependency lock integrity", "npm", ["ci", "--dry-run", "--ignore-scripts", "--no-audit"], { timeout: 180000 });
 command("production dependency audit", "npm", ["audit", "--omit=dev", "--audit-level=high"], { timeout: 180000 });
 command("crypto/reality audit", "npm", ["run", "audit:crypto", "--if-present"], { timeout: 180000 });
 
