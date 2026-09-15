@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+﻿#!/usr/bin/env node
 import { execFileSync } from "node:child_process";
 import { existsSync, mkdirSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
@@ -12,7 +12,7 @@ const reportPath = resolve(reportDir, "master-finisher-report.json");
 function record(name, status, evidence = "") {
   results.push({ name, status, evidence });
   const icon = status === "PASS" ? "PASS" : status === "SKIP" ? "SKIP" : "FAIL";
-  console.log(`[${icon}] ${name}${evidence ? ` — ${evidence}` : ""}`);
+  console.log(`[${icon}] ${name}${evidence ? ` â€” ${evidence}` : ""}`);
 }
 
 function command(name, file, args, options = {}) {
@@ -48,7 +48,7 @@ function command(name, file, args, options = {}) {
 }
 
 console.log("QMOOSA MASTER PROJECT FINISHER");
-console.log("REALITY MODE — evidence first, no fabricated PASS\n");
+console.log("REALITY MODE â€” evidence first, no fabricated PASS\n");
 
 // DISCOVER
 record("root package manifest", existsSync("package.json") ? "PASS" : "FAIL", existsSync("package.json") ? "package.json present" : "package.json missing");
@@ -134,4 +134,5 @@ if (status === "COMPLETE") console.log("All configured gates passed with deploym
 else if (status === "PARTIAL") console.log("Local gates passed; completion remains blocked until deployment evidence is independently verified.");
 else console.log("One or more required gates failed. No completion claim is permitted.");
 
-process.exit(failures.length ? 1 : 0);
+process.exitCode = failures.length ? 1 : 0;
+
