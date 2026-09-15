@@ -15,7 +15,7 @@
     "qmoosa:finish": "node scripts/start-and-finish-everything.mjs"
   },
   "dependencies": {
-    "@noble/hashes": "^2.1.0",
+    "@noble/hashes": "^2.2.0",
     "@noble/post-quantum": "^0.7.2"
   },
   "devDependencies": {
