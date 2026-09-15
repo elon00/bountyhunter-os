@@ -2,7 +2,7 @@ name: QMoosa Repository Integrity
 
 on:
   push:
-    branches: [main]
+    branches: [ main, master, 'fix/**' ]
   pull_request:
     branches: [main]
   workflow_dispatch:
