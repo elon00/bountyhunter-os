@@ -1,6 +1,6 @@
 {
   "name": "qmoosa-master-operating-system",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "private": true,
   "type": "module",
   "workspaces": ["app"],
@@ -15,10 +15,10 @@
     "qmoosa:finish": "node scripts/start-and-finish-everything.mjs"
   },
   "dependencies": {
-    "@noble/hashes": "^2.2.0",
-    "@noble/post-quantum": "^0.7.2"
+    "@noble/hashes": "2.4.0",
+    "@noble/post-quantum": "0.7.1"
   },
   "devDependencies": {
-    "tsx": "^4.20.3"
+    "tsx": "4.20.3"
   }
 }
