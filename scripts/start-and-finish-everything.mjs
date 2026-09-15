@@ -101,7 +101,6 @@ try {
 } catch (err) {
   record("deployment evidence", "FAIL", `${deployUrl} probe failed: ${err.message}`);
 }
-}
 
 const failures = results.filter((r) => r.status === "FAIL");
 const skips = results.filter((r) => r.status === "SKIP");
