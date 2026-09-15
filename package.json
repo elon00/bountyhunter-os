@@ -1,11 +1,9 @@
 {
   "name": "qmoosa-master-operating-system",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "type": "module",
-  "workspaces": [
-    "app"
-  ],
+  "workspaces": ["app"],
   "scripts": {
     "dev": "npm --prefix app run dev",
     "build": "npm --prefix app run build",
@@ -15,5 +13,11 @@
     "reality:universal": "tsx scripts/reality-universal.ts",
     "reality:certify": "tsx scripts/generate-urs-certificate.ts",
     "qmoosa:finish": "node scripts/start-and-finish-everything.mjs"
+  },
+  "dependencies": {
+    "@noble/hashes": "^2.0.1"
+  },
+  "devDependencies": {
+    "tsx": "^4.20.3"
   }
 }
