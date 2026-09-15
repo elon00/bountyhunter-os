@@ -1,0 +1,38 @@
+version: 1
+system: QMOOSA_MASTER_PROJECT_FINISHER
+truth_mode: evidence_first
+
+projects:
+  - id: qmoosa-agent-os
+    name: QMoosa Agent OS
+    role: control-and-security-plane
+    status: active
+    required_gates: [requirements, tests, security, build, deployment, evidence]
+  - id: qmoosa-nexus
+    name: QMoosa Nexus
+    role: execution-and-platform-plane
+    status: active
+    required_gates: [requirements, integration, tests, security, build, deployment, evidence]
+  - id: qmoosa-deep-tech-platform
+    name: QMoosa Deep-Tech AI Quantum Platform
+    role: portfolio-platform
+    status: active
+    required_gates: [requirements, tests, security, build, deployment, evidence]
+
+status_vocabulary:
+  - PLANNED
+  - IMPLEMENTED
+  - TESTED
+  - VERIFIED
+  - DEPLOYED
+  - COMPLETE
+  - PARTIAL
+  - BLOCKED
+  - FAILED
+
+completion_policy:
+  source_code_alone_is_not_completion: true
+  green_ci_alone_is_not_deployment_proof: true
+  simulated_network_activity_is_not_real_network_proof: true
+  secret_material_must_never_be_committed: true
+  every_complete_claim_requires_commit_and_evidence: true
