@@ -1,0 +1,40 @@
+name: QMoosa Repository Integrity
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  repository-integrity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          test -f README.md
+          test -f .gitignore
+          test -f QMOOSA_TRUTH_PROTOCOL.md
+          test -f ANTIGRAVITY.md
+
+  application-evidence:
+    needs: repository-integrity
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install application dependencies
+        working-directory: app
+        run: npm install
+      - name: Build application
+        working-directory: app
+        run: npm run build
+      - name: Test application
+        working-directory: app
+        run: npm test
