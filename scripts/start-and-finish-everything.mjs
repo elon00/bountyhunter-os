@@ -1,6 +1,109 @@
 #!/usr/bin/env node
-const stages=["DISCOVER","CLASSIFY","AUDIT","FIX","TEST","VERIFY","DEPLOY","REPORT"];
-console.log("🧙 QMOOSA MASTER OPERATING SYSTEM");
-console.log("⚡ START AND FINISH EVERYTHING");
-for (const stage of stages) console.log("→ "+stage);
-console.log("\nEvidence rule: this command orchestrates checks; it does not claim PASS without successful evidence.");
+import { execFileSync } from "node:child_process";
+import { existsSync, mkdirSync, writeFileSync } from "node:fs";
+import { resolve } from "node:path";
+
+const startedAt = new Date().toISOString();
+const results = [];
+const root = process.cwd();
+const reportDir = resolve(root, ".qmoosa");
+const reportPath = resolve(reportDir, "master-finisher-report.json");
+
+function record(name, status, evidence = "") {
+  results.push({ name, status, evidence });
+  const icon = status === "PASS" ? "PASS" : status === "SKIP" ? "SKIP" : "FAIL";
+  console.log(`[${icon}] ${name}${evidence ? ` — ${evidence}` : ""}`);
+}
+
+function command(name, file, args, options = {}) {
+  try {
+    execFileSync(file, args, {
+      cwd: root,
+      stdio: "pipe",
+      encoding: "utf8",
+      timeout: options.timeout ?? 180000,
+      env: { ...process.env, CI: process.env.CI ?? "1" }
+    });
+    record(name, "PASS", `${file} ${args.join(" ")}`);
+    return true;
+  } catch (error) {
+    const output = `${error.stdout ?? ""}${error.stderr ?? ""}`.trim().split("\n").slice(-3).join(" | ");
+    record(name, "FAIL", output || `${file} ${args.join(" ")}`);
+    return false;
+  }
+}
+
+console.log("QMOOSA MASTER PROJECT FINISHER");
+console.log("REALITY MODE — evidence first, no fabricated PASS\n");
+
+// DISCOVER
+record("root package manifest", existsSync("package.json") ? "PASS" : "FAIL", existsSync("package.json") ? "package.json present" : "package.json missing");
+record("truth protocol", existsSync("QMOOSA_TRUTH_PROTOCOL.md") ? "PASS" : "FAIL", existsSync("QMOOSA_TRUTH_PROTOCOL.md") ? "present" : "missing");
+record("reality manifest", existsSync("REALITY_MANIFEST.json") ? "PASS" : "FAIL", existsSync("REALITY_MANIFEST.json") ? "present" : "missing");
+record("CI workflow", existsSync(".github/workflows/ci.yml") ? "PASS" : "FAIL", existsSync(".github/workflows/ci.yml") ? "present" : "missing");
+
+// AUDIT / SECURITY
+command("dependency lock integrity", "npm", ["install", "--package-lock-only", "--ignore-scripts"], { timeout: 180000 });
+command("production dependency audit", "npm", ["audit", "--omit=dev", "--audit-level=high"], { timeout: 180000 });
+command("crypto/reality audit", "npm", ["run", "audit:crypto", "--if-present"], { timeout: 180000 });
+
+// TEST / BUILD
+command("root test suite", "npm", ["test", "--if-present"], { timeout: 180000 });
+command("application test suite", "npm", ["--prefix", "app", "test", "--if-present"], { timeout: 180000 });
+command("application production build", "npm", ["--prefix", "app", "run", "build", "--if-present"], { timeout: 180000 });
+
+// VERIFY
+try {
+  const sha = execFileSync("git", ["rev-parse", "HEAD"], { cwd: root, encoding: "utf8" }).trim();
+  record("git commit identity", "PASS", sha);
+} catch {
+  record("git commit identity", "FAIL", "unable to resolve HEAD");
+}
+
+try {
+  const porcelain = execFileSync("git", ["status", "--porcelain"], { cwd: root, encoding: "utf8" }).trim();
+  record("working tree", porcelain ? "FAIL" : "PASS", porcelain ? "uncommitted changes detected" : "clean");
+} catch {
+  record("working tree", "FAIL", "git status unavailable");
+}
+
+// DEPLOY is intentionally evidence-gated. A successful local build is not deployment proof.
+if (process.env.QMOOSA_DEPLOYMENT_PROOF) {
+  record("deployment evidence", "PASS", "QMOOSA_DEPLOYMENT_PROOF supplied by operator");
+} else {
+  record("deployment evidence", "SKIP", "no independently verifiable deployment proof supplied");
+}
+
+const failures = results.filter((r) => r.status === "FAIL");
+const skips = results.filter((r) => r.status === "SKIP");
+const localGatesPass = failures.length === 0;
+const status = !localGatesPass ? "FAILED" : skips.length ? "PARTIAL" : "COMPLETE";
+
+const report = {
+  system: "BOUNTYHUNTER-OS",
+  mode: "REALITY_MODE",
+  status,
+  startedAt,
+  finishedAt: new Date().toISOString(),
+  commit: (() => {
+    try { return execFileSync("git", ["rev-parse", "HEAD"], { cwd: root, encoding: "utf8" }).trim(); }
+    catch { return null; }
+  })(),
+  gates: results,
+  rules: {
+    deploymentRequiredForComplete: true,
+    missingEvidenceIsNotVerified: true,
+    simulationsAreNotDeploymentProof: true
+  }
+};
+
+mkdirSync(reportDir, { recursive: true });
+writeFileSync(reportPath, JSON.stringify(report, null, 2) + "\n", "utf8");
+
+console.log(`\nSTATUS: ${status}`);
+console.log(`REPORT: ${reportPath}`);
+if (status === "COMPLETE") console.log("All configured gates passed with deployment evidence.");
+else if (status === "PARTIAL") console.log("Local gates passed; completion remains blocked until deployment evidence is independently verified.");
+else console.log("One or more required gates failed. No completion claim is permitted.");
+
+process.exit(failures.length ? 1 : 0);
