@@ -3,7 +3,9 @@
   "version": "0.1.3",
   "private": true,
   "type": "module",
-  "workspaces": ["app"],
+  "workspaces": [
+    "app"
+  ],
   "scripts": {
     "dev": "npm --prefix app run dev",
     "build": "npm --prefix app run build",
@@ -16,9 +18,8 @@
   },
   "dependencies": {
     "@noble/hashes": "2.4.0",
-    "@noble/post-quantum": "0.7.1"
-  },
-  "devDependencies": {
+    "@noble/post-quantum": "0.7.1",
     "tsx": "4.20.3"
-  }
+  },
+  "devDependencies": {}
 }
