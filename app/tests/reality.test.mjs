@@ -115,3 +115,22 @@ test("filterBounties - filters FLEET, ARBITRUM, SUI, and TON missions", () => {
   const tonMatches = filterBounties(sampleBounties, { tag: "TON" });
   assert.equal(tonMatches.length, 1);
 });
+
+test("filterBounties - filters BIOTECH, VQE, and FORENSICS missions", () => {
+  const sampleBounties = [
+    { title: "Quantum VQE & QML Drug Discovery", description: "Malaria and TB", tags: ["QUANTUM", "VQE", "BIOTECH", "QML"], rewardUsdc: 20000, status: "VERIFIED PASS" },
+    { title: "Enterprise AI & Forensics", description: "Martin's Algorithm", tags: ["FORENSICS", "ENTERPRISE", "AI"], rewardUsdc: 18000, status: "VERIFIED PASS" },
+    { title: "Generic Mission", description: "Other", tags: ["OTHER"], rewardUsdc: 1000, status: "NOT VERIFIED" }
+  ];
+
+  const biotechMatches = filterBounties(sampleBounties, { tag: "BIOTECH" });
+  assert.equal(biotechMatches.length, 1);
+  assert.equal(biotechMatches[0].rewardUsdc, 20000);
+
+  const vqeMatches = filterBounties(sampleBounties, { tag: "VQE" });
+  assert.equal(vqeMatches.length, 1);
+
+  const forensicsMatches = filterBounties(sampleBounties, { tag: "FORENSICS" });
+  assert.equal(forensicsMatches.length, 1);
+  assert.equal(forensicsMatches[0].rewardUsdc, 18000);
+});
