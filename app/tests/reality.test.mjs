@@ -96,5 +96,22 @@ test("filterBounties - filters NEXUS and ERC4337 missions", () => {
   assert.equal(nexusMatches[0].rewardUsdc, 15000);
 });
 
+test("filterBounties - filters FLEET, ARBITRUM, SUI, and TON missions", () => {
+  const sampleBounties = [
+    { title: "QMoosa Multi-Chain Sovereign Fleet Synchronization", description: "15 repos", tags: ["FLEET", "PQC", "ARBITRUM", "SOLANA", "ALGORAND", "SUI", "TON"], rewardUsdc: 25000, status: "VERIFIED PASS" },
+    { title: "Generic Mission", description: "Other", tags: ["OTHER"], rewardUsdc: 1000, status: "NOT VERIFIED" }
+  ];
 
+  const fleetMatches = filterBounties(sampleBounties, { tag: "FLEET" });
+  assert.equal(fleetMatches.length, 1);
+  assert.equal(fleetMatches[0].rewardUsdc, 25000);
 
+  const arbitrumMatches = filterBounties(sampleBounties, { tag: "ARBITRUM" });
+  assert.equal(arbitrumMatches.length, 1);
+
+  const suiMatches = filterBounties(sampleBounties, { tag: "SUI" });
+  assert.equal(suiMatches.length, 1);
+
+  const tonMatches = filterBounties(sampleBounties, { tag: "TON" });
+  assert.equal(tonMatches.length, 1);
+});
