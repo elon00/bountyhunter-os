@@ -134,3 +134,24 @@ test("filterBounties - filters BIOTECH, VQE, and FORENSICS missions", () => {
   assert.equal(forensicsMatches.length, 1);
   assert.equal(forensicsMatches[0].rewardUsdc, 18000);
 });
+
+test("filterBounties - filters ACADEMIC, MIT, STANFORD, and IIT missions", () => {
+  const sampleBounties = [
+    { title: "Academic & Institutional Research Conjunction", description: "IITs, MIT, Stanford", tags: ["ACADEMIC", "RESEARCH", "MIT", "STANFORD", "IIT", "NQM"], rewardUsdc: 30000, status: "VERIFIED PASS" },
+    { title: "Other Task", description: "None", tags: ["OTHER"], rewardUsdc: 500, status: "NOT VERIFIED" }
+  ];
+
+  const academicMatches = filterBounties(sampleBounties, { tag: "ACADEMIC" });
+  assert.equal(academicMatches.length, 1);
+  assert.equal(academicMatches[0].rewardUsdc, 30000);
+
+  const mitMatches = filterBounties(sampleBounties, { tag: "MIT" });
+  assert.equal(mitMatches.length, 1);
+
+  const stanfordMatches = filterBounties(sampleBounties, { tag: "STANFORD" });
+  assert.equal(stanfordMatches.length, 1);
+
+  const iitMatches = filterBounties(sampleBounties, { tag: "IIT" });
+  assert.equal(iitMatches.length, 1);
+});
+
