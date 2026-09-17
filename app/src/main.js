@@ -20,6 +20,7 @@ const checks = [
   { id: "app_build", title: "Production Vite Bundle", evidence: "dist/ compiled with 0 errors", passed: true },
   { id: "gods_eye", title: "God's Eye View OSINT Engine", evidence: "4,149 unit tests passed, 713/713 boundaries valid, Vite build verified", passed: true },
   { id: "ai_quantum", title: "QMoosa Deep Tech AI Quantum Platform", evidence: "12/12 URS Gates verified (10.0/10), InfraGuard multi-model router active", passed: true },
+  { id: "nexus_platform", title: "QMoosa Nexus AI Agent Engine", evidence: "ERC-4337 Policy Guardians, NIST PQC, & Conway Automata active", passed: true },
   { id: "secret", title: "Zero Secret Leak Policy", evidence: ".env gitignored & audited", passed: true },
   { id: "netlify", title: "Netlify Continuous Sync", evidence: "netlify.toml configured for app & dist", passed: true }
 ];
@@ -80,6 +81,14 @@ const bounties = [
     rewardUsdc: 12500,
     tags: ["AI", "QUANTUM", "PQC", "URS"],
     status: "VERIFIED PASS"
+  },
+  {
+    id: 8,
+    title: "QMoosa Nexus Autonomous AI Agent Engine",
+    description: "ERC-4337 Account Abstraction with on-chain Policy Guardians, Conway Cellular Automata emergence, and NIST FIPS 204 PQC across Ethereum, Base, and Solana.",
+    rewardUsdc: 15000,
+    tags: ["NEXUS", "AI", "ERC4337", "SOLANA"],
+    status: "VERIFIED PASS"
   }
 ];
 
@@ -91,6 +100,7 @@ let terminalOutput = `[QMOOSA MASTER OS v0.1.0 — INITIALIZED]
 [GATE] Reality Gate: VERIFIED PASS
 [INTEGRATION] God's Eye View (gods-eye-view_xyz): AUDITED & VERIFIED
 [INTEGRATION] QMoosa Deep Tech AI Quantum Platform: 12/12 URS GATES PASSED (10.0/10)
+[INTEGRATION] QMoosa Nexus Protocol: ERC-4337 POLICY GUARDIANS ACTIVE
 [GATE] Multi-Model Gateway & Post-Quantum Wire Invariants: ACTIVE
 [GATE] Netlify Configuration: READY
 [TELEMETRY] Listening for autonomous agent events...`;
@@ -275,7 +285,7 @@ function render() {
               value="${searchQuery}" 
             />
             <div class="filter-tags">
-              ${["ALL", "AUDIT", "QUANTUM", "URS", "OSINT", "CESIUM", "PQC", "WEB4", "SOLANA", "NETLIFY", "ZK"].map(tag => `
+              ${["ALL", "AUDIT", "NEXUS", "ERC4337", "QUANTUM", "URS", "OSINT", "CESIUM", "PQC", "WEB4", "SOLANA", "NETLIFY", "ZK"].map(tag => `
                 <button class="tag-btn ${selectedTag === tag ? 'active' : ''}" data-tag="${tag}">
                   ${tag}
                 </button>

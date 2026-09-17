@@ -84,4 +84,17 @@ test("filterBounties - filters OSINT and CESIUM missions", () => {
   assert.equal(queryMatches[0].rewardUsdc, 7500);
 });
 
+test("filterBounties - filters NEXUS and ERC4337 missions", () => {
+  const sampleBounties = [
+    { title: "QMoosa Nexus Autonomous AI Agent Engine", description: "Policy Guardian ERC-4337", tags: ["NEXUS", "AI", "ERC4337"], rewardUsdc: 15000, status: "VERIFIED PASS" },
+    { title: "Solana PQC", description: "ML-KEM bridge", tags: ["PQC", "SOLANA"], rewardUsdc: 5000, status: "VERIFIED PASS" }
+  ];
+
+  const nexusMatches = filterBounties(sampleBounties, { tag: "NEXUS" });
+  assert.equal(nexusMatches.length, 1);
+  assert.equal(nexusMatches[0].title, "QMoosa Nexus Autonomous AI Agent Engine");
+  assert.equal(nexusMatches[0].rewardUsdc, 15000);
+});
+
+
 
