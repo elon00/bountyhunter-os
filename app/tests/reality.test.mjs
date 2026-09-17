@@ -69,3 +69,19 @@ test("getBountyStats - aggregates metrics correctly", () => {
   assert.equal(stats.verifiedCount, 2);
 });
 
+test("filterBounties - filters OSINT and CESIUM missions", () => {
+  const sampleBounties = [
+    { title: "God's Eye View 3D OSINT Simulator", description: "Planetary intelligence console", tags: ["OSINT", "CESIUM", "AUDIT"], rewardUsdc: 7500, status: "VERIFIED PASS" },
+    { title: "Solana PQC", description: "ML-KEM bridge", tags: ["PQC", "SOLANA"], rewardUsdc: 5000, status: "VERIFIED PASS" }
+  ];
+
+  const osintMatches = filterBounties(sampleBounties, { tag: "OSINT" });
+  assert.equal(osintMatches.length, 1);
+  assert.equal(osintMatches[0].title, "God's Eye View 3D OSINT Simulator");
+
+  const queryMatches = filterBounties(sampleBounties, { query: "planetary" });
+  assert.equal(queryMatches.length, 1);
+  assert.equal(queryMatches[0].rewardUsdc, 7500);
+});
+
+
