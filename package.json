@@ -21,7 +21,8 @@
     "gods-eye:dev": "npm --prefix ../gods-eye-view_xyz run dev",
     "ai-quantum:test": "npm --prefix ../../qmoosa-deep-tech-ai-quantum-platform test",
     "ai-quantum:dev": "npm --prefix ../../qmoosa-deep-tech-ai-quantum-platform run dev",
-    "qmoosa:finish": "node scripts/start-and-finish-everything.mjs"
+    "qmoosa:finish": "node scripts/start-and-finish-everything.mjs",
+    "qmoosa:heal": "node scripts/master-healer.mjs"
   },
   "dependencies": {
     "@noble/hashes": "2.4.0",
