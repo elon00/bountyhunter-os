@@ -1,0 +1,61 @@
+name: QMoosa Portfolio One Click
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  portfolio:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Mother Body
+        uses: actions/checkout@v4
+        with:
+          path: bountyhunter-os
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Checkout registered public projects
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          cd "$GITHUB_WORKSPACE"
+          node <<'NODE' > /tmp/projects.txt
+          const r=require("./bountyhunter-os/portfolio.registry.json");
+          for(const p of [...(r.verified_priority||[]),...(r.gated_projects||[])])
+            if(p.name!=="bountyhunter-os") console.log(p.name);
+          NODE
+          while IFS= read -r name; do
+            if gh api "repos/${GITHUB_REPOSITORY_OWNER}/${name}" >/dev/null 2>&1; then
+              visibility=$(gh api "repos/${GITHUB_REPOSITORY_OWNER}/${name}" --jq .visibility)
+              if [ "$visibility" = "public" ]; then
+                git clone --depth 1 "https://github.com/${GITHUB_REPOSITORY_OWNER}/${name}.git" "$name"
+              else
+                echo "BLOCKED private repository: $name"
+              fi
+            else
+              echo "BLOCKED inaccessible repository: $name"
+            fi
+          done < /tmp/projects.txt
+
+      - name: Install Mother Body
+        working-directory: bountyhunter-os
+        run: npm ci
+
+      - name: Run registry-driven portfolio finisher
+        working-directory: bountyhunter-os
+        run: npm run finish:all
+
+      - name: Upload portfolio evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qmoosa-portfolio-one-click-report
+          path: bountyhunter-os/.qmoosa/portfolio-finisher-report.json
+          if-no-files-found: warn
