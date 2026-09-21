@@ -26,7 +26,11 @@ function prepare(x){
   const steps=[];
   try{
     if(existsSync(resolve(x.dir,"package-lock.json"))){
-      exec("npm",["ci","--no-audit","--no-fund"],x.dir); steps.push("npm ci");
+      try{
+        exec("npm",["ci","--no-audit","--no-fund"],x.dir); steps.push("npm ci");
+      }catch{
+        exec("npm",["install","--no-audit","--no-fund"],x.dir); steps.push("npm install (lock repair fallback)");
+      }
     }else if(existsSync(resolve(x.dir,"package.json"))){
       exec("npm",["install","--no-audit","--no-fund"],x.dir); steps.push("npm install");
     }
