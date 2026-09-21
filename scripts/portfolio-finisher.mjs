@@ -12,8 +12,8 @@ const projects=[
   {name:"QARBI",dir:resolve(workspace,"QARBI"),cmd:["npm","run","finish"]},
   {name:"jarsol-web4-automaton",dir:resolve(workspace,"jarsol-web4-automaton"),cmd:["npm","run","qmoosa:finish"]},
   {name:"qmoosa-pqs",dir:resolve(workspace,"qmoosa-pqs"),cmd:["python","tests/run_all_tests.py"]},
-  {name:"qmoosa-nexus-platform",dir:resolve(workspace,"qmoosa-nexus-platform"),cmd:["npm","test"]},
-  {name:"qmoosa-deep-tech-ai-quantum-platform",dir:resolve(workspace,"qmoosa-deep-tech-ai-quantum-platform"),cmd:["npm","run","reality:universal"]}
+  {name:"qmoosa-nexus-platform",dir:resolve(workspace,"qmoosa-nexus-platform"),cmd:["npm","run","qmoosa:finish"]},
+  {name:"qmoosa-deep-tech-ai-quantum-platform",dir:resolve(workspace,"qmoosa-deep-tech-ai-quantum-platform"),cmd:["npm","run","qmoosa:finish"]}
 ];
 const results=[];
 function run(x){
