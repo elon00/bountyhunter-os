@@ -1,3 +1,4 @@
+# Legacy conceptual role catalog. Executable repository mappings are in projects.json.
 version: 1
 system: QMOOSA_MASTER_PROJECT_FINISHER
 truth_mode: evidence_first

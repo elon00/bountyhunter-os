@@ -1,0 +1,631 @@
+{
+  "version": 1,
+  "system": "QMOOSA_PROJECT_REGISTRY",
+  "policy": {
+    "preserveIndependentRepositories": true,
+    "missingEvidenceStatus": "NOT VERIFIED",
+    "automaticDeployment": false
+  },
+  "projects": [
+    {
+      "id": "martins-algorithm",
+      "repository": "elon00/martins-algorithm",
+      "defaultBranch": "main",
+      "scope": "candidate-original-project",
+      "status": "NOT VERIFIED",
+      "sourceTree": "a1541f8503d058d215c0258006a0bfde18ad3f97",
+      "localDirectory": "martins-algorithm",
+      "requiredGates": [
+        "tests",
+        "build",
+        "security",
+        "deployment"
+      ],
+      "commands": {},
+      "findings": [
+        "Contains Midnight integration files; preserve until boundary review",
+        "Functional, security and deployment readiness not established"
+      ],
+      "fileCount": 54
+    },
+    {
+      "id": "solana-ai",
+      "repository": "elon00/solana-ai",
+      "defaultBranch": "main",
+      "scope": "candidate-original-project",
+      "status": "NOT VERIFIED",
+      "sourceTree": "a6aa5cbb5af4f4b7c365a25696de4726bbad90c7",
+      "localDirectory": "solana-ai",
+      "requiredGates": [
+        "tests",
+        "build",
+        "security",
+        "deployment"
+      ],
+      "commands": {},
+      "findings": [
+        "No root npm test script; identify project-specific test gates",
+        "Commands depend on a developer's absolute Windows path",
+        "No recognized dependency lock or requirements file",
+        "Functional, security and deployment readiness not established"
+      ],
+      "fileCount": 47
+    },
+    {
+      "id": "qmoosa-deep-tech-ai-quantum-platform",
+      "repository": "elon00/qmoosa-deep-tech-ai-quantum-platform",
+      "defaultBranch": "master",
+      "scope": "candidate-original-project",
+      "status": "NOT VERIFIED",
+      "sourceTree": "9a57883dfcb2697593afe22ecd462849cd00c422",
+      "localDirectory": "qmoosa-deep-tech-ai-quantum-platform",
+      "requiredGates": [
+        "tests",
+        "build",
+        "security",
+        "deployment"
+      ],
+      "commands": {},
+      "findings": [
+        "Contains Midnight integration files; preserve until boundary review",
+        "Functional, security and deployment readiness not established"
+      ],
+      "fileCount": 202
+    },
+    {
+      "id": "qsui",
+      "repository": "elon00/QSui",
+      "defaultBranch": "main",
+      "scope": "candidate-original-project",
+      "status": "NOT VERIFIED",
+      "sourceTree": "e43be22a3f904e5e43154101e67c4e5dd27cfbdd",
+      "localDirectory": "QSui",
+      "requiredGates": [
+        "tests",
+        "build",
+        "security",
+        "deployment"
+      ],
+      "commands": {},
+      "findings": [
+        "Functional, security and deployment readiness not established"
+      ],
+      "fileCount": 47
+    },
+    {
+      "id": "shor",
+      "repository": "elon00/shor",
+      "defaultBranch": "master",
+      "scope": "candidate-original-project",
+      "status": "NOT VERIFIED",
+      "sourceTree": "4c26645e8f58e400db827114b10fa55d32a146a5",
+      "localDirectory": "shor",
+      "requiredGates": [
+        "tests",
+        "build",
+        "security",
+        "deployment"
+      ],
+      "commands": {},
+      "findings": [
+        "Functional, security and deployment readiness not established"
+      ],
+      "fileCount": 68
+    },
+    {
+      "id": "algo_qain",
+      "repository": "elon00/Algo_Qain",
+      "defaultBranch": "main",
+      "scope": "candidate-original-project",
+      "status": "NOT VERIFIED",
+      "sourceTree": "06ab3463151337b574b4ada48f20bdbc2dbc588c",
+      "localDirectory": "Algo_Qain",
+      "requiredGates": [
+        "tests",
+        "build",
+        "security",
+        "deployment"
+      ],
+      "commands": {},
+      "findings": [
+        "No root npm test script; identify project-specific test gates",
+        "Functional, security and deployment readiness not established"
+      ],
+      "fileCount": 39
+    },
+    {
+      "id": "qton",
+      "repository": "elon00/qton",
+      "defaultBranch": "main",
+      "scope": "candidate-original-project",
+      "status": "NOT VERIFIED",
+      "sourceTree": "e4887f68760a0eac99c858544358386bb828c5d4",
+      "localDirectory": "qton",
+      "requiredGates": [
+        "tests",
+        "build",
+        "security",
+        "deployment"
+      ],
+      "commands": {},
+      "findings": [
+        "Functional, security and deployment readiness not established"
+      ],
+      "fileCount": 82
+    },
+    {
+      "id": "pq-rdl-blockchain",
+      "repository": "elon00/pq-rdl-blockchain",
+      "defaultBranch": "master",
+      "scope": "candidate-original-project",
+      "status": "NOT VERIFIED",
+      "sourceTree": "ac789a3b380a611eb4fee21f6fbcd8e0a444045d",
+      "localDirectory": "pq-rdl-blockchain",
+      "requiredGates": [
+        "tests",
+        "build",
+        "security",
+        "deployment"
+      ],
+      "commands": {
+        "tests": [
+          "npm",
+          "run",
+          "test:integrity"
+        ],
+        "build": [
+          "npm",
+          "run",
+          "build"
+        ]
+      },
+      "findings": [
+        "Functional, security and deployment readiness not established"
+      ],
+      "fileCount": 177
+    },
+    {
+      "id": "quantum-portfolio-optimizer",
+      "repository": "elon00/quantum-portfolio-optimizer",
+      "defaultBranch": "main",
+      "scope": "candidate-original-project",
+      "status": "NOT VERIFIED",
+      "sourceTree": "3318f28efc470ac9378c822fec78328e6c448ba7",
+      "localDirectory": "quantum-portfolio-optimizer",
+      "requiredGates": [
+        "tests",
+        "build",
+        "security",
+        "deployment"
+      ],
+      "commands": {},
+      "findings": [
+        "No root npm test script; identify project-specific test gates",
+        "Functional, security and deployment readiness not established"
+      ],
+      "fileCount": 98
+    },
+    {
+      "id": "bnb-qusd",
+      "repository": "elon00/bnb-qusd",
+      "defaultBranch": "main",
+      "scope": "candidate-original-project",
+      "status": "NOT VERIFIED",
+      "sourceTree": "d2ac617acc79c2b6f0e22965a95822b6baf9882f",
+      "localDirectory": "bnb-qusd",
+      "requiredGates": [
+        "tests",
+        "build",
+        "security",
+        "deployment"
+      ],
+      "commands": {},
+      "findings": [
+        "Functional, security and deployment readiness not established"
+      ],
+      "fileCount": 54
+    },
+    {
+      "id": "qmoosa-nexus-platform",
+      "repository": "elon00/qmoosa-nexus-platform",
+      "defaultBranch": "main",
+      "scope": "candidate-original-project",
+      "status": "NOT VERIFIED",
+      "sourceTree": "30ec5dfddd5d0febe73e6839d8479d1fd5905066",
+      "localDirectory": "qmoosa-nexus-platform",
+      "requiredGates": [
+        "tests",
+        "build",
+        "security",
+        "deployment"
+      ],
+      "commands": {},
+      "findings": [
+        "Functional, security and deployment readiness not established"
+      ],
+      "fileCount": 68
+    },
+    {
+      "id": "quantumshield",
+      "repository": "elon00/quantumshield",
+      "defaultBranch": "master",
+      "scope": "candidate-original-project",
+      "status": "NOT VERIFIED",
+      "sourceTree": "6eeb36a7716135309afa0f72b46151e03eb94211",
+      "localDirectory": "quantumshield",
+      "requiredGates": [
+        "tests",
+        "build",
+        "security",
+        "deployment"
+      ],
+      "commands": {},
+      "findings": [
+        "Functional, security and deployment readiness not established"
+      ],
+      "fileCount": 61
+    },
+    {
+      "id": "qarbi",
+      "repository": "elon00/QARBI",
+      "defaultBranch": "main",
+      "scope": "candidate-original-project",
+      "status": "NOT VERIFIED",
+      "sourceTree": "92cebf19a52efebac677800f0e17d6369db1b2fa",
+      "localDirectory": "QARBI",
+      "requiredGates": [
+        "tests",
+        "build",
+        "security",
+        "deployment"
+      ],
+      "commands": {},
+      "findings": [
+        "Functional, security and deployment readiness not established"
+      ],
+      "fileCount": 81
+    },
+    {
+      "id": "alcat-mesh",
+      "repository": "elon00/alcat-mesh",
+      "defaultBranch": "main",
+      "scope": "candidate-original-project",
+      "status": "NOT VERIFIED",
+      "sourceTree": "5e7cdd03039e2c07b59fd783ed8fe9dfe0e9e5f9",
+      "localDirectory": "alcat-mesh",
+      "requiredGates": [
+        "tests",
+        "build",
+        "security",
+        "deployment"
+      ],
+      "commands": {},
+      "findings": [
+        "Commands depend on a developer's absolute Windows path",
+        "Functional, security and deployment readiness not established"
+      ],
+      "fileCount": 43
+    },
+    {
+      "id": "qmoosa-pqs",
+      "repository": "elon00/qmoosa-pqs",
+      "defaultBranch": "main",
+      "scope": "candidate-original-project",
+      "status": "NOT VERIFIED",
+      "sourceTree": "b1022093f1f43c5f8eaf4da2690f99daeb2c5c1d",
+      "localDirectory": "qmoosa-pqs",
+      "requiredGates": [
+        "tests",
+        "build",
+        "security",
+        "deployment"
+      ],
+      "commands": {},
+      "findings": [
+        "No root npm test script; identify project-specific test gates",
+        "Functional, security and deployment readiness not established"
+      ],
+      "fileCount": 61
+    },
+    {
+      "id": "del-ai",
+      "repository": "elon00/del-ai",
+      "defaultBranch": "main",
+      "scope": "candidate-original-project",
+      "status": "NOT VERIFIED",
+      "sourceTree": "5356118ce0f696f4257c428ccdc34430f91058ee",
+      "localDirectory": "del-ai",
+      "requiredGates": [
+        "tests",
+        "build",
+        "security",
+        "deployment"
+      ],
+      "commands": {},
+      "findings": [
+        "No root npm test script; identify project-specific test gates",
+        "Commands depend on a developer's absolute Windows path",
+        "Functional, security and deployment readiness not established"
+      ],
+      "fileCount": 52
+    },
+    {
+      "id": "my_yellow_project",
+      "repository": "elon00/my_yellow_project",
+      "defaultBranch": "main",
+      "scope": "candidate-original-project",
+      "status": "NOT VERIFIED",
+      "sourceTree": "ac028a6f1134c85a144dbc929f1674cd59f1ad17",
+      "localDirectory": "my_yellow_project",
+      "requiredGates": [
+        "tests",
+        "build",
+        "security",
+        "deployment"
+      ],
+      "commands": {},
+      "findings": [
+        "No root npm test script; identify project-specific test gates",
+        "Functional, security and deployment readiness not established"
+      ],
+      "fileCount": 39
+    },
+    {
+      "id": "solutionai",
+      "repository": "elon00/solutionai",
+      "defaultBranch": "master",
+      "scope": "candidate-original-project",
+      "status": "NOT VERIFIED",
+      "sourceTree": "c46cae010199f29921b7c843f5212d6691eb208f",
+      "localDirectory": "solutionai",
+      "requiredGates": [
+        "tests",
+        "build",
+        "security",
+        "deployment"
+      ],
+      "commands": {},
+      "findings": [
+        "No root npm test script; identify project-specific test gates",
+        "Functional, security and deployment readiness not established"
+      ],
+      "fileCount": 49
+    },
+    {
+      "id": "wayai-nft-launch",
+      "repository": "elon00/wayai-nft-launch",
+      "defaultBranch": "master",
+      "scope": "candidate-original-project",
+      "status": "NOT VERIFIED",
+      "sourceTree": "0f2278cbbc8164ab513849cc0b8b6e9b1589dce9",
+      "localDirectory": "wayai-nft-launch",
+      "requiredGates": [
+        "tests",
+        "build",
+        "security",
+        "deployment"
+      ],
+      "commands": {},
+      "findings": [
+        "Functional, security and deployment readiness not established"
+      ],
+      "fileCount": 70
+    },
+    {
+      "id": "omnicall-quantum-sentinel",
+      "repository": "elon00/omnicall-quantum-sentinel",
+      "defaultBranch": "master",
+      "scope": "candidate-original-project",
+      "status": "NOT VERIFIED",
+      "sourceTree": "da91062e2b90399591d2f442814167a2425a5a06",
+      "localDirectory": "omnicall-quantum-sentinel",
+      "requiredGates": [
+        "tests",
+        "build",
+        "security",
+        "deployment"
+      ],
+      "commands": {},
+      "findings": [
+        "Functional, security and deployment readiness not established"
+      ],
+      "fileCount": 161
+    },
+    {
+      "id": "qds",
+      "repository": "elon00/QDS",
+      "defaultBranch": "main",
+      "scope": "candidate-original-project",
+      "status": "NOT VERIFIED",
+      "sourceTree": "ae0298f2f129cb0085d451a7d43e63b6390e2b9a",
+      "localDirectory": "QDS",
+      "requiredGates": [
+        "tests",
+        "build",
+        "security",
+        "deployment"
+      ],
+      "commands": {},
+      "findings": [
+        "No root npm test script; identify project-specific test gates",
+        "Functional, security and deployment readiness not established"
+      ],
+      "fileCount": 52
+    },
+    {
+      "id": "shor-x402",
+      "repository": "elon00/shor-x402",
+      "defaultBranch": "main",
+      "scope": "candidate-original-project",
+      "status": "NOT VERIFIED",
+      "sourceTree": "a5da546331d0878ad05c69189c287980b9cfdf32",
+      "localDirectory": "shor-x402",
+      "requiredGates": [
+        "tests",
+        "build",
+        "security",
+        "deployment"
+      ],
+      "commands": {},
+      "findings": [
+        "Functional, security and deployment readiness not established"
+      ],
+      "fileCount": 67
+    },
+    {
+      "id": "tiddi-token",
+      "repository": "elon00/tiddi-token",
+      "defaultBranch": "master",
+      "scope": "candidate-original-project",
+      "status": "NOT VERIFIED",
+      "sourceTree": "c1ecda9b0524c4f60f40f545776cbd6e9e0931ed",
+      "localDirectory": "tiddi-token",
+      "requiredGates": [
+        "tests",
+        "build",
+        "security",
+        "deployment"
+      ],
+      "commands": {},
+      "findings": [
+        "Generated node_modules content is tracked",
+        "Functional, security and deployment readiness not established"
+      ],
+      "fileCount": 18716
+    },
+    {
+      "id": "jarsol-web4-automaton",
+      "repository": "elon00/jarsol-web4-automaton",
+      "defaultBranch": "main",
+      "scope": "candidate-original-project",
+      "status": "NOT VERIFIED",
+      "sourceTree": "159b9d582aa29bf81dd15661b602a55c98500c3d",
+      "localDirectory": "jarsol-web4-automaton",
+      "requiredGates": [
+        "tests",
+        "build",
+        "security",
+        "deployment"
+      ],
+      "commands": {},
+      "findings": [
+        "No root npm test script; identify project-specific test gates",
+        "Functional, security and deployment readiness not established"
+      ],
+      "fileCount": 193
+    },
+    {
+      "id": "quantum-ai",
+      "repository": "elon00/quantum-ai",
+      "defaultBranch": "master",
+      "scope": "candidate-original-project",
+      "status": "NOT VERIFIED",
+      "sourceTree": "fba05a7781801ccb2475ec41836091a98a7af76d",
+      "localDirectory": "quantum-ai",
+      "requiredGates": [
+        "tests",
+        "build",
+        "security",
+        "deployment"
+      ],
+      "commands": {},
+      "findings": [
+        "Functional, security and deployment readiness not established"
+      ],
+      "fileCount": 145
+    },
+    {
+      "id": "omniver-quantum-decoder",
+      "repository": "elon00/omniver-quantum-decoder",
+      "defaultBranch": "master",
+      "scope": "candidate-original-project",
+      "status": "NOT VERIFIED",
+      "sourceTree": "bbafa0e2cf8eace4fc28dafc8a1e2adbd72f980a",
+      "localDirectory": "omniver-quantum-decoder",
+      "requiredGates": [
+        "tests",
+        "build",
+        "security",
+        "deployment"
+      ],
+      "commands": {},
+      "findings": [
+        "Functional, security and deployment readiness not established"
+      ],
+      "fileCount": 150
+    },
+    {
+      "id": "bountyhunter-os",
+      "repository": "elon00/bountyhunter-os",
+      "defaultBranch": "main",
+      "scope": "candidate-original-project",
+      "status": "NOT VERIFIED",
+      "sourceTree": "3c5435810c17f340c7ecfd53b5f44ea5c6a30518",
+      "localDirectory": "bountyhunter-os",
+      "requiredGates": [
+        "tests",
+        "build",
+        "security",
+        "deployment"
+      ],
+      "commands": {
+        "tests": [
+          "npm",
+          "test"
+        ],
+        "build": [
+          "npm",
+          "run",
+          "build"
+        ]
+      },
+      "findings": [
+        "Functional, security and deployment readiness not established"
+      ],
+      "fileCount": 44
+    },
+    {
+      "id": "solana-pqc",
+      "repository": "elon00/solana-pqc",
+      "defaultBranch": "master",
+      "scope": "candidate-original-project",
+      "status": "NOT VERIFIED",
+      "sourceTree": "fa6d2a4bdc6a2e8305a77ce3003cb408a420b2fa",
+      "localDirectory": "solana-pqc",
+      "requiredGates": [
+        "tests",
+        "build",
+        "security",
+        "deployment"
+      ],
+      "commands": {},
+      "findings": [
+        "Commands depend on a developer's absolute Windows path",
+        "Functional, security and deployment readiness not established"
+      ],
+      "fileCount": 83
+    },
+    {
+      "id": "quantum-drug-discovery-for-malaria-tuberculosis-using-vqe-qml",
+      "repository": "elon00/Quantum-Drug-Discovery-for-Malaria-Tuberculosis-Using-VQE-QML",
+      "defaultBranch": "main",
+      "scope": "candidate-original-project",
+      "status": "NOT VERIFIED",
+      "sourceTree": "bba152c375fa5f443754c0b14d2d128003786ecf",
+      "localDirectory": "Quantum-Drug-Discovery-for-Malaria-Tuberculosis-Using-VQE-QML",
+      "requiredGates": [
+        "tests",
+        "build",
+        "security",
+        "deployment"
+      ],
+      "commands": {},
+      "findings": [
+        "No root npm test script; identify project-specific test gates",
+        "No recognized dependency lock or requirements file",
+        "Functional, security and deployment readiness not established"
+      ],
+      "fileCount": 4
+    }
+  ]
+}
