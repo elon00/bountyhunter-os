@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "policy": {
+    "source": "GitHub user:elon00 fork:false inventory",
+    "auto_completion_requires_explicit_gate": true,
+    "unknown_repositories": "DISCOVERED_UNCLASSIFIED",
+    "missing_evidence": "NOT_VERIFIED"
+  },
+  "verified_priority": [
+    {
+      "name": "bountyhunter-os",
+      "gate": "npm run qmoosa:finish"
+    },
+    {
+      "name": "QARBI",
+      "gate": "npm run finish"
+    },
+    {
+      "name": "jarsol-web4-automaton",
+      "gate": "npm run qmoosa:finish"
+    },
+    {
+      "name": "qmoosa-pqs",
+      "gate": "python tests/run_all_tests.py"
+    },
+    {
+      "name": "qmoosa-nexus-platform",
+      "gate": "npm run qmoosa:finish"
+    },
+    {
+      "name": "qmoosa-deep-tech-ai-quantum-platform",
+      "gate": "npm run qmoosa:finish"
+    }
+  ],
+  "discovered_candidates": [
+    "pq-rdl-blockchain",
+    "QSui",
+    "qton",
+    "Algo_Qain",
+    "solana-ai",
+    "solana-pqc",
+    "bnb-qusd",
+    "quantumshield",
+    "quantum-portfolio-optimizer",
+    "my_yellow_project",
+    "tiddi-token",
+    "omniver-quantum-decoder",
+    "quantum-ai",
+    "Quantum-Drug-Discovery-for-Malaria-Tuberculosis-Using-VQE-QML",
+    "martins-algorithm"
+  ],
+  "excluded_from_auto_project_claims": [
+    "my-library",
+    "html-css-w3schools",
+    "desktop-tutorial",
+    "Read-Me",
+    "quantum-ppts",
+    "fork-and-clone-projects",
+    "nist-info",
+    "quantum-certificates"
+  ]
+}
