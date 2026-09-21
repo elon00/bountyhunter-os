@@ -33,7 +33,8 @@ const projects=[
   {name:"omnicall-quantum-sentinel",dir:resolve(workspace,"omnicall-quantum-sentinel"),cmd:["npm","run","reality:all"]},
   {name:"alcat-mesh",dir:resolve(workspace,"alcat-mesh"),cmd:["npm","test"]},
   {name:"QDS",dir:resolve(workspace,"QDS"),cmd:["npm","run","qmoosa:finish"]},
-  {name:"qain-project",dir:resolve(workspace,"qain-project"),cmd:["npm","run","qmoosa:finish"]}
+  {name:"qain-project",dir:resolve(workspace,"qain-project"),cmd:["npm","run","qmoosa:finish"]},
+  {name:"del-ai",dir:resolve(workspace,"del-ai"),cmd:["npm","run","qmoosa:finish"]}
 ];
 const results=[];
 function run(x){
