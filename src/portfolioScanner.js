@@ -1,11 +1,10 @@
-﻿/**
+/**
  * Portfolio Reality Scanner
  * Discovers and audits verified repositories in the user workspace.
  */
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { sha256 } from '@noble/hashes/sha256';
 
 export const REPOSITORY_MANIFEST = [
   { name: 'jarsol-web4-automaton', path: 'C:/Users/marti/OneDrive/Desktop/Jarvis', branch: 'main' },

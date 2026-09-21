@@ -14,19 +14,19 @@ let selectedTag = "ALL";
 let searchQuery = "";
 
 const checks = [
-  { id: "repo", title: "Repository Integrity", evidence: "README, .gitignore, Protocols present", passed: true },
-  { id: "reality", title: "Reality Gate Protocol", evidence: "scripts/qmoosa-reality-check.mjs execution", passed: true },
-  { id: "app_test", title: "Automated Node Test Suite", evidence: "6/6 unit tests passing deterministically", passed: true },
-  { id: "app_build", title: "Production Vite Bundle", evidence: "dist/ compiled with 0 errors", passed: true },
-  { id: "gods_eye", title: "God's Eye View OSINT Engine", evidence: "4,149 unit tests passed, 713/713 boundaries valid, Vite build verified", passed: true },
-  { id: "ai_quantum", title: "QMoosa Deep Tech AI Quantum Platform", evidence: "12/12 URS Gates verified (10.0/10), InfraGuard multi-model router active", passed: true },
-  { id: "nexus_platform", title: "QMoosa Nexus AI Agent Engine", evidence: "ERC-4337 Policy Guardians, NIST PQC, & Conway Automata active", passed: true },
-  { id: "multi_chain_fleet", title: "Multi-Chain Sovereign Fleet", evidence: "35+ repositories synchronized across Arbitrum, Algorand, Solana, Sui, TON, BNB", passed: true },
-  { id: "quantum_bio", title: "Quantum Life Sciences & VQE Drug Discovery", evidence: "VQE & QML molecular binding energy simulations active", passed: true },
-  { id: "enterprise_ai", title: "Enterprise AI & Asset Forensics", evidence: "Martin's Algorithm & SolutionAI multi-agent modules active", passed: true },
-  { id: "academic_institutional", title: "Academic & Institutional Research Conjunction", evidence: "NQM, IIT Madras CQuICC, IIT Delhi SIRe, MIT DCI, Stanford CBR active", passed: true },
-  { id: "secret", title: "Zero Secret Leak Policy", evidence: ".env gitignored & audited", passed: true },
-  { id: "netlify", title: "Netlify Continuous Sync", evidence: "netlify.toml configured for app & dist", passed: true }
+  { id: "repo", title: "Repository Integrity", evidence: "No current machine-verifiable evidence loaded", passed: false },
+  { id: "reality", title: "Reality Gate Protocol", evidence: "No current machine-verifiable evidence loaded", passed: false },
+  { id: "app_test", title: "Automated Node Test Suite", evidence: "No current machine-verifiable evidence loaded", passed: false },
+  { id: "app_build", title: "Production Vite Bundle", evidence: "No current machine-verifiable evidence loaded", passed: false },
+  { id: "gods_eye", title: "God's Eye View OSINT Engine", evidence: "No current machine-verifiable evidence loaded", passed: false },
+  { id: "ai_quantum", title: "QMoosa Deep Tech AI Quantum Platform", evidence: "No current machine-verifiable evidence loaded", passed: false },
+  { id: "nexus_platform", title: "QMoosa Nexus AI Agent Engine", evidence: "No current machine-verifiable evidence loaded", passed: false },
+  { id: "multi_chain_fleet", title: "Multi-Chain Sovereign Fleet", evidence: "No current machine-verifiable evidence loaded", passed: false },
+  { id: "quantum_bio", title: "Quantum Life Sciences & VQE Drug Discovery", evidence: "No current machine-verifiable evidence loaded", passed: false },
+  { id: "enterprise_ai", title: "Enterprise AI & Asset Forensics", evidence: "No current machine-verifiable evidence loaded", passed: false },
+  { id: "academic_institutional", title: "Academic & Institutional Research Conjunction", evidence: "No current machine-verifiable evidence loaded", passed: false },
+  { id: "secret", title: "Zero Secret Leak Policy", evidence: "No current machine-verifiable evidence loaded", passed: false },
+  { id: "netlify", title: "Netlify Continuous Sync", evidence: "No current machine-verifiable evidence loaded", passed: false }
 ];
 
 const bounties = [
@@ -36,7 +36,7 @@ const bounties = [
     description: "Implement machine evidence protocol for automated payout verification across agents.",
     rewardUsdc: 4500,
     tags: ["WEB4", "AUDIT", "ALGORAND"],
-    status: "VERIFIED PASS"
+    status: "NOT VERIFIED"
   },
   {
     id: 2,
@@ -44,7 +44,7 @@ const bounties = [
     description: "Integrate NIST FIPS 203 ML-KEM with Solana transaction pipeline.",
     rewardUsdc: 6000,
     tags: ["PQC", "SOLANA", "SECURITY"],
-    status: "VERIFIED PASS"
+    status: "NOT VERIFIED"
   },
   {
     id: 3,
@@ -60,7 +60,7 @@ const bounties = [
     description: "Live edge telemetry ping with automated healthcheck status reports.",
     rewardUsdc: 1800,
     tags: ["DEPLOY", "NETLIFY", "MONITOR"],
-    status: "VERIFIED PASS"
+    status: "NOT VERIFIED"
   },
   {
     id: 5,
@@ -76,7 +76,7 @@ const bounties = [
     description: "Real-time planetary intelligence console integrating ADS-B, AISStream, Celestrak TLEs, USGS, and NASA FIRMS under QMoosa Reality Mode.",
     rewardUsdc: 7500,
     tags: ["OSINT", "CESIUM", "AUDIT"],
-    status: "VERIFIED PASS"
+    status: "NOT VERIFIED"
   },
   {
     id: 7,
@@ -84,7 +84,7 @@ const bounties = [
     description: "12-Gate URS Certified AI Infrastructure Gateway with Gemini/Groq multi-model routing, sub-10ms semantic cache, NIST FIPS 203/204, and BNB Smart Chain hybrid conjunction.",
     rewardUsdc: 12500,
     tags: ["AI", "QUANTUM", "PQC", "URS"],
-    status: "VERIFIED PASS"
+    status: "NOT VERIFIED"
   },
   {
     id: 8,
@@ -92,7 +92,7 @@ const bounties = [
     description: "ERC-4337 Account Abstraction with on-chain Policy Guardians, Conway Cellular Automata emergence, and NIST FIPS 204 PQC across Ethereum, Base, and Solana.",
     rewardUsdc: 15000,
     tags: ["NEXUS", "AI", "ERC4337", "SOLANA"],
-    status: "VERIFIED PASS"
+    status: "NOT VERIFIED"
   },
   {
     id: 9,
@@ -100,7 +100,7 @@ const bounties = [
     description: "NIST FIPS 204 ML-DSA, Conway Cellular Automata, and Autonomous AI Agent smart contracts deployed and unified across Arbitrum (QARBI), Algorand (shor-x402, Algo_Qain), Solana (jarsol, omnicall, solana-pqc), Sui (QSui), TON (qton), and BNB Chain (bnb-qusd).",
     rewardUsdc: 25000,
     tags: ["FLEET", "PQC", "ARBITRUM", "SOLANA", "ALGORAND", "SUI", "TON"],
-    status: "VERIFIED PASS"
+    status: "NOT VERIFIED"
   },
   {
     id: 10,
@@ -108,7 +108,7 @@ const bounties = [
     description: "Variational Quantum Eigensolver (VQE) and parameterized Quantum Machine Learning (QML) computing electronic ground-state binding affinities against multi-drug resistant Plasmodium falciparum and Mycobacterium tuberculosis.",
     rewardUsdc: 20000,
     tags: ["QUANTUM", "VQE", "BIOTECH", "QML", "QISKIT"],
-    status: "VERIFIED PASS"
+    status: "NOT VERIFIED"
   },
   {
     id: 11,
@@ -116,7 +116,7 @@ const bounties = [
     description: "Autonomous customer support multi-agent resolution platform (SolutionAI) and on-chain cryptocurrency asset recovery forensics (Martin's Algorithm).",
     rewardUsdc: 18000,
     tags: ["FORENSICS", "ENTERPRISE", "AI", "SOLANA", "OSINT"],
-    status: "VERIFIED PASS"
+    status: "NOT VERIFIED"
   },
   {
     id: 12,
@@ -124,26 +124,15 @@ const bounties = [
     description: "Deep-tech research partnerships, grant proposals, and faculty collaborations mapped across IIT Madras (CQuICC/Pravartak), IIT Delhi (FITT/SIRe), IIT Bombay (SINE), IIIT Hyderabad, National Quantum Mission (NQM), MIT (DCI, CQE, The Engine), and Stanford (CBR, Q-FARM).",
     rewardUsdc: 30000,
     tags: ["ACADEMIC", "RESEARCH", "MIT", "STANFORD", "IIT", "NQM"],
-    status: "VERIFIED PASS"
+    status: "NOT VERIFIED"
   }
 ];
 
-let terminalOutput = `[QMOOSA MASTER OS v0.1.0 — INITIALIZED]
-[SYSTEM] Reality Mode: ACTIVE
-[DISCOVER] Loaded 8-stage execution pipeline.
-[AUDIT] Secret scan: PASS (0 secrets in tree).
-[GATE] Repository Integrity: VERIFIED PASS
-[GATE] Reality Gate: VERIFIED PASS
-[INTEGRATION] God's Eye View (gods-eye-view_xyz): AUDITED & VERIFIED
-[INTEGRATION] QMoosa Deep Tech AI Quantum Platform: 12/12 URS GATES PASSED (10.0/10)
-[INTEGRATION] QMoosa Nexus Protocol: ERC-4337 POLICY GUARDIANS ACTIVE
-[FLEET] 35+ Sovereign Repositories Synchronized: ARBITRUM • ALGORAND • SOLANA • SUI • TON • BNB
-[BIOTECH] Quantum VQE & QML Drug Discovery: ACTIVE (Malaria & Tuberculosis targets mapped)
-[FORENSICS] Martin's Algorithm & SolutionAI Enterprise Suite: ARMED
-[ACADEMIC] Research Conjunction Mapped: IIT Madras • IIT Delhi • IIT Bombay • IIIT Hyderabad • MIT • Stanford • NQM
-[GATE] Multi-Model Gateway & Post-Quantum Wire Invariants: ACTIVE
-[GATE] Netlify Configuration: READY
-[TELEMETRY] Listening for autonomous agent events...`;
+let terminalOutput = `[QMOOSA MASTER OS — PROJECT CATALOG]
+[SYSTEM] NOT VERIFIED: no current execution evidence loaded.
+[CATALOG] Project descriptions and reward amounts are unverified entries.
+[RUN] Execute npm run qmoosa:finish in the repository to produce a local report.
+[DEPLOYMENT] No deployment proof loaded.`;
 
 function showToast(message) {
   const toast = document.getElementById("toast");
@@ -409,7 +398,8 @@ function attachEvents() {
   document.querySelectorAll(".check-checkbox").forEach(cb => {
     cb.addEventListener("change", (e) => {
       const idx = Number(e.target.getAttribute("data-check-index"));
-      checks[idx].passed = e.target.checked;
+      e.target.checked = checks[idx].passed;
+      showToast("Verification requires machine evidence from a real run.");
       render();
     });
   });
@@ -419,7 +409,7 @@ function attachEvents() {
     item.addEventListener("click", (e) => {
       if (e.target.classList.contains("check-checkbox")) return;
       const idx = Number(item.getAttribute("data-check-index"));
-      checks[idx].passed = !checks[idx].passed;
+      showToast("Verification requires machine evidence from a real run.");
       render();
     });
   });
@@ -428,8 +418,7 @@ function attachEvents() {
   const btnVerifyAll = document.querySelector("#btn-run-all-gates");
   if (btnVerifyAll) {
     btnVerifyAll.addEventListener("click", () => {
-      checks.forEach(c => c.passed = true);
-      showToast("All reality gates verified: VERIFIED PASS");
+      showToast("No execution service connected. Run npm run qmoosa:finish locally.");
       render();
     });
   }
@@ -484,9 +473,9 @@ function attachEvents() {
     btnReality.addEventListener("click", () => {
       const time = new Date().toISOString().split("T")[1].slice(0, 8);
       terminalOutput += `\n\n[${time}] > node scripts/qmoosa-reality-check.mjs\n` +
-        `{ "mode": "REALITY_MODE", "checks": 3, "status": "VERIFIED PASS" }`;
+        `NOT EXECUTED: run this command locally and inspect its report.`;
       updateTerminal();
-      showToast("Reality check executed successfully.");
+      showToast("Command shown; no check was executed in this browser.");
     });
   }
 
@@ -495,9 +484,9 @@ function attachEvents() {
     btnTests.addEventListener("click", () => {
       const time = new Date().toISOString().split("T")[1].slice(0, 8);
       terminalOutput += `\n\n[${time}] > node --test tests/*.test.mjs\n` +
-        `✔ 6/6 tests passed deterministically. duration: 290ms.`;
+        `NOT EXECUTED: run npm test locally to obtain actual test results.`;
       updateTerminal();
-      showToast("Node test suite passed.");
+      showToast("Command shown; no tests were executed in this browser.");
     });
   }
 
