@@ -18,13 +18,35 @@ const projects=registryProjects.map(p=>({
 }));
 const results=[];
 const startedAt=new Date().toISOString();
+
+function exec(cmd,args,cwd,timeout=900000){
+  execFileSync(cmd,args,{cwd,stdio:"inherit",timeout,env:{...process.env,CI:process.env.CI??"1"}});
+}
+function prepare(x){
+  const steps=[];
+  try{
+    if(existsSync(resolve(x.dir,"package-lock.json"))){
+      exec("npm",["ci","--no-audit","--no-fund"],x.dir); steps.push("npm ci");
+    }else if(existsSync(resolve(x.dir,"package.json"))){
+      exec("npm",["install","--no-audit","--no-fund"],x.dir); steps.push("npm install");
+    }
+    if(existsSync(resolve(x.dir,"requirements.txt"))){
+      exec("python",["-m","pip","install","-r","requirements.txt"],x.dir); steps.push("pip requirements");
+    }
+    return {ok:true,steps};
+  }catch(e){
+    return {ok:false,steps,error:`dependency bootstrap exit=${e.status??"unknown"}`};
+  }
+}
 function run(x){
  if(!existsSync(x.dir)){results.push({...x,status:"BLOCKED",evidence:"repository not present in local workspace"});return;}
+ const prep=prepare(x);
+ if(!prep.ok){results.push({...x,status:"FAILED",evidence:prep.error,preparation:prep.steps});return;}
  try{
   const [file,...args]=x.cmd;
-  execFileSync(file,args,{cwd:x.dir,stdio:"inherit",timeout:600000,env:{...process.env,CI:process.env.CI??"1"}});
-  results.push({...x,status:x.externalEvidenceRequired?"PARTIAL_LOCAL_GATE_PASS":"VERIFIED_LOCAL",evidence:x.cmd.join(" ")});
- }catch(e){results.push({...x,status:"FAILED",evidence:`exit=${e.status??"unknown"} ${x.cmd.join(" ")}`});}
+  exec(file,args,x.dir,900000);
+  results.push({...x,status:x.externalEvidenceRequired?"PARTIAL_LOCAL_GATE_PASS":"VERIFIED_LOCAL",evidence:x.cmd.join(" "),preparation:prep.steps});
+ }catch(e){results.push({...x,status:"FAILED",evidence:`exit=${e.status??"unknown"} ${x.cmd.join(" ")}`,preparation:prep.steps});}
 }
 console.log("QMOOSA ONE-CLICK PORTFOLIO FINISHER — FAIL-CLOSED REALITY MODE");
 for(const x of projects) run(x);
