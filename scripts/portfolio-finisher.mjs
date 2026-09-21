@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { execFileSync } from "node:child_process";
-import { existsSync, mkdirSync, writeFileSync, readFileSync } from "node:fs";
+import { existsSync, mkdirSync, writeFileSync, readFileSync, rmSync } from "node:fs";
 import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -29,7 +29,12 @@ function prepare(x){
       try{
         exec("npm",["ci","--no-audit","--no-fund"],x.dir); steps.push("npm ci");
       }catch{
+        // A stale lock must not leave a partially populated node_modules tree. Rebuild
+        // deterministically from package.json + repaired lock, then verify the repaired lock.
+        rmSync(resolve(x.dir,"node_modules"),{recursive:true,force:true});
         exec("npm",["install","--no-audit","--no-fund"],x.dir); steps.push("npm install (lock repair fallback)");
+        rmSync(resolve(x.dir,"node_modules"),{recursive:true,force:true});
+        exec("npm",["ci","--no-audit","--no-fund"],x.dir); steps.push("npm ci (repaired lock verification)");
       }
     }else if(existsSync(resolve(x.dir,"package.json"))){
       exec("npm",["install","--no-audit","--no-fund"],x.dir); steps.push("npm install");
