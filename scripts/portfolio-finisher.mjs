@@ -22,18 +22,18 @@ const projects=[
   {name:"omniver-quantum-decoder",dir:resolve(workspace,"omniver-quantum-decoder"),cmd:["npm","run","reality:universal"]},
   {name:"quantum-ai",dir:resolve(workspace,"quantum-ai"),cmd:["npm","test"]},
   {name:"tiddi-token",dir:resolve(workspace,"tiddi-token"),cmd:["npm","test"]},
-  {name:"quantum-portfolio-optimizer",dir:resolve(workspace,"quantum-portfolio-optimizer"),cmd:["npm","run","reality:universal"]},
-  {name:"my_yellow_project",dir:resolve(workspace,"my_yellow_project"),cmd:["npm","run","build"]},
+  {name:"quantum-portfolio-optimizer",dir:resolve(workspace,"quantum-portfolio-optimizer"),cmd:["npm","run","qmoosa:finish"]},
+  {name:"my_yellow_project",dir:resolve(workspace,"my_yellow_project"),cmd:["npm","run","qmoosa:finish"]},
   {name:"solana-pqc",dir:resolve(workspace,"solana-pqc"),cmd:["npm","test"]},
   {name:"martins-algorithm",dir:resolve(workspace,"martins-algorithm"),cmd:["npm","test"]},
   {name:"Algo_Qain",dir:resolve(workspace,"Algo_Qain"),cmd:["npm","test"]},
   {name:"wayai-nft-launch",dir:resolve(workspace,"wayai-nft-launch"),cmd:["npm","test"]},
   {name:"shor-x402",dir:resolve(workspace,"shor-x402"),cmd:["npm","run","qmoosa:finish"]},
-  {name:"Republic-of-Divine-Light",dir:resolve(workspace,"Republic-of-Divine-Light"),cmd:["npm","test"]},
+  {name:"Republic-of-Divine-Light",dir:resolve(workspace,"Republic-of-Divine-Light"),cmd:["npm","run","qmoosa:finish"]},
   {name:"omnicall-quantum-sentinel",dir:resolve(workspace,"omnicall-quantum-sentinel"),cmd:["npm","run","reality:all"]},
   {name:"alcat-mesh",dir:resolve(workspace,"alcat-mesh"),cmd:["npm","test"]},
-  {name:"QDS",dir:resolve(workspace,"QDS"),cmd:["npm","run","build"]},
-  {name:"qain-project",dir:resolve(workspace,"qain-project"),cmd:["npm","run","build"]}
+  {name:"QDS",dir:resolve(workspace,"QDS"),cmd:["npm","run","qmoosa:finish"]},
+  {name:"qain-project",dir:resolve(workspace,"qain-project"),cmd:["npm","run","qmoosa:finish"]}
 ];
 const results=[];
 function run(x){
