@@ -2,6 +2,9 @@ name: QMoosa Portfolio One Click
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - run/portfolio-one-click-20260922
 
 permissions:
   contents: read
