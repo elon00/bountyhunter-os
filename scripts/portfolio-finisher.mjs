@@ -21,7 +21,12 @@ const projects=[
   {name:"quantumshield",dir:resolve(workspace,"quantumshield"),cmd:["npm","test"]},
   {name:"omniver-quantum-decoder",dir:resolve(workspace,"omniver-quantum-decoder"),cmd:["npm","run","reality:universal"]},
   {name:"quantum-ai",dir:resolve(workspace,"quantum-ai"),cmd:["npm","test"]},
-  {name:"tiddi-token",dir:resolve(workspace,"tiddi-token"),cmd:["npm","test"]}
+  {name:"tiddi-token",dir:resolve(workspace,"tiddi-token"),cmd:["npm","test"]},
+  {name:"quantum-portfolio-optimizer",dir:resolve(workspace,"quantum-portfolio-optimizer"),cmd:["npm","run","reality:universal"]},
+  {name:"my_yellow_project",dir:resolve(workspace,"my_yellow_project"),cmd:["npm","run","build"]},
+  {name:"solana-pqc",dir:resolve(workspace,"solana-pqc"),cmd:["npm","test"]},
+  {name:"martins-algorithm",dir:resolve(workspace,"martins-algorithm"),cmd:["npm","test"]},
+  {name:"Algo_Qain",dir:resolve(workspace,"Algo_Qain"),cmd:["npm","test"]}
 ];
 const results=[];
 function run(x){
