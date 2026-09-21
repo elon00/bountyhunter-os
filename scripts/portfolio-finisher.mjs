@@ -17,6 +17,7 @@ const projects=registryProjects.map(p=>({
   externalEvidenceRequired:p.external_evidence_required??true
 }));
 const results=[];
+const startedAt=new Date().toISOString();
 function run(x){
  if(!existsSync(x.dir)){results.push({...x,status:"BLOCKED",evidence:"repository not present in local workspace"});return;}
  try{
@@ -31,7 +32,8 @@ const failed=results.filter(x=>x.status==="FAILED");
 const blocked=results.filter(x=>x.status==="BLOCKED");
 const partial=results.filter(x=>x.status==="PARTIAL_LOCAL_GATE_PASS");
 const status=failed.length?"FAILED":blocked.length||partial.length?"PARTIAL":"VERIFIED_LOCAL";
-const out={system:"QMOOSA_ONE_CLICK_PORTFOLIO_FINISHER",status,startedAt,projects:results,policy:{externalEvidenceRequired:true,mainnetNeverAutoAuthorized:true,secretsNeverRequested:true,missingEvidenceIsNotVerified:true}};
+const finishedAt=new Date().toISOString();
+const out={system:"QMOOSA_ONE_CLICK_PORTFOLIO_FINISHER",status,startedAt,finishedAt,projects:results,policy:{externalEvidenceRequired:true,mainnetNeverAutoAuthorized:true,secretsNeverRequested:true,missingEvidenceIsNotVerified:true}};
 const outDir=resolve(mother,".qmoosa"); mkdirSync(outDir,{recursive:true});
 const outPath=resolve(outDir,"portfolio-finisher-report.json"); writeFileSync(outPath,JSON.stringify(out,null,2)+"\n");
 console.log("\nPORTFOLIO STATUS:",status); console.log("REPORT:",outPath);
