@@ -49,7 +49,7 @@ for(const x of projects) run(x);
 const failed=results.filter(x=>x.status==="FAILED");
 const blocked=results.filter(x=>x.status==="BLOCKED");
 const status=failed.length?"FAILED":blocked.length?"PARTIAL":"VERIFIED_LOCAL";
-const out={system:"QMOOSA_ONE_CLICK_PORTFOLIO_FINISHER",status,startedAt:new Date().toISOString(),projects:results,policy:{externalEvidenceRequired:true,mainnetNeverAutoAuthorized:true,secretsNeverRequested:true,missingEvidenceIsNotVerified:true}};
+const out={system:"QMOOSA_ONE_CLICK_PORTFOLIO_FINISHER",status,startedAt,projects:results,policy:{externalEvidenceRequired:true,mainnetNeverAutoAuthorized:true,secretsNeverRequested:true,missingEvidenceIsNotVerified:true}};
 const outDir=resolve(mother,".qmoosa"); mkdirSync(outDir,{recursive:true});
 const outPath=resolve(outDir,"portfolio-finisher-report.json"); writeFileSync(outPath,JSON.stringify(out,null,2)+"\n");
 console.log("\nPORTFOLIO STATUS:",status); console.log("REPORT:",outPath);
