@@ -64,11 +64,11 @@ record("module: qmoosa-ai-quantum", aiQuantumPresent ? "PASS" : "SKIP", aiQuantu
 
 // AUDIT / SECURITY
 command("dependency lock integrity", "npm", ["ci", "--dry-run", "--ignore-scripts", "--no-audit"], { timeout: 180000 });
-command("crypto/reality audit", "npm", ["run", "audit:crypto", "--if-present"], { timeout: 180000 });
+command("crypto/reality audit", "npm", ["run", "audit:crypto"], { timeout: 180000 });
 
 // TEST / BUILD
-command("application test suite", "npm", ["--prefix", "app", "test", "--if-present"], { timeout: 180000 });
-command("application production build", "npm", ["--prefix", "app", "run", "build", "--if-present"], { timeout: 180000 });
+command("repository and application test suites", "npm", ["test"], { timeout: 180000 });
+command("application production build", "npm", ["--prefix", "app", "run", "build"], { timeout: 180000 });
 
 // VERIFY
 try {
@@ -77,6 +77,8 @@ try {
 } catch {
   record("git commit identity", "FAIL", "unable to resolve HEAD");
 }
+
+record("deployment verification", "SKIP", "No deployment verifier is configured; local checks cannot prove deployment.");
 
 const failures = results.filter((r) => r.status === "FAIL");
 const skips = results.filter((r) => r.status === "SKIP");
