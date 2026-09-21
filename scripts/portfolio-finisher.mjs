@@ -12,7 +12,7 @@ const registryProjects=[...(registry.verified_priority??[]),...(registry.gated_p
 const projects=registryProjects.map(p=>({
   name:p.name,
   dir:p.name==="bountyhunter-os"?mother:resolve(workspace,p.name),
-  cmd:p.gate.split(/\\s+/),
+  cmd:p.gate.trim().split(/\s+/),
   strength:p.strength??"aggregate",
   externalEvidenceRequired:p.external_evidence_required??true
 }));
