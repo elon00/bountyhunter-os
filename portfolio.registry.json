@@ -58,5 +58,133 @@
     "fork-and-clone-projects",
     "nist-info",
     "quantum-certificates"
+  ],
+  "gated_projects": [
+    {
+      "name": "pq-rdl-blockchain",
+      "gate": "npm run finish:all",
+      "strength": "security-aggregate",
+      "external_evidence_required": true
+    },
+    {
+      "name": "QSui",
+      "gate": "npm test",
+      "strength": "test",
+      "external_evidence_required": true
+    },
+    {
+      "name": "qton",
+      "gate": "npm run reality:all",
+      "strength": "reality",
+      "external_evidence_required": true
+    },
+    {
+      "name": "bnb-qusd",
+      "gate": "npm run reality:all",
+      "strength": "reality",
+      "external_evidence_required": true
+    },
+    {
+      "name": "quantumshield",
+      "gate": "npm test",
+      "strength": "test",
+      "external_evidence_required": true
+    },
+    {
+      "name": "omniver-quantum-decoder",
+      "gate": "npm run reality:universal",
+      "strength": "reality",
+      "external_evidence_required": true
+    },
+    {
+      "name": "quantum-ai",
+      "gate": "npm test",
+      "strength": "test",
+      "external_evidence_required": true
+    },
+    {
+      "name": "tiddi-token",
+      "gate": "npm test",
+      "strength": "test",
+      "external_evidence_required": true
+    },
+    {
+      "name": "quantum-portfolio-optimizer",
+      "gate": "npm run qmoosa:finish",
+      "strength": "test+reality",
+      "external_evidence_required": true
+    },
+    {
+      "name": "my_yellow_project",
+      "gate": "npm run qmoosa:finish",
+      "strength": "lint+build",
+      "external_evidence_required": true
+    },
+    {
+      "name": "solana-pqc",
+      "gate": "npm test",
+      "strength": "nist+audit+reality",
+      "external_evidence_required": true
+    },
+    {
+      "name": "martins-algorithm",
+      "gate": "npm test",
+      "strength": "nist+audit+reality+runtime",
+      "external_evidence_required": true
+    },
+    {
+      "name": "Algo_Qain",
+      "gate": "npm test",
+      "strength": "nist+audit+reality",
+      "external_evidence_required": true
+    },
+    {
+      "name": "wayai-nft-launch",
+      "gate": "npm test",
+      "strength": "nist+audit+reality",
+      "external_evidence_required": true
+    },
+    {
+      "name": "shor-x402",
+      "gate": "npm run qmoosa:finish",
+      "strength": "aggregate",
+      "external_evidence_required": true
+    },
+    {
+      "name": "Republic-of-Divine-Light",
+      "gate": "npm run qmoosa:finish",
+      "strength": "test+nist+audit+reality",
+      "external_evidence_required": true
+    },
+    {
+      "name": "omnicall-quantum-sentinel",
+      "gate": "npm run reality:all",
+      "strength": "reality",
+      "external_evidence_required": true
+    },
+    {
+      "name": "alcat-mesh",
+      "gate": "npm test",
+      "strength": "test",
+      "external_evidence_required": true
+    },
+    {
+      "name": "QDS",
+      "gate": "npm run qmoosa:finish",
+      "strength": "lint+build",
+      "external_evidence_required": true
+    },
+    {
+      "name": "qain-project",
+      "gate": "npm run qmoosa:finish",
+      "strength": "lint+build",
+      "external_evidence_required": true
+    },
+    {
+      "name": "del-ai",
+      "gate": "npm run qmoosa:finish",
+      "strength": "lint+build+nist+audit+reality",
+      "external_evidence_required": true
+    }
   ]
 }
