@@ -8,16 +8,19 @@
     {
       "id": "scstobcminority-ai",
       "name": "SCSTOBCMinority AI",
-      "category": "Quantum-Safe Solana Custody Protocol",
-      "chain": "Solana Testnet",
-      "caip2": "solana:4uhcVJyU9pJkvQyS88uRDiswHXSCkY3z",
+      "category": "Quantum-Safe Solana Custody Protocol & x402 v2 Bazaar",
+      "chain": "Solana Devnet",
+      "caip2": "solana:EtWTRABZaYq6iMfeYKouRu166VU2xqa1",
       "smartContract": "Bnpd9YGaVxMAwdxFoVA3SQP1Vhfwv7jnJ67QNcyAVKq3",
       "payTo": "8qhW8ctXX77UNLTY9kx3XoAoH8kstQXPbCghUwqu34es",
-      "currency": "SOL",
+      "tokenMint": "4zMMC9srt5Ri5X14GAgXhaHii3GnPAEERYPJgZJDncDU",
+      "currency": "USDC",
+      "x402Version": 2,
+      "commit": "5033cabd796eb49e034acefbbff12e452bcc59f4",
       "bazaarUrl": "https://scstobcminority-ai.netlify.app/.well-known/x402-bazaar.json",
       "services": [
-        { "endpoint": "/api/v1/x402/pqc-keygen", "cost": "0.001 SOL", "description": "NIST FIPS 203 & 204 PQC keypair generation" },
-        { "endpoint": "/api/v1/x402/vault-lock", "cost": "0.002 SOL", "description": "On-chain quantum-safe vault lock commitment" }
+        { "endpoint": "/api/v1/x402/pqc-keygen", "cost": "0.001 USDC", "amountUnits": "1000", "description": "Research PQC public-key bundle (ML-KEM-768 & ML-DSA-65) for autonomous agent" },
+        { "endpoint": "/api/v1/x402/vault-lock", "cost": "0.002 USDC", "amountUnits": "2000", "description": "Paid custody vault commitment bound to settled x402 v2 receipt" }
       ]
     },
     {
