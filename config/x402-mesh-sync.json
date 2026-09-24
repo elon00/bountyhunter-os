@@ -73,6 +73,25 @@
       ]
     },
     {
+      "id": "qton",
+      "name": "QTON AI Infrastructure",
+      "category": "Quantum-Secured TON Infrastructure & Jetton Launchpad",
+      "chain": "TON Testnet",
+      "caip2": "ton:-3",
+      "smartContract": "kQCI8yoRda7UzQSOOypvN_trGrzNb4tGmRR9N-S9LOG-wW58",
+      "launchpad": "kQAHuKwr2EhHjjq4wG_xbUA7WtSw9j9OH9rfFrcBvxczgpmh",
+      "payTo": "kQC2Lo6MZgFe-AYQX8QNrtUASqkk_Ka_Shiej2mmkHxLg49t",
+      "unifiedOwner": "BPshPrMazV7qunhcq18AvCHjSceHbKytiRDNrtCv68g3",
+      "currency": "TON",
+      "x402Version": 2,
+      "supplyPolicy": "UNCAPPED_ELASTIC",
+      "bazaarUrl": "https://elon00.github.io/qton/.well-known/x402-bazaar.json",
+      "services": [
+        { "endpoint": "/api/v1/x402/pqc/sign", "cost": "0.01 TON", "amountUnits": "10000000", "description": "Post-quantum ML-DSA-65 attestation and hybrid signature for TON transactions" },
+        { "endpoint": "/api/v1/x402/launchpad/quote", "cost": "0.01 TON", "amountUnits": "10000000", "description": "Automated TON Jetton launchpad issuance quote" }
+      ]
+    },
+    {
       "id": "QARBI",
       "name": "QARBI Protocol",
       "category": "Arbitrum Stylus Conway Automaton Civilization",
