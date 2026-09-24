@@ -1,0 +1,79 @@
+{
+  "$schema": "https://x402.org/schema/v1/mesh-sync.json",
+  "meshVersion": "1.0.0",
+  "name": "Global Autonomous Agent x402 Commerce Mesh",
+  "orchestrator": "bountyhunter-os",
+  "synchronizedAt": "2026-03-24T02:00:00.000Z",
+  "nodes": [
+    {
+      "id": "scstobcminority-ai",
+      "name": "SCSTOBCMinority AI",
+      "category": "Quantum-Safe Solana Custody Protocol",
+      "chain": "Solana Testnet",
+      "caip2": "solana:4uhcVJyU9pJkvQyS88uRDiswHXSCkY3z",
+      "smartContract": "Bnpd9YGaVxMAwdxFoVA3SQP1Vhfwv7jnJ67QNcyAVKq3",
+      "payTo": "8qhW8ctXX77UNLTY9kx3XoAoH8kstQXPbCghUwqu34es",
+      "currency": "SOL",
+      "bazaarUrl": "https://scstobcminority-ai.netlify.app/.well-known/x402-bazaar.json",
+      "services": [
+        { "endpoint": "/api/v1/x402/pqc-keygen", "cost": "0.001 SOL", "description": "NIST FIPS 203 & 204 PQC keypair generation" },
+        { "endpoint": "/api/v1/x402/vault-lock", "cost": "0.002 SOL", "description": "On-chain quantum-safe vault lock commitment" }
+      ]
+    },
+    {
+      "id": "jarsol-web4-automaton",
+      "name": "JarSol Web4 Automaton",
+      "category": "Autonomous SPL Launchpad & Gemini Neural OS",
+      "chain": "Solana Devnet",
+      "caip2": "solana:EtWTRABZaYq6iMfeYKouRu166VU2xqa1",
+      "payTo": "8qhW8ctXX77UNLTY9kx3XoAoH8kstQXPbCghUwqu34es",
+      "currency": "SOL",
+      "bazaarUrl": "https://github.com/elon00/jarsol-web4-automaton",
+      "services": [
+        { "endpoint": "/api/v1/x402/launchpad/quote", "cost": "0.001 SOL", "description": "Autonomous SPL token launchpad schema" },
+        { "endpoint": "/api/v1/x402/agent/audit", "cost": "0.002 SOL", "description": "Gemini AI Neural Core double-audit certification" }
+      ]
+    },
+    {
+      "id": "QARBI",
+      "name": "QARBI Protocol",
+      "category": "Arbitrum Stylus Conway Automaton Civilization",
+      "chain": "Arbitrum Sepolia",
+      "caip2": "eip155:421614",
+      "payTo": "0x89205A3A3b2A69De6Dbf7f01ED13B2108B2c43e7",
+      "currency": "ETH",
+      "bazaarUrl": "https://github.com/elon00/QARBI",
+      "services": [
+        { "endpoint": "/api/v1/x402/conway/step", "cost": "0.0001 ETH", "description": "Conway cellular automaton state evolution" },
+        { "endpoint": "/api/v1/x402/pqc-attest", "cost": "0.0002 ETH", "description": "NIST ML-DSA-65 lattice attestation" }
+      ]
+    },
+    {
+      "id": "QSUI",
+      "name": "Quantum Sui (QSUI)",
+      "category": "Sui Move Quantum-Shielded Ecosystem",
+      "chain": "Sui Testnet",
+      "caip2": "sui:4c78adac3ac1c160",
+      "payTo": "0x4e61f22c159231f456942ad74272ce3a0058b87ce2da61bb08447814b648bc18",
+      "currency": "SUI",
+      "bazaarUrl": "https://github.com/elon00/QSui",
+      "services": [
+        { "endpoint": "/api/v1/x402/quantum-shield", "cost": "0.01 SUI", "description": "Post-quantum shielded Move transaction envelope" },
+        { "endpoint": "/api/v1/x402/conway/evolve", "cost": "0.02 SUI", "description": "Decentralized Conway neural consensus step" }
+      ]
+    },
+    {
+      "id": "shor-x402",
+      "name": "SHOR x402",
+      "category": "Algorand MainNet Post-Quantum Agent Commerce",
+      "chain": "Algorand MainNet",
+      "caip2": "algorand:wGHE2pwdvd7S12BL5Fa+PRx3TF3QXDYODnakNVUtvpU=",
+      "payTo": "TPLMGGFNG64LKOCKVB7ZMQH5AMSNMV4GLI7GCH4FY2XQEKSIGB77O6LCFM",
+      "currency": "USDC (ASA 31566704)",
+      "bazaarUrl": "https://shorx402.netlify.app/.well-known/x402-bazaar.json",
+      "services": [
+        { "endpoint": "/api/v1/shor/execute", "cost": "0.005 USDC", "description": "Autonomous agent optimization workflow" }
+      ]
+    }
+  ]
+}
