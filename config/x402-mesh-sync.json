@@ -92,6 +92,27 @@
       ]
     },
     {
+      "id": "bnb-qusd",
+      "name": "BNB-QUSD Stablecoin & Portfolio Protocol",
+      "category": "Quantum-Resilient Stablecoin & Intelligent QUBO Portfolio Asset",
+      "chain": "BNB Smart Chain Testnet",
+      "caip2": "eip155:97",
+      "smartContract": "0xcaB00E21C6a96b37A75e76c14cE7eed8E75B73e6",
+      "vaultContract": "0x554A04516816Fe123E41d6FA249ced137959181E",
+      "pqcGateway": "0xf48CD40aC610e90CBD99aE3a85375087b8E69A7E",
+      "payTo": "0x7e490297be89C34C1A2F3B90aeE97298a80871eF",
+      "unifiedEvmOwner": "0x89205A3A3b2A69De6Dbf7f01ED13B2108B2c43e7",
+      "unifiedPhantomWallet": "BPshPrMazV7qunhcq18AvCHjSceHbKytiRDNrtCv68g3",
+      "currency": "BNB",
+      "x402Version": 2,
+      "supplyPolicy": "UNCAPPED_ELASTIC",
+      "bazaarUrl": "https://elon00.github.io/bnb-qusd/.well-known/x402-bazaar.json",
+      "services": [
+        { "endpoint": "/api/v1/x402/qubo/optimize", "cost": "0.001 BNB", "amountUnits": "1000000000000000", "description": "Autonomous QUBO / Markowitz discrete quantum portfolio optimization" },
+        { "endpoint": "/api/v1/x402/pqc/attest", "cost": "0.001 BNB", "amountUnits": "1000000000000000", "description": "NIST FIPS 204 ML-DSA-65 post-quantum commitment attestation for BNB Chain" }
+      ]
+    },
+    {
       "id": "QARBI",
       "name": "QARBI Protocol",
       "category": "Arbitrum Stylus Conway Automaton Civilization",
