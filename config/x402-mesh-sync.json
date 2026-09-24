@@ -3,7 +3,7 @@
   "meshVersion": "1.0.0",
   "name": "Global Autonomous Agent x402 Commerce Mesh",
   "orchestrator": "bountyhunter-os",
-  "synchronizedAt": "2026-03-24T02:00:00.000Z",
+  "synchronizedAt": "2026-09-24T08:35:00.000Z",
   "nodes": [
     {
       "id": "scstobcminority-ai",
@@ -60,6 +60,132 @@
       "services": [
         { "endpoint": "/api/v1/x402/quantum-shield", "cost": "0.01 SUI", "description": "Post-quantum shielded Move transaction envelope" },
         { "endpoint": "/api/v1/x402/conway/evolve", "cost": "0.02 SUI", "description": "Decentralized Conway neural consensus step" }
+      ]
+    },
+    {
+      "id": "del-ai",
+      "name": "Del AI — Conway Automaton & PQC Agentics",
+      "category": "Autonomous AI Agentics & Cellular Automata",
+      "chain": "Solana Testnet",
+      "caip2": "solana:4uhcVJyU9pJkvQyS88uRDiswHXSCkY3z",
+      "payTo": "8qhW8ctXX77UNLTY9kx3XoAoH8kstQXPbCghUwqu34es",
+      "currency": "SOL",
+      "bazaarUrl": "https://github.com/elon00/del-ai",
+      "services": [
+        { "endpoint": "/api/v1/x402/agent/chat", "cost": "0.001 SOL", "description": "Autonomous AI Agentics Chat & Quantum-Resistant intelligence query" },
+        { "endpoint": "/api/v1/x402/conway/step", "cost": "0.001 SOL", "description": "Deterministic Conway cellular automaton step evolution" }
+      ]
+    },
+    {
+      "id": "q-symbiotic-ai-economy",
+      "name": "ALCAT Mesh — Symbiotic AI Economy",
+      "category": "Multi-Chain Agentic Mesh & Conway Simulation",
+      "chain": "Arbitrum Sepolia / Solana",
+      "caip2": "eip155:421614",
+      "payTo": "0x89205A3A3b2A69De6Dbf7f01ED13B2108B2c43e7",
+      "currency": "ETH",
+      "bazaarUrl": "https://github.com/elon00/alcat-mesh",
+      "services": [
+        { "endpoint": "/api/v1/x402/conway/evolve", "cost": "0.0001 ETH", "description": "Global Conway life step evolution with entropy logging" },
+        { "endpoint": "/api/v1/x402/agent/task", "cost": "0.0002 ETH", "description": "Autonomous symbiotic multi-agent task execution" }
+      ]
+    },
+    {
+      "id": "pq-rdl-blockchain",
+      "name": "PQ-RDL Quantum Chain (L1)",
+      "category": "NIST FIPS 204 Lattice Blockchain & HotStuff BFT",
+      "chain": "PQ-RDL Quantum L1",
+      "caip2": "eip155:9999",
+      "payTo": "0x89205A3A3b2A69De6Dbf7f01ED13B2108B2c43e7",
+      "currency": "PQRDL",
+      "bazaarUrl": "https://github.com/elon00/pq-rdl-blockchain",
+      "services": [
+        { "endpoint": "/api/v1/x402/blockchain/block-verify", "cost": "0.001 PQRDL", "description": "Verify block headers and HotStuff BFT consensus signatures" },
+        { "endpoint": "/api/v1/x402/pqc/attest", "cost": "0.002 PQRDL", "description": "Generate NIST FIPS 204 ML-DSA-65 post-quantum attestation" }
+      ]
+    },
+    {
+      "id": "qmoosa-deep-tech-ai-quantum-platform",
+      "name": "QMoosa Deep Tech AI Quantum Platform",
+      "category": "Quantum Shield & Shor Cryptanalysis Copilot",
+      "chain": "Solana Testnet",
+      "caip2": "solana:4uhcVJyU9pJkvQyS88uRDiswHXSCkY3z",
+      "payTo": "8qhW8ctXX77UNLTY9kx3XoAoH8kstQXPbCghUwqu34es",
+      "currency": "SOL",
+      "bazaarUrl": "https://github.com/elon00/qmoosa-deep-tech-ai-quantum-platform",
+      "services": [
+        { "endpoint": "/api/v1/x402/shor/simulate", "cost": "0.001 SOL", "description": "Execute Shor quantum period-finding circuit simulation" },
+        { "endpoint": "/api/v1/x402/anna/copilot", "cost": "0.001 SOL", "description": "Anna Executa AI Quantum Research Copilot query" }
+      ]
+    },
+    {
+      "id": "qmoosa-nexus-platform",
+      "name": "QMoosa Nexus Protocol",
+      "category": "Multi-Chain Agentic OS & PolicyGuardian Engine",
+      "chain": "Solana Testnet",
+      "caip2": "solana:4uhcVJyU9pJkvQyS88uRDiswHXSCkY3z",
+      "payTo": "8qhW8ctXX77UNLTY9kx3XoAoH8kstQXPbCghUwqu34es",
+      "currency": "SOL",
+      "bazaarUrl": "https://github.com/elon00/qmoosa-nexus-platform",
+      "services": [
+        { "endpoint": "/api/v1/x402/agent/plan", "cost": "0.001 SOL", "description": "Multi-step cross-chain agent execution plan via Gemini neural planner" },
+        { "endpoint": "/api/v1/x402/policy/audit", "cost": "0.001 SOL", "description": "PolicyGuardian session key security audit & formal verification" }
+      ]
+    },
+    {
+      "id": "omniver-quantum-decoder",
+      "name": "Omniver Quantum Decoder",
+      "category": "Shor Algorithm Simulator & Anna Executa AI",
+      "chain": "Solana Testnet",
+      "caip2": "solana:4uhcVJyU9pJkvQyS88uRDiswHXSCkY3z",
+      "payTo": "8qhW8ctXX77UNLTY9kx3XoAoH8kstQXPbCghUwqu34es",
+      "currency": "SOL",
+      "bazaarUrl": "https://github.com/elon00/omniver-quantum-decoder",
+      "services": [
+        { "endpoint": "/api/v1/x402/shor/simulate", "cost": "0.001 SOL", "description": "Shor quantum period-finding circuit simulation on classical lattice emulator" },
+        { "endpoint": "/api/v1/x402/anna/copilot", "cost": "0.001 SOL", "description": "Anna Executa AI Quantum Research Copilot for cryptanalysis" }
+      ]
+    },
+    {
+      "id": "martins-algorithm",
+      "name": "Martin's Algorithm (CARI)",
+      "category": "Crypto Recovery & QUBO Optimization Engine",
+      "chain": "Solana Testnet",
+      "caip2": "solana:4uhcVJyU9pJkvQyS88uRDiswHXSCkY3z",
+      "payTo": "8qhW8ctXX77UNLTY9kx3XoAoH8kstQXPbCghUwqu34es",
+      "currency": "SOL",
+      "bazaarUrl": "https://github.com/elon00/martins-algorithm",
+      "services": [
+        { "endpoint": "/api/v1/x402/score/asset", "cost": "0.001 SOL", "description": "Multi-factor Martin Score & QUBO combinatorial optimization" },
+        { "endpoint": "/api/v1/x402/recover/proof", "cost": "0.001 SOL", "description": "Cryptographic Merkle evidence root & authenticated recovery proof" }
+      ]
+    },
+    {
+      "id": "Quantum-Project2",
+      "name": "Enhanced Deutsch-Jozsa Quantum Algorithm",
+      "category": "Quantum Function Classification & Circuit Transpiler",
+      "chain": "Solana Testnet",
+      "caip2": "solana:4uhcVJyU9pJkvQyS88uRDiswHXSCkY3z",
+      "payTo": "8qhW8ctXX77UNLTY9kx3XoAoH8kstQXPbCghUwqu34es",
+      "currency": "SOL",
+      "bazaarUrl": "https://github.com/elon00/Quantum-Project2",
+      "services": [
+        { "endpoint": "/api/v1/x402/deutsch-jozsa/classify", "cost": "0.001 SOL", "description": "Single-shot quantum function classification (constant vs balanced)" },
+        { "endpoint": "/api/v1/x402/circuit/metrics", "cost": "0.001 SOL", "description": "Circuit transpilation metrics, gate count, and statevector analytics" }
+      ]
+    },
+    {
+      "id": "rdl-marketing",
+      "name": "QMoosa Ecosystem Growth & Operations Hub",
+      "category": "Institutional Operations, Grants & Validator Recruitment",
+      "chain": "Solana Testnet",
+      "caip2": "solana:4uhcVJyU9pJkvQyS88uRDiswHXSCkY3z",
+      "payTo": "8qhW8ctXX77UNLTY9kx3XoAoH8kstQXPbCghUwqu34es",
+      "currency": "SOL",
+      "bazaarUrl": "https://github.com/elon00/rdl-marketing",
+      "services": [
+        { "endpoint": "/api/v1/x402/grants/dossier", "cost": "0.001 SOL", "description": "Institutional grant application dossiers and automated compliance verification" },
+        { "endpoint": "/api/v1/x402/marketing/kit", "cost": "0.001 SOL", "description": "Multi-chain PR launch kit, pitch decks, and viral dissemination playbooks" }
       ]
     },
     {
