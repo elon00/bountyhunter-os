@@ -17,6 +17,7 @@
       "currency": "USDC",
       "x402Version": 2,
       "commit": "5033cabd796eb49e034acefbbff12e452bcc59f4",
+      "supplyPolicy": "UNCAPPED_ELASTIC",
       "bazaarUrl": "https://scstobcminority-ai.netlify.app/.well-known/x402-bazaar.json",
       "services": [
         { "endpoint": "/api/v1/x402/pqc-keygen", "cost": "0.001 USDC", "amountUnits": "1000", "description": "Research PQC public-key bundle (ML-KEM-768 & ML-DSA-65) for autonomous agent" },
@@ -31,6 +32,7 @@
       "caip2": "solana:EtWTRABZaYq6iMfeYKouRu166VU2xqa1",
       "payTo": "BPshPrMazV7qunhcq18AvCHjSceHbKytiRDNrtCv68g3",
       "currency": "SOL",
+      "supplyPolicy": "UNCAPPED_ELASTIC",
       "bazaarUrl": "https://github.com/elon00/jarsol-web4-automaton",
       "services": [
         { "endpoint": "/api/v1/x402/launchpad/quote", "cost": "0.001 SOL", "description": "Autonomous SPL token launchpad schema" },
