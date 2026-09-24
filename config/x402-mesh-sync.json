@@ -40,6 +40,22 @@
       ]
     },
     {
+      "id": "qain-project",
+      "name": "QAIN Web 4.0 Post-Quantum Edge Platform",
+      "category": "Agentic Post-Quantum Edge Infrastructure & Colosseum World's Fair 2026",
+      "chain": "Solana Testnet",
+      "caip2": "solana:4uhcVJyU9pJkvQyS88uRDiswHXSCkY3z",
+      "smartContract": "Bnpd9YGaVxMAwdxFoVA3SQP1Vhfwv7jnJ67QNcyAVKq3",
+      "payTo": "BPshPrMazV7qunhcq18AvCHjSceHbKytiRDNrtCv68g3",
+      "tokenMint": "4zMMC9srt5Ri5X14GAgXhaHii3GnPAEERYPJgZJDncDU",
+      "currency": "USDC",
+      "supplyPolicy": "UNCAPPED_ELASTIC",
+      "bazaarUrl": "https://elon00.github.io/qain-project/.well-known/x402-bazaar.json",
+      "services": [
+        { "endpoint": "/api/x402/pqc-insight", "cost": "0.001 USDC", "amountUnits": "1000", "description": "Paid machine-to-machine PQC security, ML-DSA-65 attestation and edge orchestration insight" }
+      ]
+    },
+    {
       "id": "QARBI",
       "name": "QARBI Protocol",
       "category": "Arbitrum Stylus Conway Automaton Civilization",
