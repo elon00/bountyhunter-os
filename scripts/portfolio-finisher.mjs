@@ -3,16 +3,18 @@ import { execFileSync } from "node:child_process";
 import { existsSync, mkdirSync, writeFileSync, readFileSync } from "node:fs";
 import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
+import { commandFor } from "../src/missionControl.js";
 
 const here=dirname(fileURLToPath(import.meta.url));
 const mother=resolve(here,"..");
 const workspace=resolve(mother,"..");
 const registry=JSON.parse(readFileSync(resolve(mother,"portfolio.registry.json"),"utf8"));
+const startedAt = new Date().toISOString();
 const registryProjects=[...(registry.verified_priority??[]),...(registry.gated_projects??[])];
 const projects=registryProjects.map(p=>({
   name:p.name,
   dir:p.name==="bountyhunter-os"?mother:resolve(workspace,p.name),
-  cmd:p.gate.split(/\\s+/),
+  cmd:p.gate.split(/\s+/),
   strength:p.strength??"aggregate",
   externalEvidenceRequired:p.external_evidence_required??true
 }));
@@ -20,7 +22,8 @@ const results=[];
 function run(x){
  if(!existsSync(x.dir)){results.push({...x,status:"BLOCKED",evidence:"repository not present in local workspace"});return;}
  try{
-  const [file,...args]=x.cmd;
+  const [command,...argumentsList]=x.cmd;
+  const [file,args] = commandFor({file:command,args:argumentsList}, process.env);
   execFileSync(file,args,{cwd:x.dir,stdio:"inherit",timeout:600000,env:{...process.env,CI:process.env.CI??"1"}});
   results.push({...x,status:x.externalEvidenceRequired?"PARTIAL_LOCAL_GATE_PASS":"VERIFIED_LOCAL",evidence:x.cmd.join(" ")});
  }catch(e){results.push({...x,status:"FAILED",evidence:`exit=${e.status??"unknown"} ${x.cmd.join(" ")}`});}

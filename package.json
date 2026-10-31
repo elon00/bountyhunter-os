@@ -23,7 +23,8 @@
     "ai-quantum:dev": "npm --prefix ../../qmoosa-deep-tech-ai-quantum-platform run dev",
     "qmoosa:finish": "node scripts/start-and-finish-everything.mjs",
     "qmoosa:heal": "node scripts/master-healer.mjs",
-    "finish:all": "node scripts/portfolio-finisher.mjs"
+    "finish:all": "node scripts/portfolio-finisher.mjs",
+    "mission": "node scripts/mission-control.mjs"
   },
   "dependencies": {
     "@noble/hashes": "2.4.0",

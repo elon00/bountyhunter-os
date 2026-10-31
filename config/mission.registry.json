@@ -1,0 +1,114 @@
+{
+  "schemaVersion": 1,
+  "policy": "Reviewed local checks only. Missing profiles are blocked. No deploy or spending commands.",
+  "projects": [
+    {
+      "name": "bountyhunter-os",
+      "repository": "https://github.com/elon00/bountyhunter-os",
+      "chains": [],
+      "checks": [
+        {
+          "id": "tests",
+          "file": "npm",
+          "args": [
+            "test"
+          ],
+          "criteria": [
+            "unit",
+            "regression"
+          ]
+        },
+        {
+          "id": "crypto",
+          "file": "npm",
+          "args": [
+            "run",
+            "audit:crypto"
+          ],
+          "criteria": [
+            "pqc-negative"
+          ]
+        },
+        {
+          "id": "dependencies",
+          "file": "npm",
+          "args": [
+            "audit",
+            "--audit-level=high"
+          ],
+          "criteria": [
+            "dependency-audit"
+          ]
+        },
+        {
+          "id": "build",
+          "file": "npm",
+          "args": [
+            "run",
+            "build"
+          ],
+          "criteria": []
+        }
+      ]
+    },
+    {
+      "name": "QSui",
+      "repository": "https://github.com/elon00/QSui",
+      "chains": [
+        "Sui"
+      ],
+      "checks": [
+        {
+          "id": "types",
+          "file": "npm",
+          "args": [
+            "run",
+            "typecheck"
+          ],
+          "criteria": []
+        },
+        {
+          "id": "nist",
+          "file": "npm",
+          "args": [
+            "run",
+            "test:nist"
+          ],
+          "criteria": [],
+          "limitation": "Suite name is not published-vector provenance; no official vector credit awarded"
+        },
+        {
+          "id": "crypto",
+          "file": "npm",
+          "args": [
+            "run",
+            "audit:crypto"
+          ],
+          "criteria": [
+            "pqc-negative"
+          ]
+        },
+        {
+          "id": "dependencies",
+          "file": "npm",
+          "args": [
+            "audit",
+            "--audit-level=high"
+          ],
+          "criteria": [
+            "dependency-audit"
+          ]
+        },
+        {
+          "id": "build",
+          "file": "npm",
+          "args": [
+            "run",
+            "build"
+          ],
+          "criteria": []
+        }
+      ]
+    }
+  ]
+}
