@@ -1,3 +1,5 @@
+import fsForRaceTest from 'node:fs';
+import { syncBuiltinESMExports } from 'node:module';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, rmSync } from 'node:fs';
@@ -137,3 +139,23 @@ test('EVM code read pins canonical block hash and rejects a reorg during verific
   };
   await assert.rejects(()=>verifyEvm({rpcUrl:'https://rpc.example.invalid',chainId:1,txHash,address,fetchImpl}), /Canonical block changed/);
 });
+
+
+test('source fingerprint rejects a file replaced between metadata inspection and open', () => fixture((repo) => {
+  const originalOpen = fsForRaceTest.openSync;
+  const originalWrite = fsForRaceTest.writeFileSync;
+  const target = join(repo, 'source.txt');
+  let replaced = false;
+  fsForRaceTest.openSync = function(path, ...args) {
+    if (path === target && !replaced) {
+      replaced = true;
+      fsForRaceTest.renameSync(target, join(repo, 'original-source.txt'));
+      originalWrite(target, 'replacement');
+    }
+    return originalOpen(path, ...args);
+  };
+  syncBuiltinESMExports();
+  try { assert.throws(() => sourceIdentity(repo), /Source changed while opening/); }
+  finally { fsForRaceTest.openSync = originalOpen; syncBuiltinESMExports(); }
+  assert.equal(replaced, true);
+}));

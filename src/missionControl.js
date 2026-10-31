@@ -1,6 +1,6 @@
 import { execFileSync, spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
-import { existsSync, readFileSync, writeFileSync, mkdirSync, realpathSync, lstatSync, readlinkSync } from 'node:fs';
+import { existsSync, readFileSync, writeFileSync, mkdirSync, realpathSync, lstatSync, readlinkSync, openSync, fstatSync, closeSync, constants } from 'node:fs';
 import { resolve, dirname, join } from 'node:path';
 
 export const rubric = [
@@ -36,7 +36,19 @@ export function sourceIdentity(repo) {
     if (!existsSync(path)) { digest.update('DELETED\0'); continue; }
     const stat = lstatSync(path);
     if (stat.isSymbolicLink()) digest.update('LINK:' + readlinkSync(path));
-    else if (stat.isFile()) digest.update(readFileSync(path));
+    else if (stat.isFile()) {
+      let descriptor;
+      try {
+        descriptor = openSync(path, constants.O_RDONLY | (constants.O_NOFOLLOW ?? 0));
+        const opened = fstatSync(descriptor);
+        if (!opened.isFile() || opened.dev !== stat.dev || opened.ino !== stat.ino) throw new Error('Source changed while opening file');
+        digest.update(readFileSync(descriptor));
+        const afterRead = fstatSync(descriptor);
+        if (afterRead.size !== opened.size || afterRead.mtimeMs !== opened.mtimeMs || afterRead.ctimeMs !== opened.ctimeMs) throw new Error('Source changed while reading file');
+      } finally {
+        if (descriptor !== undefined) closeSync(descriptor);
+      }
+    }
     else digest.update('NON_FILE');
     digest.update('\0');
   }
