@@ -12,6 +12,16 @@ foreach ($missionFile in @("audit.csv", "source-registry.json", "deployments.csv
     }
 }
 $missionOutput = if ([IO.Path]::IsPathRooted($OutputDirectory)) { $OutputDirectory } else { Join-Path $missionRoot $OutputDirectory }
+$nodeCommand = Get-Command node -ErrorAction SilentlyContinue
+$gitCommand = Get-Command git -ErrorAction SilentlyContinue
+if (-not $nodeCommand -or -not $gitCommand) { throw "Node.js 22+ and Git are required for the local technical self-tests." }
+Push-Location $missionRoot
+try {
+    & $pythonCommand.Source -m unittest discover -s tests -p test_portfolio_master.py -v
+    if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+    & $nodeCommand.Source --test tests/mission-control.test.mjs
+    if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+} finally { Pop-Location }
 $missionArguments = @(
     (Join-Path $missionRoot "tools/portfolio_master.py"), "plan",
     "--audit", (Join-Path $missionData "audit.csv"),
