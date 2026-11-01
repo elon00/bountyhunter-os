@@ -1,0 +1,80 @@
+{
+  "maximum": 100,
+  "earned": null,
+  "evidencePoints": 0,
+  "categories": [
+    {
+      "name": "Architecture and reproducible build",
+      "maximum": 8,
+      "earned": null,
+      "status": "NOT_ASSESSED"
+    },
+    {
+      "name": "Functional product completeness",
+      "maximum": 10,
+      "earned": null,
+      "status": "NOT_ASSESSED"
+    },
+    {
+      "name": "Blockchain integration and deployment",
+      "maximum": 12,
+      "earned": null,
+      "status": "NOT_ASSESSED"
+    },
+    {
+      "name": "Security and cryptographic controls",
+      "maximum": 14,
+      "earned": null,
+      "status": "NOT_ASSESSED"
+    },
+    {
+      "name": "Automated tests and reliability",
+      "maximum": 12,
+      "earned": null,
+      "status": "NOT_ASSESSED"
+    },
+    {
+      "name": "Payments, wallets and tokenomics",
+      "maximum": 8,
+      "earned": null,
+      "status": "NOT_ASSESSED"
+    },
+    {
+      "name": "AI automation and interoperability",
+      "maximum": 6,
+      "earned": null,
+      "status": "NOT_ASSESSED"
+    },
+    {
+      "name": "Operations and incident response",
+      "maximum": 10,
+      "earned": null,
+      "status": "NOT_ASSESSED"
+    },
+    {
+      "name": "Market traction and product viability",
+      "maximum": 12,
+      "earned": null,
+      "status": "NOT_ASSESSED"
+    },
+    {
+      "name": "Legal, governance and launch preparedness",
+      "maximum": 8,
+      "earned": null,
+      "status": "NOT_ASSESSED"
+    }
+  ],
+  "launchReviewThreshold": 85,
+  "target": 100,
+  "releaseAllowed": false,
+  "hardGates": [
+    "Reproducible artifact and source match",
+    "No unresolved critical security defects",
+    "Real product testnet end-to-end proof",
+    "Operational recovery and owner",
+    "Customer acceptance and sustainable economics",
+    "Applicable legal and governance review",
+    "Explicit artifact/network/budget approval for mainnet"
+  ],
+  "applicability": "Optional features need justified applicability; they are never inserted merely to earn points."
+}

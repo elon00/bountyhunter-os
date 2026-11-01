@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "capabilitySet": "qmoosa-universal-v1",
+  "scope": "All reconciled non-fork repositories; assess each existing implementation before changes",
+  "deduplicationOrder": ["INSPECT", "REUSE_VERIFIED_MODULE", "EXTEND_PARTIAL_MODULE", "IMPLEMENT_MISSING_MODULE"],
+  "unsupportedBehavior": "BLOCKED_WITH_REASON; never silently substitute an incompatible chain or claim an integration exists",
+  "applicability": "Every capability is assessed; any NOT_APPLICABLE disposition requires an explicit justification and review",
+  "completionRule": "Source-bound behavior tests and applicable live integration evidence, not dependency presence or README text",
+  "spendingPolicy": "No paid infrastructure, mainnet funds, production minting or ICP cycles before genuine technical gates and concrete release approval",
+  "capabilities": [
+    {"id":"quicknode_rpc","source":"https://www.quicknode.com/docs/welcome","acceptance":"Expected network identity, timeouts, bounded responses, failover/finality and secret-safe server configuration"},
+    {"id":"x402_bazaar","source":"https://docs.x402.org/extensions/bazaar","acceptance":"Versioned challenge, verification AND settlement, exact resource/amount/network/recipient binding, replay rejection and discovery"},
+    {"id":"conway_simulation","source":"https://github.com/elon00/un-who-health-ai/pull/1","acceptance":"Bounded deterministic B3/S23 state with still-life, oscillator, glider, boundary and snapshot tests; no consensus/security claim"},
+    {"id":"web4_identity_interoperability","acceptance":"Explicit identity, authorization and interoperability protocols; Web4 label alone earns no evidence"},
+    {"id":"post_quantum_cryptography","source":"https://csrc.nist.gov/projects/post-quantum-cryptography","acceptance":"Reviewed implementation, official-vector provenance, tamper/wrong-key tests and honest off-chain/on-chain scope"},
+    {"id":"raven_rsi","source":"https://github.com/EverMind-AI/Raven","acceptance":"Version/license review, bounded patch experiments, actual before/after metrics, regression and human release controls"},
+    {"id":"rea_analysis","source":"https://github.com/morluto/rea","acceptance":"Authorized source/runtime analysis using supported documented interfaces and evidence-linked findings"},
+    {"id":"multimodel_agentic_chatbot","acceptance":"Provider abstraction, authenticated sessions, prompt-injection tests, tool/budget limits, evaluations and recovery"},
+    {"id":"tokenomics_emissions","acceptance":"Defined token utility and supply policy; uncapped lifetime issuance uses finite mint amounts, emission limits, roles, governance and supply accounting"},
+    {"id":"token_launchpad","acceptance":"Chain-native templates, role checks, vesting/distribution, simulation, source verification and release approval"},
+    {"id":"multiwallet_qr","acceptance":"Native connectors, account/network changes, signed challenge replay/expiry rejection and validated payment QR contents"},
+    {"id":"api_secrets_management","acceptance":"Environment/secret-manager injection, least privilege, rotation, separation and no secret values in code, bundles or logs"},
+    {"id":"automation_ci_repair","acceptance":"Pinned dependencies, minimum permissions, reviewed repair PRs and all affected tests; no automatic relaxation of gates"},
+    {"id":"codeql_testing_reality","source":"https://codeql.github.com/docs/codeql-overview/supported-languages-and-frameworks/","acceptance":"Actual supported-language CodeQL plus native analyzers; nonempty smoke/sanity/regression/integration/negative suites and source-bound logs"},
+    {"id":"operations_recovery","acceptance":"Observed health/alerts, safe logs, SLO ownership, load evidence and tested restore/rollback"},
+    {"id":"testnet_mainnet_verification","acceptance":"Compatible runtime, reproducible artifact/source match, genuine testnet product workflow and approved mainnet budget followed by post-release verification"}
+  ]
+}
