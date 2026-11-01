@@ -35,7 +35,7 @@ Payments must verify AND settle against a genuine configured backend. Local PQC 
 
 ## Execution loop
 
-1. Read the next row of mission-ledger.json and inspect the current source/PRs.
+1. Read the next row of the latest output directory's mission-ledger.json and inspect the current source/PRs. The existing planner generates this file; reruns preserve recorded work by immutable ID. Ledger claims require current evidence review and never authorize release.
 2. Find the earliest incomplete gate. Reproduce a concrete defect before editing.
 3. Implement the smallest complete requirement using shared code where appropriate.
 4. Run reviewed commands. Store command, commit, source hash, times, exit status and hashed logs. Recheck when source changes.
@@ -69,6 +69,6 @@ Next delivery: reproduce the merged India checks through the central runner, ret
 
 ## Novice entry point
 
-Use the existing complete package's START_MISSION.ps1 to reproduce the inventory and coordinator self-tests. It does not deploy or finish all products. MASTER_PROMPT.md contains the agent execution instruction; this blueprint and mission-ledger.json provide the work order and acceptance contract. The coding agent continues implementation from the first incomplete gate.
+Use the existing complete package's START_MISSION.ps1 to reproduce the inventory, generate OutputDirectory/mission-ledger.json and run coordinator self-tests. The default output directory is results. It does not deploy or finish all products. MASTER_PROMPT.md contains the agent execution instruction; this blueprint and the generated ledger provide the work order and acceptance contract. The coding agent continues implementation from the first incomplete gate.
 
 No mainnet signing, minting, treasury transfers, paid infrastructure or ICP cycles spending before applicable technical gates pass and the owner approves the concrete release manifest and maximum budget. Prepare the reviewable manifest first. Never request or store private keys in chat, source or logs.
