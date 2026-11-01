@@ -129,6 +129,39 @@
           ]
         }
       ]
+    },
+    {
+      "name": "india-sovereign-ai",
+      "repository": "https://github.com/elon00/india-sovereign-ai",
+      "chains": [],
+      "limitation": "Off-chain PQC, selected NIST keygen vectors and prototype regression tests only. No on-chain PQC, payment settlement, certified custody or product deployment proof.",
+      "checks": [
+        {
+          "id": "component-regressions",
+          "file": "npm",
+          "args": [
+            "test"
+          ],
+          "criteria": [
+            "unit",
+            "regression",
+            "pqc-negative"
+          ],
+          "timeoutMs": 180000
+        },
+        {
+          "id": "dependencies",
+          "file": "npm",
+          "args": [
+            "audit",
+            "--audit-level=high"
+          ],
+          "criteria": [
+            "dependency-audit"
+          ],
+          "timeoutMs": 180000
+        }
+      ]
     }
   ]
 }

@@ -172,6 +172,42 @@ def shortlist(rows, limit=100, focus="country-un"):
         reason="Requested thematic priority; deeper source coverage first; India/WHO are confirmed defect repair pilots. Ties use a deterministic hash, not a market ranking.") for i,x in enumerate(chosen[:limit])]
 
 
+def mission_ledger(rows, previous=None):
+    """Resumable work journal only. Imported assessments never authorize release."""
+    previous = previous or {"schemaVersion": 1, "repositories": []}
+    if previous.get("schemaVersion") != 1:
+        raise ValueError("Unsupported mission ledger version")
+    prior = {}
+    for item in previous["repositories"]:
+        identity = repository_id(item["repositoryId"])
+        if identity in prior:
+            raise ValueError("Duplicate mission ledger repository ID")
+        prior[identity] = item
+    retired = {repository_id(x["repositoryId"]): x for x in previous.get("retiredRepositories", [])}
+    gates = {f"G{i}": "NOT_RUN" for i in range(10)}
+    records = []
+    seen = set()
+    for row in rows:
+        identity = repository_id(row["repositoryId"])
+        if identity in seen:
+            raise ValueError("Duplicate mission ledger source ID")
+        seen.add(identity)
+        item = dict(prior.get(identity, retired.get(identity, {})))
+        item.update(repositoryId=identity, repository=row["repository"], url=row["githubUrl"], theme=row["theme"])
+        item.setdefault("gateStatus", dict(gates))
+        item.setdefault("evidence", [])
+        item.setdefault("nextAction", row["nextGate"])
+        item["score10"] = None
+        item["assessmentStatus"] = "EVIDENCE_REVIEW_REQUIRED"
+        item["priority"] = 0 if row["repository"] in ("elon00/india-sovereign-ai", "elon00/un-who-health-ai") else 1 if row["theme"] in ("country", "un-themed") else 2
+        records.append(item)
+    records.sort(key=lambda x: (x["priority"], x["repository"]))
+    retired.update({identity: item for identity, item in prior.items() if identity not in seen})
+    return dict(schemaVersion=1, updatedAt=stamp(), scopeCount=len(records), portfolioScore10=None,
+        trustedForRelease=False, policy="Work journal; reruns preserve recorded work by immutable ID. Gate claims require current independent evidence review. No scores or releases are awarded by planning.",
+        repositories=records, retiredRepositories=[x for identity,x in retired.items() if identity not in seen])
+
+
 def plan(args):
     # Parse and hash exactly the same captured bytes, with no second file read.
     captured = {k: Path(getattr(args,k)).read_bytes() for k in ("audit", "registry", "deployments", "inventory", "chains", "capabilities") if getattr(args,k,None)}
@@ -211,7 +247,10 @@ def plan(args):
             "Country and agency themes do not establish official affiliation.",
             "The 100 candidates are an engineering review queue, not the 100 strongest commercially validated products."],
         quality=quality, inputs=inputs)
+    ledger_path = out/"mission-ledger.json"
+    ledger = mission_ledger(rows, load(ledger_path) if ledger_path.exists() else None)
     save(out/"portfolio-registry.json", dict(summary=summary, repositories=rows))
+    save(ledger_path, ledger)
     save(out/"summary.json", summary)
     if capability_policy is not None:
         save(out/"capability-register.json", dict(policy=capability_policy,

@@ -19,6 +19,39 @@ def current(**values):
 
 
 class PortfolioMasterTests(unittest.TestCase):
+    def test_mission_ledger_is_generated_without_awarding_completion(self):
+        rows,_=p.build_registry(self.baseline(),[],[])
+        journal=p.mission_ledger(rows)
+        self.assertEqual(journal["scopeCount"],1)
+        self.assertFalse(journal["trustedForRelease"])
+        self.assertIsNone(journal["portfolioScore10"])
+        self.assertEqual(set(journal["repositories"][0]["gateStatus"].values()),{"NOT_RUN"})
+
+    def test_mission_ledger_preserves_work_by_id_through_rename_and_retirement(self):
+        rows,_=p.build_registry(self.baseline(),[],[])
+        journal=p.mission_ledger(rows)
+        journal["repositories"][0]["evidence"]=[{"path":"checks.json"}]
+        journal["repositories"][0]["nextAction"]="Verify the real transfer"
+        renamed=[dict(rows[0],repository="elon00/crypto-token-bridge")]
+        updated=p.mission_ledger(renamed,journal)
+        self.assertEqual(updated["repositories"][0]["evidence"],[{"path":"checks.json"}])
+        self.assertEqual(updated["repositories"][0]["nextAction"],"Verify the real transfer")
+        self.assertEqual(updated["repositories"][0]["repository"],"elon00/crypto-token-bridge")
+        retired=p.mission_ledger([],updated)
+        self.assertEqual(retired["retiredRepositories"][0]["evidence"],[{"path":"checks.json"}])
+        restored=p.mission_ledger(renamed,retired)
+        self.assertEqual(restored["repositories"][0]["evidence"],[{"path":"checks.json"}])
+        self.assertEqual(restored["retiredRepositories"],[])
+
+    def test_mission_ledger_rejects_duplicate_identity_before_losing_work(self):
+        rows,_=p.build_registry(self.baseline(),[],[])
+        with self.assertRaisesRegex(ValueError,"Duplicate"):
+            p.mission_ledger(rows*2)
+        journal=p.mission_ledger(rows)
+        journal["repositories"]*=2
+        with self.assertRaisesRegex(ValueError,"Duplicate"):
+            p.mission_ledger(rows,journal)
+
     def test_united_nations_hub_is_included_in_agency_scope(self):
         self.assertEqual(p.theme("elon00/united-nations-ai"),"un-themed")
         self.assertEqual(p.theme("elon00/un-who-health-ai"),"un-themed")
