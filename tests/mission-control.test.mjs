@@ -187,6 +187,10 @@ test('dangling symlink retargeting changes the source fingerprint', (t) => fixtu
   fsForRaceTest.unlinkSync(target);
   fsForRaceTest.symlinkSync('missing-b', target);
   assert.notEqual(sourceIdentity(repo).sourceSha256, before);
+  const linkHash = sourceIdentity(repo).sourceSha256;
+  fsForRaceTest.unlinkSync(target);
+  writeFileSync(target, 'LINK:missing-b');
+  assert.notEqual(sourceIdentity(repo).sourceSha256, linkHash);
 }));
 
 

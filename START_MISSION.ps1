@@ -5,6 +5,11 @@ $pythonCommand = Get-Command python -ErrorAction SilentlyContinue
 if (-not $pythonCommand) {
     throw "Python 3.10+ is required. Install Python, reopen PowerShell, then run this script again."
 }
+try {
+    & $pythonCommand.Source -c "import sys; sys.exit(0 if sys.version_info >= (3, 10) else 1)" *> $null
+    $pythonProbeExit = $LASTEXITCODE
+} catch { throw "Python 3.10+ is required. Install Python, reopen PowerShell, then run this script again." }
+if ($pythonProbeExit -ne 0) { throw "Python 3.10+ is required. Install Python, reopen PowerShell, then run this script again." }
 $missionData = Join-Path $missionRoot "data"
 foreach ($missionFile in @("audit.csv", "source-registry.json", "deployments.csv", "github-inventory.ndjson")) {
     if (-not (Test-Path -LiteralPath (Join-Path $missionData $missionFile) -PathType Leaf)) {

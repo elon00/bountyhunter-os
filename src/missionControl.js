@@ -36,7 +36,7 @@ export function sourceIdentity(repo) {
     digest.update(file + '\0');
     try {
       const target = readlinkSync(path);
-      digest.update('LINK:' + target + '\0');
+      digest.update('LINK\0' + Buffer.byteLength(target) + '\0' + target + '\0');
       continue;
     } catch (error) {
       if (error.code === 'ENOENT') { digest.update('DELETED\0'); continue; }
@@ -47,6 +47,7 @@ export function sourceIdentity(repo) {
       descriptor = openSync(path, constants.O_RDONLY | (constants.O_NOFOLLOW ?? 0));
       const opened = fstatSync(descriptor);
       if (!opened.isFile()) throw new Error('Source contains a non-file entry');
+      digest.update('FILE\0' + opened.size + '\0');
       digest.update(readFileSync(descriptor));
       const afterRead = fstatSync(descriptor);
       const currentEntry = lstatSync(path);
