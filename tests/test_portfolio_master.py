@@ -25,7 +25,7 @@ class PortfolioMasterTests(unittest.TestCase):
         self.assertEqual(p.theme("elon00/india-sovereign-ai"),"country")
 
     def baseline(self):
-        return [dict(repository="elon00/cbdcbridge",id="12",pushed_at="2026-10-29",repository_type="Blockchain contract source",tree_coverage="Tree inspected")]
+        return [dict(repository="elon00/cbdcbridge",id="12",fork="False",pushed_at="2026-10-29",repository_type="Blockchain contract source",tree_coverage="Tree inspected")]
 
     def test_identity_join_preserves_history_after_rename(self):
         live=[current(full_name="elon00/crypto-token-bridge",id=12,fork=False,pushed_at="2026-10-31")]
@@ -145,7 +145,7 @@ class PortfolioMasterTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as folder:
             root=Path(folder)
             audit=root/'audit.csv'; registry=root/'registry.json'; deployments=root/'deployments.csv'
-            original=b'repository,id,repository_type,tree_coverage\nelon00/example,12,Blockchain contract source,Tree inspected\n'
+            original=b'repository,id,fork,repository_type,tree_coverage\nelon00/example,12,False,Blockchain contract source,Tree inspected\n'
             audit.write_bytes(original)
             registry.write_text('{"repositories":[]}',encoding='utf-8')
             deployments.write_text('repository,repositoryId\n',encoding='utf-8')
@@ -163,6 +163,14 @@ class PortfolioMasterTests(unittest.TestCase):
             self.assertEqual(summary['inputs']['audit']['sha256'],hashlib.sha256(original).hexdigest())
             self.assertEqual(counts[audit],1)
             self.assertEqual(summary['publicNonForks'],1)
+
+    def test_audit_only_mode_requires_fork_evidence_and_excludes_forks(self):
+        audit=self.baseline()+[dict(self.baseline()[0],repository="elon00/fork",id="13",fork="True")]
+        rows,_=p.build_registry(audit,[],[])
+        self.assertEqual(len(rows),1)
+        missing=self.baseline();missing[0].pop("fork")
+        with self.assertRaises(ValueError):
+            p.build_registry(missing,[],[])
 
 
 if __name__=="__main__": unittest.main()

@@ -109,6 +109,26 @@
           "criteria": []
         }
       ]
+    },
+    {
+      "name": "un-who-health-ai",
+      "repository": "https://github.com/elon00/un-who-health-ai",
+      "chains": [],
+      "limitation": "Python component regressions only; Rust/ICP build, genuine payment/PQC backends and deployed product remain unverified",
+      "checks": [
+        {
+          "id": "python-component-regressions",
+          "file": "python",
+          "args": [
+            "-B",
+            "tests/reality_check_harness.py"
+          ],
+          "criteria": [
+            "unit",
+            "regression"
+          ]
+        }
+      ]
     }
   ]
 }

@@ -95,7 +95,7 @@ def build_registry(audit, prior, deployments, live=None):
     if len(by_name) != len(audit) or len(by_id) != len(audit):
         raise ValueError("Duplicate audit repository identity")
     if live is None:
-        live = [dict(full_name=x["repository"], id=int(x["id"]), fork=False,
+        live = [dict(full_name=x["repository"], id=int(x["id"]), fork=boolean(x.get("fork")),
                      archived=boolean(x.get("archived", False)), pushed_at=x.get("pushed_at"),
                      language=x.get("language")) for x in audit]
     seen_names, seen_ids, result = set(), set(), []
@@ -197,7 +197,7 @@ def plan(args):
     inputs = {k: dict(path=str(Path(getattr(args,k)).resolve()), sha256=hashlib.sha256(value).hexdigest()) for k,value in captured.items()}
     summary = dict(generatedAt=stamp(), sourceInventoryMode="LIVE_METADATA_PLUS_HISTORICAL_SOURCE_AUDIT" if live is not None else "AUDIT_SNAPSHOT_ONLY",
         totalPublicRepositories=len(live) if live is not None else None, publicNonForks=len(rows),
-        forksExcluded=sum(boolean(x.get("fork")) for x in live) if live is not None else None,
+        forksExcluded=sum(boolean(x.get("fork")) for x in (live if live is not None else audit)),
         deploymentClasses=dict(Counter(x["deploymentClass"] for x in rows)),
         themes=dict(Counter(x["theme"] for x in rows)), shortlisted=len(selected), focus=args.focus,
         shortlistThemes=dict(Counter(x["theme"] for x in selected)),

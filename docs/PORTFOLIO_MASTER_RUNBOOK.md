@@ -11,7 +11,7 @@ python tools/portfolio_master.py plan --audit DATA/audit.csv --registry DATA/sou
 python -m unittest discover -s tests -p test_portfolio_master.py -v
 ```
 
-Inputs are the existing audit CSV, source-registry JSON, observed component register CSV and optional current GitHub metadata JSON/NDJSON. Prior-registry and deployment records must include repositoryId, bound to the original audit snapshot. The planner joins all records by immutable repository ID, preserving renamed identities and historical observation timestamps. It rejects duplicate IDs/names and unexpected owners, reports orphan evidence, records input hashes, and flags source changes since screening. The optional metadata refresh does not re-run builds or RPC verification.
+Inputs are the existing audit CSV, source-registry JSON, observed component register CSV and optional current GitHub metadata JSON/NDJSON. Prior-registry and deployment records must include repositoryId, bound to the original audit snapshot. The planner joins all records by immutable repository ID, preserving renamed identities and historical observation timestamps. It rejects duplicate IDs/names and unexpected owners, reports orphan evidence, records input hashes, and records push-timestamp activity and leaves current source freshness unverified. The optional metadata refresh does not re-run builds or RPC verification.
 
 Outputs: a reconciled registry, explicit deployment classes, quality/reconciliation results, a 100-candidate CSV/JSON with GitHub links, a 100-point business-inclusive scorecard, and an execution baseline. Unknown readiness stays unassessed. Recorded mainnet payments, contracts, testnet programs and token mints are component observations, not proof of finished applications.
 

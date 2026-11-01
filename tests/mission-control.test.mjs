@@ -187,6 +187,10 @@ test('dangling symlink retargeting changes the source fingerprint', (t) => fixtu
   fsForRaceTest.unlinkSync(target);
   fsForRaceTest.symlinkSync('missing-b', target);
   assert.notEqual(sourceIdentity(repo).sourceSha256, before);
+  const linkHash = sourceIdentity(repo).sourceSha256;
+  fsForRaceTest.unlinkSync(target);
+  writeFileSync(target, 'LINK:missing-b');
+  assert.notEqual(sourceIdentity(repo).sourceSha256, linkHash);
 }));
 
 
@@ -201,4 +205,9 @@ test('the coordinator profile honors an explicitly selected workspace checkout',
   assert.equal(result.status, 2, result.stderr);
   const observed = JSON.parse(result.stdout);
   assert.equal(observed.source.sourceSha256, sourceIdentity(selected).sourceSha256);
+}));
+
+
+test('an empty reviewed command profile cannot report successful checks', () => fixture((repo, out) => {
+  assert.throws(() => executeChecks({name:'empty-profile',checks:[]}, repo, out), /empty check suite cannot pass/);
 }));
