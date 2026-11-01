@@ -24,7 +24,7 @@ try {
     else if (['check', 'score', 'plan'].includes(command)) {
       const project = registry.projects.find(x => x.name === projectName);
       if (!project || !/^[a-z0-9_.-]+$/i.test(project.name)) throw new Error('No reviewed profile for this repository; add explicit commands before execution');
-      const repo = project.name === 'bountyhunter-os' ? root : resolve(options.workspace ?? resolve(root, '..'), project.name);
+      const repo = options.workspace ? resolve(options.workspace, project.name) : project.name === 'bountyhunter-os' ? root : resolve(root, '..', project.name);
       const out = resolve(options.output ?? resolve(root, '.qmoosa/mission', project.name));
       const reportPath = resolve(out, 'checks.json');
       let report = existsSync(reportPath) ? JSON.parse(readFileSync(reportPath, 'utf8')) : null;

@@ -3,6 +3,7 @@
 import argparse
 from collections import Counter, defaultdict
 import csv
+import io
 from datetime import datetime, timezone
 import hashlib
 import json
@@ -47,7 +48,17 @@ def inventory_rows(path):
 
 
 def boolean(value):
-    return value is True or isinstance(value, str) and value.lower() == "true"
+    if type(value) is bool:
+        return value
+    if isinstance(value, str) and value.lower() in ("true", "false"):
+        return value.lower() == "true"
+    raise ValueError("Boolean flags must be true or false; missing/unknown values are not safe defaults")
+
+
+def repository_id(value):
+    if type(value) is bool or not re.fullmatch(r"[0-9]+", str(value)) or int(value) <= 0:
+        raise ValueError("Repository ID must be a positive integer")
+    return str(int(value))
 
 
 def theme(repo):
@@ -74,21 +85,23 @@ def component_class(rows):
 
 def build_registry(audit, prior, deployments, live=None):
     by_name = {x["repository"].lower(): x for x in audit}
-    by_id = {str(x["id"]): x for x in audit}
-    details = {x["repository"].lower(): x for x in prior}
+    by_id = {repository_id(x["id"]): x for x in audit}
+    details = {repository_id(x["repositoryId"]): x for x in prior}
+    if len(details) != len(prior):
+        raise ValueError("Duplicate prior-registry repository identity")
     evidence = defaultdict(list)
     for row in deployments:
-        evidence[row["repository"].lower()].append(row)
+        evidence[repository_id(row["repositoryId"])].append(row)
     if len(by_name) != len(audit) or len(by_id) != len(audit):
         raise ValueError("Duplicate audit repository identity")
     if live is None:
         live = [dict(full_name=x["repository"], id=int(x["id"]), fork=False,
-                     archived=boolean(x.get("archived")), pushed_at=x.get("pushed_at"),
+                     archived=boolean(x.get("archived", False)), pushed_at=x.get("pushed_at"),
                      language=x.get("language")) for x in audit]
     seen_names, seen_ids, result = set(), set(), []
     for current in live:
         name = current["full_name"]
-        identity = str(current["id"])
+        identity = repository_id(current["id"])
         if not NAME.fullmatch(name) or name.split("/")[0].lower() != "elon00":
             raise ValueError("Unexpected repository owner or name")
         if identity in seen_ids or name.lower() in seen_names:
@@ -98,20 +111,20 @@ def build_registry(audit, prior, deployments, live=None):
             continue
         old = by_id.get(identity, {})
         old_name = old.get("repository", name).lower()
-        metadata = details.get(old_name, {})
-        records = evidence.get(old_name, [])
+        metadata = details.get(identity, {})
+        records = evidence.get(identity, [])
         coverage = old.get("tree_coverage", "NOT_INSPECTED")
-        changed = bool(old and old.get("pushed_at") and current.get("pushed_at") != old["pushed_at"])
+        push_changed = bool(old and old.get("pushed_at") and current.get("pushed_at") and current["pushed_at"] != old["pushed_at"])
         kind = old.get("repository_type", "SOURCE_REVIEW_REQUIRED")
         status = component_class(records)
         if status == "DEPLOYMENT_NOT_ESTABLISHED":
             status = "EMPTY_AT_AUDIT" if kind == "Empty repository" else "SOURCE_PRESENT_UNVERIFIED" if "source" in kind.lower() else "PURPOSE_REVIEW_REQUIRED"
         result.append(dict(repository=name, repositoryId=int(identity), githubUrl="https://github.com/"+name,
             previousName=old.get("repository") if old_name != name.lower() else None,
-            theme=theme(name), language=current.get("language"), archived=boolean(current.get("archived")),
+            theme=theme(name), language=current.get("language"), archived=boolean(current.get("archived", False)),
             sourceTypeAtAudit=kind, sourceCoverageAtAudit=coverage,
-            sourceChangedSinceAudit=changed, sourceCommit=metadata.get("sourceCommit"),
-            sourceCommitStatus="STALE_OR_UNRESOLVED" if changed or not metadata.get("sourceCommit") else "AUDIT_COMMIT_ONLY",
+            sourceChangedSinceAudit=None, pushActivitySinceAudit=push_changed, sourceCommit=metadata.get("sourceCommit"),
+            sourceCommitStatus="CURRENT_HEAD_NOT_INDEPENDENTLY_RESOLVED",
             codeFileCountHeuristic=metadata.get("codeFileCountHeuristic", 0),
             workflowCountAtAudit=metadata.get("workflowCount", 0),
             deploymentClass=status, componentObservations=records,
@@ -120,12 +133,13 @@ def build_registry(audit, prior, deployments, live=None):
             auditCheckedAt=old.get("tree_checked_at_utc"),
             nextGate="Resolve current commit, reproduce build and negative tests, then verify product-level testnet behavior"))
     # Do not silently drop orphan deployment evidence from the reconciliation.
-    audit_names = set(by_name)
-    return result, dict(orphanEvidenceRepositories=sorted(set(evidence)-audit_names),
+    return result, dict(orphanEvidenceRepositories=sorted({r["repository"] for identity,records in evidence.items() if identity not in by_id for r in records}),
+        orphanPriorRepositoryIds=sorted(set(details)-set(by_id)),
         newUnscreenedRepositories=sum(str(x["repositoryId"]) not in by_id for x in result),
         renamedRepositories=[dict(before=x["previousName"], after=x["repository"]) for x in result if x["previousName"]],
-        changedSinceSourceAudit=sum(x["sourceChangedSinceAudit"] for x in result),
-        missingFromCurrentInventory=sorted(x["repository"] for x in audit if str(x["id"]) not in seen_ids))
+        pushActivitySinceAudit=sum(x["pushActivitySinceAudit"] for x in result),
+        sourceFreshnessUnverified=len(result),
+        missingFromCurrentInventory=sorted(x["repository"] for x in audit if repository_id(x["id"]) not in seen_ids))
 
 
 def priority(row):
@@ -159,21 +173,37 @@ def shortlist(rows, limit=100, focus="country-un"):
 
 
 def plan(args):
-    audit = csv_rows(args.audit)
-    prior = load(args.registry)["repositories"]
-    deployment = csv_rows(args.deployments)
-    live = inventory_rows(args.inventory) if args.inventory else None
+    # Parse and hash exactly the same captured bytes, with no second file read.
+    captured = {k: Path(getattr(args,k)).read_bytes() for k in ("audit", "registry", "deployments", "inventory", "chains", "capabilities") if getattr(args,k,None)}
+    text = {k: value.decode("utf-8-sig") for k,value in captured.items()}
+    audit = list(csv.DictReader(io.StringIO(text["audit"])))
+    prior = json.loads(text["registry"])["repositories"]
+    deployment = list(csv.DictReader(io.StringIO(text["deployments"])))
+    inventory_text = text.get("inventory")
+    live = (json.loads(inventory_text) if inventory_text.lstrip().startswith("[") else [json.loads(x) for x in inventory_text.splitlines() if x.strip()]) if inventory_text is not None else None
+    capability_policy = json.loads(text["capabilities"]) if "capabilities" in text else None
+    if capability_policy is not None:
+        capability_ids = [x["id"] for x in capability_policy["capabilities"]]
+        if not capability_ids or len(capability_ids) != len(set(capability_ids)):
+            raise ValueError("Capability IDs must be nonempty and unique")
+    chain_policy = json.loads(text["chains"]) if "chains" in text else None
+    if chain_policy is not None:
+        chain_names = [x["name"].casefold() for x in chain_policy["chains"]]
+        if len(chain_names) != 100 or len(set(chain_names)) != 100:
+            raise ValueError("The reviewed blockchain universe must contain 100 unique entries")
     rows, quality = build_registry(audit, prior, deployment, live)
     selected = shortlist(rows, args.limit, args.focus)
     out = Path(args.out)
-    inputs = {k: dict(path=str(Path(getattr(args,k)).resolve()), sha256=hashlib.sha256(Path(getattr(args,k)).read_bytes()).hexdigest())
-              for k in ("audit", "registry", "deployments", "inventory") if getattr(args,k)}
+    inputs = {k: dict(path=str(Path(getattr(args,k)).resolve()), sha256=hashlib.sha256(value).hexdigest()) for k,value in captured.items()}
     summary = dict(generatedAt=stamp(), sourceInventoryMode="LIVE_METADATA_PLUS_HISTORICAL_SOURCE_AUDIT" if live is not None else "AUDIT_SNAPSHOT_ONLY",
         totalPublicRepositories=len(live) if live is not None else None, publicNonForks=len(rows),
         forksExcluded=sum(boolean(x.get("fork")) for x in live) if live is not None else None,
         deploymentClasses=dict(Counter(x["deploymentClass"] for x in rows)),
         themes=dict(Counter(x["theme"] for x in rows)), shortlisted=len(selected), focus=args.focus,
         shortlistThemes=dict(Counter(x["theme"] for x in selected)),
+        chainReviewTargetCount=len(chain_policy["chains"]) if chain_policy else None,
+        chainCompatibilityStatus="NOT_VERIFIED_PER_PRODUCT",
+        requestedCapabilityCount=len(capability_policy["capabilities"]) if capability_policy else None,
         verifiedCompleteProducts=None, verifiedProductionReadyProjects=None,
         limitations=["A component observation does not establish a deployed application or present-day liveness.",
             "Source audits and deployment observations retain their original timestamps; live metadata does not refresh them.",
@@ -183,6 +213,12 @@ def plan(args):
         quality=quality, inputs=inputs)
     save(out/"portfolio-registry.json", dict(summary=summary, repositories=rows))
     save(out/"summary.json", summary)
+    if capability_policy is not None:
+        save(out/"capability-register.json", dict(policy=capability_policy,
+            status="INTEGRATION_ASSESSMENT_REQUIRED_NOT_INSTALLED_BY_REGISTRATION",
+            bindings=[dict(repositoryId=x["repositoryId"], repository=x["repository"],
+                capabilitySet=capability_policy["capabilitySet"], assessment="NOT_ASSESSED",
+                nextAction="Inspect existing modules and reuse/extend before adding code") for x in rows]))
     save(out/"review-shortlist-100.json", selected)
     save(out/"production-scorecard.json", dict(maximum=100, earned=None, evidencePoints=0,
         categories=[dict(name=n, maximum=w, earned=None, status="NOT_ASSESSED") for n,w in SCORECARD],
@@ -199,7 +235,7 @@ def plan(args):
         "## What is known", "", *[f"- {k}: {v}" for k,v in summary["deploymentClasses"].items()], "",
         "These are historical component observations and source screening states, not counts of finished products.", "",
         "## Execution waves", "", "1. India and WHO: reproduce negative tests; fix fake payment/PQC/RPC success before integrating genuine backends.",
-        "2. Fingerprint the 223 country/UN source implementations; propagate a fix only to confirmed matching code through per-repository PRs and CI.",
+        "2. Fingerprint the 223 country/UN repositories (222 with source at audit); propagate a fix only to confirmed matching code through per-repository PRs and CI.",
         "3. Review the 100 candidates in five batches of 20; define one usable product workflow and acceptance test per project.",
         "4. Add chain-specific adapters, wallet/QR, token economics and optional QuickNode/x402/PQC/AI modules only where applicable.",
         "5. Verify a real testnet product workflow, source/artifact identity, monitoring, recovery and customer pilot.",
@@ -217,6 +253,8 @@ def main(argv=None):
     p=sub.add_parser("plan")
     for field in ("audit", "registry", "deployments"):
         p.add_argument("--"+field, required=True)
+    p.add_argument("--capabilities", default=str(ROOT/"config/required-capabilities.json"))
+    p.add_argument("--chains", default=str(ROOT/"config/top100-chains.json"))
     p.add_argument("--inventory"); p.add_argument("--out", required=True)
     p.add_argument("--limit", type=int, choices=range(1,101), default=100)
     p.add_argument("--focus", choices=["country-un", "balanced"], default="country-un")

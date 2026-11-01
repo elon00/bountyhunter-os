@@ -1,0 +1,909 @@
+{
+  "retrievedAt": "2026-10-31T16:35:51.247020+00:00",
+  "source": "https://api.llama.fi/v2/chains",
+  "ranking": "DeFi TVL descending; positive finite API values; ranking is not a security endorsement",
+  "targetCount": 100,
+  "autoDeploy": false,
+  "chains": [
+    {
+      "rank": 1,
+      "name": "Ethereum",
+      "tvlUsd": 44091318152.70235,
+      "nativeSymbol": "ETH",
+      "chainId": 1,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 2,
+      "name": "Bitcoin",
+      "tvlUsd": 6127656886.59285,
+      "nativeSymbol": "BTC",
+      "chainId": null,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 3,
+      "name": "Base",
+      "tvlUsd": 5857294379.88946,
+      "nativeSymbol": null,
+      "chainId": 8453,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 4,
+      "name": "Solana",
+      "tvlUsd": 5450807788.2591505,
+      "nativeSymbol": "SOL",
+      "chainId": null,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 5,
+      "name": "Tron",
+      "tvlUsd": 5399392784.40518,
+      "nativeSymbol": "TRX",
+      "chainId": null,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 6,
+      "name": "BSC",
+      "tvlUsd": 5241127070.331441,
+      "nativeSymbol": "BNB",
+      "chainId": 56,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 7,
+      "name": "Hyperliquid L1",
+      "tvlUsd": 2606152116.071496,
+      "nativeSymbol": "HYPE",
+      "chainId": null,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 8,
+      "name": "Arbitrum",
+      "tvlUsd": 1437295245.0442624,
+      "nativeSymbol": "ARB",
+      "chainId": 42161,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 9,
+      "name": "Robinhood Chain",
+      "tvlUsd": 1092105092.581358,
+      "nativeSymbol": null,
+      "chainId": 4663,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 10,
+      "name": "Monad",
+      "tvlUsd": 890183639.9984758,
+      "nativeSymbol": "MON",
+      "chainId": 143,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 11,
+      "name": "Polygon",
+      "tvlUsd": 688524869.9327933,
+      "nativeSymbol": "POL",
+      "chainId": 137,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 12,
+      "name": "Arc",
+      "tvlUsd": 585109468.8857582,
+      "nativeSymbol": null,
+      "chainId": 5042,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 13,
+      "name": "Avalanche",
+      "tvlUsd": 528854737.6722162,
+      "nativeSymbol": "AVAX",
+      "chainId": 43114,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 14,
+      "name": "Plasma",
+      "tvlUsd": 497544655.36762834,
+      "nativeSymbol": "XPL",
+      "chainId": 9745,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 15,
+      "name": "Sui",
+      "tvlUsd": 462020913.7047643,
+      "nativeSymbol": "SUI",
+      "chainId": null,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 16,
+      "name": "OP Mainnet",
+      "tvlUsd": 414101971.12526983,
+      "nativeSymbol": "OP",
+      "chainId": 10,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 17,
+      "name": "XRPL",
+      "tvlUsd": 318614803.6456415,
+      "nativeSymbol": "XRP",
+      "chainId": null,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 18,
+      "name": "Anubis",
+      "tvlUsd": 316970962.50884694,
+      "nativeSymbol": null,
+      "chainId": null,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 19,
+      "name": "Stellar",
+      "tvlUsd": 229093987.17229766,
+      "nativeSymbol": "XLM",
+      "chainId": null,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 20,
+      "name": "Near",
+      "tvlUsd": 200699523.54673904,
+      "nativeSymbol": "NEAR",
+      "chainId": null,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 21,
+      "name": "Ink",
+      "tvlUsd": 192043699.77867207,
+      "nativeSymbol": null,
+      "chainId": 57073,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 22,
+      "name": "Flare",
+      "tvlUsd": 174585112.64955524,
+      "nativeSymbol": "FLR",
+      "chainId": null,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 23,
+      "name": "X Layer",
+      "tvlUsd": 157707204.26517206,
+      "nativeSymbol": null,
+      "chainId": null,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 24,
+      "name": "Cronos",
+      "tvlUsd": 121025418.930223,
+      "nativeSymbol": "CRO",
+      "chainId": 25,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 25,
+      "name": "Provenance",
+      "tvlUsd": 120138081.49332763,
+      "nativeSymbol": "HASH",
+      "chainId": null,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 26,
+      "name": "Mantle",
+      "tvlUsd": 114674183.64147986,
+      "nativeSymbol": "MNT",
+      "chainId": 5000,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 27,
+      "name": "Tempo",
+      "tvlUsd": 104997147.02964461,
+      "nativeSymbol": null,
+      "chainId": 4217,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 28,
+      "name": "Gnosis",
+      "tvlUsd": 86604036.92673953,
+      "nativeSymbol": "GNO",
+      "chainId": 100,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 29,
+      "name": "Rootstock",
+      "tvlUsd": 71439763.57203758,
+      "nativeSymbol": "RIF",
+      "chainId": 30,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 30,
+      "name": "Pharos",
+      "tvlUsd": 71280969.63243565,
+      "nativeSymbol": "PROS",
+      "chainId": 1672,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 31,
+      "name": "dYdX",
+      "tvlUsd": 69730803.07742314,
+      "nativeSymbol": "dYdX",
+      "chainId": null,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 32,
+      "name": "Stacks",
+      "tvlUsd": 58359328.109173805,
+      "nativeSymbol": "STX",
+      "chainId": null,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 33,
+      "name": "Mixin",
+      "tvlUsd": 58324019,
+      "nativeSymbol": "XIN",
+      "chainId": null,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 34,
+      "name": "Cardano",
+      "tvlUsd": 53761652.53265909,
+      "nativeSymbol": "ADA",
+      "chainId": null,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 35,
+      "name": "Hydration",
+      "tvlUsd": 47913307.089512,
+      "nativeSymbol": "HDX",
+      "chainId": null,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 36,
+      "name": "PulseChain",
+      "tvlUsd": 46437350.07596835,
+      "nativeSymbol": "PLS",
+      "chainId": null,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 37,
+      "name": "XPR Network",
+      "tvlUsd": 45146123.60068214,
+      "nativeSymbol": "XPR",
+      "chainId": null,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 38,
+      "name": "TON",
+      "tvlUsd": 44794332.10766645,
+      "nativeSymbol": "GRAM",
+      "chainId": null,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 39,
+      "name": "Aptos",
+      "tvlUsd": 42193918.99560046,
+      "nativeSymbol": "APT",
+      "chainId": null,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 40,
+      "name": "Vaulta",
+      "tvlUsd": 39494338.13005854,
+      "nativeSymbol": "A",
+      "chainId": null,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 41,
+      "name": "Starknet",
+      "tvlUsd": 38979654.86746753,
+      "nativeSymbol": "STRK",
+      "chainId": null,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 42,
+      "name": "THORChain",
+      "tvlUsd": 36781809.23813799,
+      "nativeSymbol": "RUNE",
+      "chainId": null,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 43,
+      "name": "World Chain",
+      "tvlUsd": 36590482.77628726,
+      "nativeSymbol": "WLD",
+      "chainId": 480,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 44,
+      "name": "Katana",
+      "tvlUsd": 33751625.134240136,
+      "nativeSymbol": "KAT",
+      "chainId": 747474,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 45,
+      "name": "RISE",
+      "tvlUsd": 33294571.27163662,
+      "nativeSymbol": "RISE",
+      "chainId": null,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 46,
+      "name": "BOT Chain",
+      "tvlUsd": 32018873.779502295,
+      "nativeSymbol": "BOT",
+      "chainId": 677,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 47,
+      "name": "Berachain",
+      "tvlUsd": 31955238.14995491,
+      "nativeSymbol": "BERA",
+      "chainId": 80094,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 48,
+      "name": "Hedera",
+      "tvlUsd": 30081477.48923847,
+      "nativeSymbol": "HBAR",
+      "chainId": 295,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 49,
+      "name": "Algorand",
+      "tvlUsd": 30021628.612489384,
+      "nativeSymbol": "ALGO",
+      "chainId": null,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 50,
+      "name": "Stable",
+      "tvlUsd": 27029377.87353809,
+      "nativeSymbol": "STABLE",
+      "chainId": 988,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 51,
+      "name": "Unichain",
+      "tvlUsd": 25782594.32266096,
+      "nativeSymbol": "-",
+      "chainId": 130,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 52,
+      "name": "Morph",
+      "tvlUsd": 24509367.869825307,
+      "nativeSymbol": "-",
+      "chainId": null,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 53,
+      "name": "Sei",
+      "tvlUsd": 23604832.68389273,
+      "nativeSymbol": "SEI",
+      "chainId": null,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 54,
+      "name": "Linea",
+      "tvlUsd": 23162746.21836121,
+      "nativeSymbol": "LINEA",
+      "chainId": 59144,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 55,
+      "name": "Kava",
+      "tvlUsd": 20080205.756081868,
+      "nativeSymbol": "KAVA",
+      "chainId": null,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 56,
+      "name": "Tezos",
+      "tvlUsd": 19252889.11459049,
+      "nativeSymbol": "XTZ",
+      "chainId": null,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 57,
+      "name": "Fraxtal",
+      "tvlUsd": 18179714.678188246,
+      "nativeSymbol": "FRAX",
+      "chainId": 252,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 58,
+      "name": "Etherlink",
+      "tvlUsd": 17363723.491214562,
+      "nativeSymbol": null,
+      "chainId": 42793,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 59,
+      "name": "Chainflip",
+      "tvlUsd": 15454049.733842991,
+      "nativeSymbol": "FLIP",
+      "chainId": null,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 60,
+      "name": "Sonic",
+      "tvlUsd": 15168302.704072677,
+      "nativeSymbol": "S",
+      "chainId": 146,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 61,
+      "name": "Strato Chain",
+      "tvlUsd": 14869993.697690211,
+      "nativeSymbol": null,
+      "chainId": null,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 62,
+      "name": "Injective",
+      "tvlUsd": 14531285.323919464,
+      "nativeSymbol": "INJ",
+      "chainId": null,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 63,
+      "name": "Celo",
+      "tvlUsd": 13500435.330924788,
+      "nativeSymbol": "CELO",
+      "chainId": 42220,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 64,
+      "name": "ZKsync Era",
+      "tvlUsd": 13488491.568532048,
+      "nativeSymbol": "ZK",
+      "chainId": 324,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 65,
+      "name": "Canton",
+      "tvlUsd": 13471640.277089957,
+      "nativeSymbol": "CC",
+      "chainId": null,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 66,
+      "name": "Bifrost Network",
+      "tvlUsd": 13062889.988335148,
+      "nativeSymbol": "BFC",
+      "chainId": null,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 67,
+      "name": "MultiversX",
+      "tvlUsd": 12691041.901926957,
+      "nativeSymbol": "EGLD",
+      "chainId": null,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 68,
+      "name": "MegaETH",
+      "tvlUsd": 12348070.069979157,
+      "nativeSymbol": "MEGA",
+      "chainId": 4326,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 69,
+      "name": "Flow",
+      "tvlUsd": 11221932.162516031,
+      "nativeSymbol": "FLOW",
+      "chainId": 747,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 70,
+      "name": "Immutable zkEVM",
+      "tvlUsd": 10982412.056922108,
+      "nativeSymbol": "IMX",
+      "chainId": 13371,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 71,
+      "name": "Osmosis",
+      "tvlUsd": 10772438.489908027,
+      "nativeSymbol": "OSMO",
+      "chainId": null,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 72,
+      "name": "Fluent",
+      "tvlUsd": 10046132.008190975,
+      "nativeSymbol": "BLEND",
+      "chainId": 25363,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 73,
+      "name": "Ronin",
+      "tvlUsd": 9924527.992348101,
+      "nativeSymbol": "RON",
+      "chainId": 2020,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 74,
+      "name": "ReyaChain",
+      "tvlUsd": 9898380.950990349,
+      "nativeSymbol": "REYA",
+      "chainId": 1729,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 75,
+      "name": "Soneium",
+      "tvlUsd": 9387601.04659392,
+      "nativeSymbol": null,
+      "chainId": 1868,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 76,
+      "name": "Merlin",
+      "tvlUsd": 9047313.376194715,
+      "nativeSymbol": "MERL",
+      "chainId": null,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 77,
+      "name": "Citrea",
+      "tvlUsd": 8921369.86892859,
+      "nativeSymbol": "CTR",
+      "chainId": 4114,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 78,
+      "name": "ICP",
+      "tvlUsd": 7726677.300839397,
+      "nativeSymbol": "ICP",
+      "chainId": null,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 79,
+      "name": "Waves",
+      "tvlUsd": 7680562.580969315,
+      "nativeSymbol": "WAVES",
+      "chainId": null,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 80,
+      "name": "Scroll",
+      "tvlUsd": 7363311.974463624,
+      "nativeSymbol": "SCR",
+      "chainId": 534352,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 81,
+      "name": "Kaia",
+      "tvlUsd": 7110220.771987986,
+      "nativeSymbol": "KAIA",
+      "chainId": 8217,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 82,
+      "name": "Mezo",
+      "tvlUsd": 6846601.247972992,
+      "nativeSymbol": "MEZO",
+      "chainId": 31612,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 83,
+      "name": "Conflux",
+      "tvlUsd": 6246025.8716588905,
+      "nativeSymbol": "CFX",
+      "chainId": null,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 84,
+      "name": "Bitcoincash",
+      "tvlUsd": 5569371.91074125,
+      "nativeSymbol": "BCH",
+      "chainId": null,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 85,
+      "name": "BOB",
+      "tvlUsd": 5393722.089711,
+      "nativeSymbol": "BOB",
+      "chainId": 60808,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 86,
+      "name": "KUB",
+      "tvlUsd": 4961130.22700325,
+      "nativeSymbol": "KUB",
+      "chainId": 96,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 87,
+      "name": "ZIGChain",
+      "tvlUsd": 4832926.806669153,
+      "nativeSymbol": "ZIG",
+      "chainId": null,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 88,
+      "name": "Ontology",
+      "tvlUsd": 4699076.320305001,
+      "nativeSymbol": "ONT",
+      "chainId": null,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 89,
+      "name": "Fuel Ignition",
+      "tvlUsd": 4567034.014648389,
+      "nativeSymbol": "FUEL",
+      "chainId": null,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 90,
+      "name": "Aurora",
+      "tvlUsd": 4140030.9805273237,
+      "nativeSymbol": "AURORA",
+      "chainId": 1313161554,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 91,
+      "name": "Initia",
+      "tvlUsd": 3599592.347406449,
+      "nativeSymbol": "INIT",
+      "chainId": null,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 92,
+      "name": "Bifrost",
+      "tvlUsd": 3410574.5463934634,
+      "nativeSymbol": "BNC",
+      "chainId": null,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 93,
+      "name": "CORE",
+      "tvlUsd": 3292490.388022971,
+      "nativeSymbol": "CORE",
+      "chainId": null,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 94,
+      "name": "0G",
+      "tvlUsd": 3256992.906636811,
+      "nativeSymbol": "0G",
+      "chainId": 16661,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 95,
+      "name": "Zcash",
+      "tvlUsd": 3146516.0000800136,
+      "nativeSymbol": "ZEC",
+      "chainId": null,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 96,
+      "name": "Gala",
+      "tvlUsd": 3097696.899696396,
+      "nativeSymbol": "GALA",
+      "chainId": null,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 97,
+      "name": "Fantom",
+      "tvlUsd": 3081689.94441477,
+      "nativeSymbol": "FTM",
+      "chainId": 250,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 98,
+      "name": "Somnia",
+      "tvlUsd": 3050909.076209164,
+      "nativeSymbol": "SOMI",
+      "chainId": 5031,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 99,
+      "name": "GateLayer",
+      "tvlUsd": 3039591.7340620607,
+      "nativeSymbol": "GT",
+      "chainId": 10088,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    },
+    {
+      "rank": 100,
+      "name": "Terra2",
+      "tvlUsd": 2953779.785243792,
+      "nativeSymbol": "LUNA",
+      "chainId": null,
+      "compatibility": "NOT_REVIEWED",
+      "deployment": "NOT_AUTHORIZED_BY_LISTING"
+    }
+  ]
+}

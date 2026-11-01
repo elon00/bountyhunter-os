@@ -1,0 +1,108 @@
+# 100-blockchain compatibility review checklist
+
+Ranked by DeFiLlama DeFi TVL, retrieved 2026-10-31T16:35:51.247020+00:00. This is a review universe, not an overall quality/security ranking or proof of deployability.
+
+Source: https://api.llama.fi/v2/chains
+
+For each chain: confirm network identity and runtime; review testnet/RPC/wallet support; reproduce a native build; test the product workflow; verify deployment/source match; review fees, authorities, monitoring and release approval. No chain is checked complete or automatically enabled.
+
+- [ ] 1. Ethereum
+- [ ] 2. Bitcoin
+- [ ] 3. Base
+- [ ] 4. Solana
+- [ ] 5. Tron
+- [ ] 6. BSC
+- [ ] 7. Hyperliquid L1
+- [ ] 8. Arbitrum
+- [ ] 9. Robinhood Chain
+- [ ] 10. Monad
+- [ ] 11. Polygon
+- [ ] 12. Arc
+- [ ] 13. Avalanche
+- [ ] 14. Plasma
+- [ ] 15. Sui
+- [ ] 16. OP Mainnet
+- [ ] 17. XRPL
+- [ ] 18. Anubis
+- [ ] 19. Stellar
+- [ ] 20. Near
+- [ ] 21. Ink
+- [ ] 22. Flare
+- [ ] 23. X Layer
+- [ ] 24. Cronos
+- [ ] 25. Provenance
+- [ ] 26. Mantle
+- [ ] 27. Tempo
+- [ ] 28. Gnosis
+- [ ] 29. Rootstock
+- [ ] 30. Pharos
+- [ ] 31. dYdX
+- [ ] 32. Stacks
+- [ ] 33. Mixin
+- [ ] 34. Cardano
+- [ ] 35. Hydration
+- [ ] 36. PulseChain
+- [ ] 37. XPR Network
+- [ ] 38. TON
+- [ ] 39. Aptos
+- [ ] 40. Vaulta
+- [ ] 41. Starknet
+- [ ] 42. THORChain
+- [ ] 43. World Chain
+- [ ] 44. Katana
+- [ ] 45. RISE
+- [ ] 46. BOT Chain
+- [ ] 47. Berachain
+- [ ] 48. Hedera
+- [ ] 49. Algorand
+- [ ] 50. Stable
+- [ ] 51. Unichain
+- [ ] 52. Morph
+- [ ] 53. Sei
+- [ ] 54. Linea
+- [ ] 55. Kava
+- [ ] 56. Tezos
+- [ ] 57. Fraxtal
+- [ ] 58. Etherlink
+- [ ] 59. Chainflip
+- [ ] 60. Sonic
+- [ ] 61. Strato Chain
+- [ ] 62. Injective
+- [ ] 63. Celo
+- [ ] 64. ZKsync Era
+- [ ] 65. Canton
+- [ ] 66. Bifrost Network
+- [ ] 67. MultiversX
+- [ ] 68. MegaETH
+- [ ] 69. Flow
+- [ ] 70. Immutable zkEVM
+- [ ] 71. Osmosis
+- [ ] 72. Fluent
+- [ ] 73. Ronin
+- [ ] 74. ReyaChain
+- [ ] 75. Soneium
+- [ ] 76. Merlin
+- [ ] 77. Citrea
+- [ ] 78. ICP
+- [ ] 79. Waves
+- [ ] 80. Scroll
+- [ ] 81. Kaia
+- [ ] 82. Mezo
+- [ ] 83. Conflux
+- [ ] 84. Bitcoincash
+- [ ] 85. BOB
+- [ ] 86. KUB
+- [ ] 87. ZIGChain
+- [ ] 88. Ontology
+- [ ] 89. Fuel Ignition
+- [ ] 90. Aurora
+- [ ] 91. Initia
+- [ ] 92. Bifrost
+- [ ] 93. CORE
+- [ ] 94. 0G
+- [ ] 95. Zcash
+- [ ] 96. Gala
+- [ ] 97. Fantom
+- [ ] 98. Somnia
+- [ ] 99. GateLayer
+- [ ] 100. Terra2

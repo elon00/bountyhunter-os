@@ -1,7 +1,7 @@
 import { execFileSync, spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { existsSync, readFileSync, writeFileSync, mkdirSync, realpathSync, lstatSync, readlinkSync, openSync, fstatSync, closeSync, constants } from 'node:fs';
-import { resolve, dirname, join } from 'node:path';
+import { resolve, dirname, join, extname } from 'node:path';
 
 export const rubric = [
   ['architecture', 8, ['acceptance', 'boundaries']],
@@ -21,6 +21,7 @@ export const rubric = [
 export const sha256 = data => createHash('sha256').update(data).digest('hex');
 const iso = () => new Date().toISOString();
 export function saveJson(path, data) {
+  if (extname(path).toLowerCase() !== '.json') throw new Error('Evidence output must be a JSON data file');
   mkdirSync(dirname(path), { recursive: true });
   writeFileSync(path, JSON.stringify(data, null, 2) + '\n');
 }
@@ -33,23 +34,26 @@ export function sourceIdentity(repo) {
   for (const file of [...new Set(files)]) {
     const path = resolve(repo, file);
     digest.update(file + '\0');
-    if (!existsSync(path)) { digest.update('DELETED\0'); continue; }
-    const stat = lstatSync(path);
-    if (stat.isSymbolicLink()) digest.update('LINK:' + readlinkSync(path));
-    else if (stat.isFile()) {
-      let descriptor;
-      try {
-        descriptor = openSync(path, constants.O_RDONLY | (constants.O_NOFOLLOW ?? 0));
-        const opened = fstatSync(descriptor);
-        if (!opened.isFile() || opened.dev !== stat.dev || opened.ino !== stat.ino) throw new Error('Source changed while opening file');
-        digest.update(readFileSync(descriptor));
-        const afterRead = fstatSync(descriptor);
-        if (afterRead.size !== opened.size || afterRead.mtimeMs !== opened.mtimeMs || afterRead.ctimeMs !== opened.ctimeMs) throw new Error('Source changed while reading file');
-      } finally {
-        if (descriptor !== undefined) closeSync(descriptor);
-      }
+    try {
+      const target = readlinkSync(path);
+      digest.update('LINK:' + target + '\0');
+      continue;
+    } catch (error) {
+      if (error.code === 'ENOENT') { digest.update('DELETED\0'); continue; }
+      if (error.code !== 'EINVAL' && error.code !== 'UNKNOWN') throw error;
     }
-    else digest.update('NON_FILE');
+    let descriptor;
+    try {
+      descriptor = openSync(path, constants.O_RDONLY | (constants.O_NOFOLLOW ?? 0));
+      const opened = fstatSync(descriptor);
+      if (!opened.isFile()) throw new Error('Source contains a non-file entry');
+      digest.update(readFileSync(descriptor));
+      const afterRead = fstatSync(descriptor);
+      const currentEntry = lstatSync(path);
+      if (currentEntry.isSymbolicLink() || currentEntry.dev !== opened.dev || currentEntry.ino !== opened.ino || afterRead.size !== opened.size || afterRead.mtimeMs !== opened.mtimeMs || afterRead.ctimeMs !== opened.ctimeMs) throw new Error('Source changed while reading file');
+    } finally {
+      if (descriptor !== undefined) closeSync(descriptor);
+    }
     digest.update('\0');
   }
   return { commit: git(['rev-parse', 'HEAD']), sourceSha256: digest.digest('hex'), dirty: Boolean(git(['status', '--porcelain'])) };
@@ -134,9 +138,14 @@ export function scoreReport(report, currentSource, reportDir, project) {
 export async function verifyEvm({ rpcUrl, chainId, txHash, address, minConfirmations = 12, fetchImpl = fetch }) {
   const url = new URL(rpcUrl);
   if (url.protocol !== 'https:' && !(url.protocol === 'http:' && ['localhost', '127.0.0.1', '[::1]'].includes(url.hostname))) throw new Error('RPC requires HTTPS or local test endpoint');
-  if (!/^0x[0-9a-f]{64}$/i.test(txHash) || !/^0x[0-9a-f]{40}$/i.test(address)) throw new Error('Invalid EVM transaction or address');
+  if (typeof txHash !== 'string' || typeof address !== 'string' || !/^0x[0-9a-f]{64}$/i.test(txHash) || !/^0x[0-9a-f]{40}$/i.test(address)) throw new Error('Invalid EVM transaction or address');
   if (!Number.isSafeInteger(minConfirmations) || minConfirmations < 1) throw new Error('Confirmations must be a positive integer');
+  if ((typeof chainId !== 'number' && typeof chainId !== 'string') || (typeof chainId === 'number' && !Number.isSafeInteger(chainId)) || !/^(?:[1-9][0-9]*|0x[1-9a-f][0-9a-f]*)$/i.test(String(chainId))) throw new Error('Invalid expected chain ID');
   const expected = BigInt(chainId);
+  const quantity = value => {
+    if (typeof value !== 'string' || !/^0x(?:0|[1-9a-f][0-9a-f]*)$/i.test(value)) throw new Error('Invalid RPC quantity');
+    return BigInt(value);
+  };
   const rpc = async (method, params) => {
     const response = await fetchImpl(rpcUrl, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ jsonrpc: '2.0', id: 1, method, params }), signal: AbortSignal.timeout(15000), redirect: 'error' });
     if (!response.ok) throw new Error('RPC HTTP failure');
@@ -144,12 +153,12 @@ export async function verifyEvm({ rpcUrl, chainId, txHash, address, minConfirmat
     if (data.error || !Object.hasOwn(data, 'result')) throw new Error('RPC result unavailable');
     return data.result;
   };
-  if (BigInt(await rpc('eth_chainId', [])) !== expected) throw new Error('Wrong chain');
+  if (quantity(await rpc('eth_chainId', [])) !== expected) throw new Error('Wrong chain');
   const receipt = await rpc('eth_getTransactionReceipt', [txHash]);
-  if (!receipt || BigInt(receipt.status ?? 0) !== 1n || receipt.transactionHash?.toLowerCase() !== txHash.toLowerCase() || receipt.contractAddress?.toLowerCase() !== address.toLowerCase()) throw new Error('No successful direct contract creation receipt for this address');
-  if (!/^0x[0-9a-f]{64}$/i.test(receipt.blockHash ?? '')) throw new Error('Invalid receipt block hash');
-  const height = BigInt(await rpc('eth_blockNumber', []));
-  const block = BigInt(receipt.blockNumber);
+  if (!receipt || quantity(receipt.status) !== 1n || receipt.transactionHash?.toLowerCase() !== txHash.toLowerCase() || receipt.contractAddress?.toLowerCase() !== address.toLowerCase()) throw new Error('No successful direct contract creation receipt for this address');
+  if (typeof receipt.blockHash !== 'string' || !/^0x[0-9a-f]{64}$/i.test(receipt.blockHash)) throw new Error('Invalid receipt block hash');
+  const height = quantity(await rpc('eth_blockNumber', []));
+  const block = quantity(receipt.blockNumber);
   const confirmations = height - block + 1n;
   if (confirmations < BigInt(minConfirmations)) throw new Error('Insufficient confirmations');
   const canonical = await rpc('eth_getBlockByNumber', [receipt.blockNumber, false]);
@@ -157,7 +166,7 @@ export async function verifyEvm({ rpcUrl, chainId, txHash, address, minConfirmat
   const code = await rpc('eth_getCode', [address, {blockHash: receipt.blockHash, requireCanonical: true}]);
   const canonicalAfter = await rpc('eth_getBlockByNumber', [receipt.blockNumber, false]);
   if (canonicalAfter?.hash?.toLowerCase() !== receipt.blockHash.toLowerCase()) throw new Error('Canonical block changed during verification');
-  if (!/^0x(?:[0-9a-f]{2})+$/i.test(code) || /^0x(?:00)+$/i.test(code)) throw new Error('No executable bytecode at receipt block');
+  if (typeof code !== 'string' || !/^0x(?:[0-9a-f]{2})+$/i.test(code) || /^0x(?:00)+$/i.test(code)) throw new Error('No executable bytecode at receipt block');
   return { status: 'ONCHAIN_CREATION_OBSERVED', checkedAt: iso(), chainId: expected.toString(), txHash, address, blockHash: receipt.blockHash, blockNumber: block.toString(), confirmations: confirmations.toString(), codeSha256: sha256(Buffer.from(code.slice(2), 'hex')), sourceMatch: 'NOT_VERIFIED', productionReady: false, limitations: ['Single provider observation', 'Provider must support EIP-1898 block-hash code reads', 'Direct contract creation only; factory deployments need a separate adapter', 'Confirmation count is not chain-specific finalized status', 'Runtime bytecode hash does not prove reproducible source match or safe behavior'] };
 }
 

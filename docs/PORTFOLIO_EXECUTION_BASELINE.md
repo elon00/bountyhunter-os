@@ -19,7 +19,7 @@ These are historical component observations and source screening states, not cou
 ## Execution waves
 
 1. India and WHO: reproduce negative tests; fix fake payment/PQC/RPC success before integrating genuine backends.
-2. Fingerprint the 223 country/UN source implementations; propagate a fix only to confirmed matching code through per-repository PRs and CI.
+2. Fingerprint the 223 country/UN repositories (222 with source at audit); propagate a fix only to confirmed matching code through per-repository PRs and CI.
 3. Review the 100 candidates in five batches of 20; define one usable product workflow and acceptance test per project.
 4. Add chain-specific adapters, wallet/QR, token economics and optional QuickNode/x402/PQC/AI modules only where applicable.
 5. Verify a real testnet product workflow, source/artifact identity, monitoring, recovery and customer pilot.

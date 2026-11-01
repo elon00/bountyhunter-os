@@ -1,3 +1,4 @@
+import { fileURLToPath } from 'node:url';
 import fsForRaceTest from 'node:fs';
 import { syncBuiltinESMExports } from 'node:module';
 import test from 'node:test';
@@ -5,8 +6,8 @@ import assert from 'node:assert/strict';
 import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { execFileSync } from 'node:child_process';
-import { runChecks as executeChecks, scoreReport as evaluateScore, sourceIdentity, redact, releasePlan, verifyEvm, rubric } from '../src/missionControl.js';
+import { execFileSync, spawnSync } from 'node:child_process';
+import { runChecks as executeChecks, scoreReport as evaluateScore, sourceIdentity, redact, releasePlan, verifyEvm, rubric, saveJson } from '../src/missionControl.js';
 
 const profiles = new WeakMap();
 function runChecks(project, ...args) { const report = executeChecks(project, ...args); profiles.set(report, project); return report; }
@@ -149,13 +150,55 @@ test('source fingerprint rejects a file replaced between metadata inspection and
   fsForRaceTest.openSync = function(path, ...args) {
     if (path === target && !replaced) {
       replaced = true;
+      const opened = originalOpen(path, ...args);
       fsForRaceTest.renameSync(target, join(repo, 'original-source.txt'));
       originalWrite(target, 'replacement');
+      return opened;
     }
     return originalOpen(path, ...args);
   };
   syncBuiltinESMExports();
-  try { assert.throws(() => sourceIdentity(repo), /Source changed while opening/); }
+  try { assert.throws(() => sourceIdentity(repo), /Source changed while reading/); }
   finally { fsForRaceTest.openSync = originalOpen; syncBuiltinESMExports(); }
   assert.equal(replaced, true);
+}));
+
+
+test('RPC quantities and bytecode reject JSON values that merely coerce to expected strings', async () => {
+  for (const overrides of [
+    {eth_chainId:true}, {eth_blockNumber:21}, {eth_getCode:['0x60006000']},
+    {eth_getTransactionReceipt:{status:1,transactionHash:txHash,contractAddress:address,blockNumber:'0xa',blockHash}},
+    {eth_getTransactionReceipt:{status:'0x1',transactionHash:txHash,contractAddress:address,blockNumber:10,blockHash}},
+    {eth_getTransactionReceipt:{status:'0x1',transactionHash:txHash,contractAddress:address,blockNumber:'0xa',blockHash:[blockHash]}}
+  ]) await assert.rejects(() => verify(overrides));
+});
+
+test('RPC evidence cannot be written as an executable file', () => fixture((repo) => {
+  assert.throws(() => saveJson(join(repo, 'download.js'), {payload:'not executed'}), /JSON data file/);
+  saveJson(join(repo, 'proof.json'), {observation:'untrusted data only'});
+  assert.equal(JSON.parse(readFileSync(join(repo, 'proof.json'), 'utf8')).observation, 'untrusted data only');
+}));
+
+test('dangling symlink retargeting changes the source fingerprint', (t) => fixture((repo) => {
+  const target = join(repo, 'dangling-link');
+  try { fsForRaceTest.symlinkSync('missing-a', target); }
+  catch (error) { if (error.code === 'EPERM' || error.code === 'EACCES') { t.skip('Windows symlink privilege unavailable; Linux CI exercises this case'); return; } throw error; }
+  const before = sourceIdentity(repo).sourceSha256;
+  fsForRaceTest.unlinkSync(target);
+  fsForRaceTest.symlinkSync('missing-b', target);
+  assert.notEqual(sourceIdentity(repo).sourceSha256, before);
+}));
+
+
+test('the coordinator profile honors an explicitly selected workspace checkout', () => fixture((repo, out) => {
+  const workspace = join(repo, '..');
+  const selected = join(workspace, 'bountyhunter-os');
+  fsForRaceTest.renameSync(repo, selected);
+  const profilesFile = join(workspace, 'reviewed-profiles.json');
+  writeFileSync(profilesFile, JSON.stringify({projects:[{name:'bountyhunter-os',checks:[]}]}));
+  const script = new URL('../scripts/mission-control.mjs', import.meta.url);
+  const result = spawnSync(process.execPath, [fileURLToPath(script), 'score', 'bountyhunter-os', '--workspace', workspace, '--registry', profilesFile, '--output', out], {encoding:'utf8', windowsHide:true});
+  assert.equal(result.status, 2, result.stderr);
+  const observed = JSON.parse(result.stdout);
+  assert.equal(observed.source.sourceSha256, sourceIdentity(selected).sourceSha256);
 }));

@@ -11,7 +11,7 @@ python tools/portfolio_master.py plan --audit DATA/audit.csv --registry DATA/sou
 python -m unittest discover -s tests -p test_portfolio_master.py -v
 ```
 
-Inputs are the existing audit CSV, source-registry JSON, observed component register CSV and optional current GitHub metadata JSON/NDJSON. The planner joins by immutable repository ID, preserving renamed identities and historical observation timestamps. It rejects duplicate IDs/names and unexpected owners, reports orphan evidence, records input hashes, and flags source changes since screening. The optional metadata refresh does not re-run builds or RPC verification.
+Inputs are the existing audit CSV, source-registry JSON, observed component register CSV and optional current GitHub metadata JSON/NDJSON. Prior-registry and deployment records must include repositoryId, bound to the original audit snapshot. The planner joins all records by immutable repository ID, preserving renamed identities and historical observation timestamps. It rejects duplicate IDs/names and unexpected owners, reports orphan evidence, records input hashes, and flags source changes since screening. The optional metadata refresh does not re-run builds or RPC verification.
 
 Outputs: a reconciled registry, explicit deployment classes, quality/reconciliation results, a 100-candidate CSV/JSON with GitHub links, a 100-point business-inclusive scorecard, and an execution baseline. Unknown readiness stays unassessed. Recorded mainnet payments, contracts, testnet programs and token mints are component observations, not proof of finished applications.
 
@@ -34,7 +34,7 @@ Mandatory evidence includes reproducible artifacts and source matching; rejectio
 ## Engineering waves
 
 1. Repair India and WHO's confirmed false-positive verification paths. Write negative tests before implementing real cryptographic/payment/RPC backends.
-2. Fingerprint and compare all 223 country/UN implementations before propagating any patch. Use separate PRs and stack-appropriate CI; do not replace distinct products with a shared template.
+2. Fingerprint and compare all 223 country/UN repositories (222 with source at audit) before propagating any patch. Use separate PRs and stack-appropriate CI; do not replace distinct products with a shared template.
 3. Review five batches of 20 candidates. Define user, utility, token economics, acceptance workflow and compatible chain per product.
 4. Integrate chain-native code and optional QuickNode, x402, wallets/QR, genuine PQC, Conway simulation, multimodel agents and governed Raven/REA where useful.
 5. Run real testnet end-to-end, source matching, monitoring and recovery exercises. Record observed addresses and explorer evidence.
@@ -54,3 +54,5 @@ These links are references, not installed integrations. RPC providers, chain run
 ## Current limits
 
 This planner performs reconciliation and review selection. It does not repair arbitrary repositories, implement all requested integrations, reverify on-chain observations, certify market traction or deploy/sign/mint/spend. The underlying source audit and component observations are historical snapshots. GitHub CI runs the actual planner regressions and Python/JavaScript CodeQL; those results do not certify the other 2,856 products.
+
+Missing or malformed fork flags and invalid IDs fail closed. Push timestamps are activity hints only; current source identity remains unresolved until its actual head is read. Input hashes describe the same captured bytes that were parsed. Use START_MISSION.ps1 with the complete data package for one-command planning, then give MASTER_PROMPT.md to the coding agent for continued engineering.

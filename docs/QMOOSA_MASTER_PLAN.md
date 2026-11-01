@@ -1,6 +1,6 @@
 # QMOOSA software architecture, repair and release master plan
 
-Updated 31 October 2026 (Asia/Calcutta). Target: evidence-based 100/100. Portfolio completion: NOT ACHIEVED.
+Updated 1 November 2026 (Asia/Calcutta). Target: evidence-based 100/100. Portfolio completion: NOT ACHIEVED.
 
 ## Fast links
 
@@ -101,7 +101,7 @@ An 85-point score permits a launch review only. Critical security, genuine testn
 3. Verify a single country template and a single UN template end to end. Remove fabricated crypto/payment/settlement semantics before adding real implementations. Add negative regression tests first.
 4. Map the common template versions across the 195 + 28 repositories. Generate per-repository branches only for verified shared defects. Run each repository's actual CI and acceptance tests; do not replace unique product code with a universal template.
 5. Resolve the empty Tajikistan repository and the 197-country roster. Build substantive domain workflows and datasets, not just a renamed homepage.
-6. Select useful chain targets from the top-40 snapshot. Implement one stack-specific adapter and one product vertical at a time. A full Cartesian product of 2,856 repositories and 40 chains is not an evidence-based requirement.
+6. Select useful chain targets from the top-100 review snapshot. Implement one stack-specific adapter and one product vertical at a time. A full Cartesian product of 2,856 repositories and 100 chain candidates is not an evidence-based requirement.
 7. Run genuine testnet transactions and app-level tests, archive receipts and reproduce source match. Establish observability and recovery.
 8. Prepare exact mainnet artifacts, network identifiers, authorities, recipient, fee quote, maximum spend and external signer policy. Obtain the explicit release approval required by your pasted specification, then execute and verify that approved release.
 
@@ -114,3 +114,5 @@ The release plans emitted by the coordinator deliberately remain non-executable 
 ## Delivery status
 
 See [the execution baseline](PORTFOLIO_EXECUTION_BASELINE.md), [the runbook](PORTFOLIO_MASTER_RUNBOOK.md), and [the 100-project queue](PORTFOLIO_REVIEW_QUEUE.csv). The current public inventory is reconciled by repository ID; source and on-chain observations retain their historical timestamps. CodeQL/CI results apply only to the exact tested coordinator or pilot commit, not all portfolio projects.
+
+The review universe is expanded to the 100-chain DeFi TVL snapshot retrieved 31 October 2026. See TOP_100_BLOCKCHAIN_CHECKLIST.md. Native deployment compatibility is not inferred from TVL ranking.
