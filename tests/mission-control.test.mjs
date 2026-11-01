@@ -202,3 +202,8 @@ test('the coordinator profile honors an explicitly selected workspace checkout',
   const observed = JSON.parse(result.stdout);
   assert.equal(observed.source.sourceSha256, sourceIdentity(selected).sourceSha256);
 }));
+
+
+test('an empty reviewed command profile cannot report successful checks', () => fixture((repo, out) => {
+  assert.throws(() => executeChecks({name:'empty-profile',checks:[]}, repo, out), /empty check suite cannot pass/);
+}));

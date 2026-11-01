@@ -82,6 +82,7 @@ export function commandFor(step, env) {
 }
 
 export function runChecks(project, repo, outputDir, { env = process.env } = {}) {
+  if (!Array.isArray(project.checks) || project.checks.length === 0) throw new Error("No reviewed checks configured; an empty check suite cannot pass");
   if (!Array.isArray(project.checks) || !project.checks.length) throw new Error('No reviewed check profile; classify this repository first');
   const before = sourceIdentity(repo);
   const startedAt = iso();
