@@ -1,7 +1,7 @@
 {
   "engine": "REA_Reverse_Engineer_Anything",
   "status": "STRUCTURE_RECONSTRUCTED",
-  "analyzed_files": 75,
+  "analyzed_files": 77,
   "manifest": {
     "ANTIGRAVITY.md": {
       "bytes": 512
@@ -126,6 +126,12 @@
     "reality\\URS_SCORECARD.json": {
       "bytes": 2459
     },
+    "reports\\RAVEN_RSI_DIAGNOSTIC.json": {
+      "bytes": 340
+    },
+    "reports\\REA_ANALYSIS.json": {
+      "bytes": 5295
+    },
     "scripts\\audit-crypto.mjs": {
       "bytes": 7182
     },
@@ -229,5 +235,5 @@
       "bytes": 7359
     }
   },
-  "timestamp": 1793989843
+  "timestamp": 1794220658
 }
