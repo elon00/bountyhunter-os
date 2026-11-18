@@ -54,7 +54,7 @@ jobs:
 
       - name: Upload portfolio evidence
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: qmoosa-portfolio-one-click-report
           path: bountyhunter-os/.qmoosa/portfolio-finisher-report.json
