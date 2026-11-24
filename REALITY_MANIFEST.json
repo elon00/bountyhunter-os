@@ -1,11 +1,5 @@
 {
-  "deployment": {
-  "provider": "GitHub Pages",
-  "canonical_url": "https://elon00.github.io/bountyhunter-os/",
-  "branch": "gh-pages",
-  "status": "DEPLOYED_AND_VERIFIED"
-},
-"system": "BOUNTYHUNTER-OS",
+  "system": "BOUNTYHUNTER-OS",
   "version": "1.0.0",
   "status": "EVIDENCE_BASED_PQC_PROTOCOL",
   "description": "Post-Quantum Web4 Master Project Finisher and Universal Reality Portfolio Engine",

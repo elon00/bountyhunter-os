@@ -1,15 +1,27 @@
-# BountyHunter OS: Autonomous Web3 Security & Bug Bounty Orchestrator
+# QMoosa Master Operating System
 
-**Maintainer**: Martin Luther (elon00)  
-**Standard**: AST Static Code Analysis & MCP Security Tooling  
-**Status**: Automated Security Scanner Harness Verified in CI  
+## One command: Start and Finish Everything
 
-## 1. System Overview
-BountyHunter OS coordinates autonomous AI agents to scan smart contracts, detect invariant violations, and generate reproducible bug bounty test proofs without human intervention.
+This repository is the unified home for:
 
-## 2. 5-Second Standalone Quickstart
-Run the security scan harness:
+- QMoosa Master Project Finisher
+- BountyHunter OS
+- Conway AI Automaton integrations
+
+### Pipeline
+
+`DISCOVER → CLASSIFY → AUDIT → FIX → TEST → VERIFY → DEPLOY → REPORT`
+
+### Safety and evidence rules
+
+- No production PASS without evidence.
+- No secrets committed.
+- Automatic fixes are limited to deterministic, low-risk repository changes.
+- Deployment requires successful applicable build/test gates.
+
+Run locally:
 
 ```bash
-python scripts/simulate_bounty_hunt.py
+npm install
+npm run qmoosa:finish
 ```

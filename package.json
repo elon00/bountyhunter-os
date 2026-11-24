@@ -1,6 +1,6 @@
 {
   "name": "qmoosa-master-operating-system",
-  "version": "0.1.3",
+  "version": "0.1.0",
   "private": true,
   "type": "module",
   "workspaces": [
@@ -14,22 +14,6 @@
     "audit:crypto": "node scripts/audit-crypto.mjs",
     "reality:universal": "tsx scripts/reality-universal.ts",
     "reality:certify": "tsx scripts/generate-urs-certificate.ts",
-    "gods-eye:doctor": "npm --prefix ../gods-eye-view_xyz run doctor",
-    "gods-eye:check": "npm --prefix ../gods-eye-view_xyz run check:boundaries",
-    "gods-eye:test": "npm --prefix ../gods-eye-view_xyz test",
-    "gods-eye:build": "npm --prefix ../gods-eye-view_xyz run build",
-    "gods-eye:dev": "npm --prefix ../gods-eye-view_xyz run dev",
-    "ai-quantum:test": "npm --prefix ../../qmoosa-deep-tech-ai-quantum-platform test",
-    "ai-quantum:dev": "npm --prefix ../../qmoosa-deep-tech-ai-quantum-platform run dev",
-    "qmoosa:finish": "node scripts/start-and-finish-everything.mjs",
-    "qmoosa:heal": "node scripts/master-healer.mjs",
-    "finish:all": "node scripts/portfolio-finisher.mjs",
-    "mission": "node scripts/mission-control.mjs"
-  },
-  "dependencies": {
-    "@noble/hashes": "2.4.0",
-    "@noble/post-quantum": "0.7.1",
-    "tsx": "4.20.3"
-  },
-  "devDependencies": {}
+    "qmoosa:finish": "node scripts/start-and-finish-everything.mjs"
+  }
 }
